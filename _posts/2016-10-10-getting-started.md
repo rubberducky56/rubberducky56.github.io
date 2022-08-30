@@ -2,7 +2,7 @@
 layout: post
 title: "Getting Started"
 author: "Paul Le"
-categories: computerscience
+categories: default
 tags: [documentation,sample]
 image: city-1.jpg
 ---
