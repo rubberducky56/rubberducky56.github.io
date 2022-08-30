@@ -17,6 +17,7 @@ dl, dd, ol, ul, figure {
 
 main {
     display: flex;
+    max-width: 400px;
 }
 
 #post__sidebar-left a.current {
@@ -24,7 +25,7 @@ main {
 }
 
 #post__sidebar-left {
-  position: fixed;
+  position: sticky;
   top: 0;
   margin-top: 56px;
 }
