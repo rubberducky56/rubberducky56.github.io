@@ -13,7 +13,9 @@ dl, dd, ol, ul, figure {
   Basic styling
 */
 
-
+body {
+    background-color: #121212;
+}
 
 /* Side bar */
 
@@ -22,11 +24,11 @@ main {
 }
 
 #post__sidebar-left a.current {
-  color: black;
+  color: #bbb;
 }
 
 #post__sidebar-left {
-  position: sticky;
+  position: fixed;
   top: 0;
   margin-top: 56px;
 }
@@ -58,6 +60,7 @@ h4, h5, h6 {
 /* Body */
 body {
   font-family: $base-font-family;
+  color: $text-color;
 }
 body img {
   align: middle;
@@ -74,6 +77,7 @@ p {
   margin-right: 0;
   line-height: 1.65;
   font-family: $body-font-family;
+  color:$text-color;
 }
 
 /* Lists */
@@ -116,7 +120,7 @@ h6 #side {
 }
 
 h6 #side:hover {
-    color:black;
+    color:#bbb;
 }
 
 /*
