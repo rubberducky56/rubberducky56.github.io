@@ -2,7 +2,7 @@ let headers;
 let sidebarLinks;
 
 $(document).ready(function () {
-    headers = $(".post-content h3").toArray();
+    headers = $(".post-content h3, .post-content h4").toArray();
 
     const sidebar = $("#post__sidebar-left");
 
@@ -28,7 +28,6 @@ $(document).ready(function () {
             $(currentSidebarLink).removeClass("current");
 
             const headerVPPosition = $(currentHeader).offset().top;
-            console.log(headerVPPosition);
 
             if (!found && bottomScroll > headerVPPosition) {
                 $(currentSidebarLink).addClass("current");

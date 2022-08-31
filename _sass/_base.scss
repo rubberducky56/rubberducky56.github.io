@@ -81,6 +81,13 @@ h3 {
   font-size: 1.25rem;
   color: #06BF00;
 }
+
+h4 {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #079002;
+}
+
 h4, h5, h6 {
   margin-top: 1rem;
   font-size: 1rem;
@@ -162,8 +169,8 @@ blockquote {
   border-left: 0.25em solid #05A300;
   color: $text-color;
   line-height: 1.5;
-  //background-color: #272822;
 }
+
 
 /**
  * Tables

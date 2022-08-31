@@ -5,12 +5,15 @@ author: "Rubber Ducky"
 categories: maths
 tags: [group-theory, maths]
 image: torus.jpg
+permalink: /maths/defining-geometric-shapes-group-theory
 ---
 
 Today we will go through a nice application of group theory - defining geometric shapes through the language of group isomorphisms. This article is based off [this video](https://www.youtube.com/watch?v=iBNJE2922V0&ab_channel=MichaelPenn) by Michael Penn.
 
 ### Preliminary Definitions
 If you do not have a basic understanding of group theory, I'd recommend you learn the basics before embarking on this article. A great introductory video can be found [here](https://www.youtube.com/watch?v=KufsL2VgELo&ab_channel=Nemean) and a fantastic series with a focus on intuition can be found [here](https://www.youtube.com/playlist?list=PLDcSwjT2BF_VuNbn8HiHZKKy59SgnIAeO).
+
+#### Groups
 
 A group is simply a collection, or set, of objects equipped with some operation between each object. This operation must:
 * Take in two objects in the set and return a third object in the set **(closure)**
@@ -66,6 +69,8 @@ $$\Bbb{R}/\Bbb{Z} \cong S^1 $$
 More intuitively, one can think of taking this quotient group as setting each integer within the reals to be 'equivalent'. So 0 gets 'identified' to 1, 1 gets 'identified' to 2, and so on. When you identify each of these elements, you 'wrap' them around to each other - 1 gets 'connected' to 0, 2 gets 'connected' to 1, etc. This forms a circle.
 
 ![alt text](\assets\img\maths\shapes_group_theory\number_line.PNG)
+
+#### Proof of Isomorphism
 
 Now for the proof. Our strategy will be to construct a group homomorphim having image $$S^1 \le \Bbb{C^+}$$ and kernel $$\Bbb{Z}$$. Then, by the first isomorphism theorem, we will have the desired result.
 
