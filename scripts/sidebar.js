@@ -28,6 +28,7 @@ $(document).ready(function () {
             $(currentSidebarLink).removeClass("current");
 
             const headerVPPosition = $(currentHeader).offset().top;
+            console.log(headerVPPosition);
 
             if (!found && bottomScroll > headerVPPosition) {
                 $(currentSidebarLink).addClass("current");
