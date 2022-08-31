@@ -109,6 +109,8 @@ When we take the quotient group $$\Bbb{C}/\Bbb{Z}[i]$$, we 'identify' all elemen
 
 The red line segments between $$0$$ and $$1$$, and $$i$$ and $$1+i$$, are 'identified' with each other, and the blue line segments between $$0$$ and $$i$$, and $$1$$ and $$1+i$$ are 'identified' with each other. When we 'glue' the red identfied line segments, we get a cylinder. When we 'glue' the blue identified segments, we join the ends of the cylinder to form none other than a torus! This process repeats infinitely across all lattice points.
 
+![alt text](\assets\img\maths\shapes_group_theory\torus.png)
+
 In other words, this quotient group is isomorphic to a torus! The surface of a torus can be described as $$S^1 \times S^1$$, so more precisely we have:
 
 $$\Bbb{C}/\Bbb{Z}[i] \cong S^1 \times S^1$$
