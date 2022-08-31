@@ -14,8 +14,8 @@ If you do not have a basic understanding of group theory, I'd recommend you lear
 
 A group is simply a collection, or set, of objects equipped with some operation between each object. This operation must:
 * Take in two objects in the set and return a third object in the set **(closure)**
-* If you perform the operation on three (or more) objects, the order in which you do it does not matter **(associativity)**
-* There is a special object in the set, say $$\mathit{e}$$, such that when you perform the operation with this object and another, say $$\mathit{g}$$ you get $$\mathit{g}$$ back. $$\mathit{e}$$ is called the **identity** of $$\mathit{G}$$.
+* If you perform the operation on three (or more) objects, the order in which you do so does not matter **(associativity)**
+* There is a special object in the set, say $$\mathit{e}$$, such that when you perform the operation with this object and another, say $$\mathit{g}$$, you get $$\mathit{g}$$ back. $$\mathit{e}$$ is called the **identity** of $$\mathit{G}$$.
 * For each object in the set $$\mathit{g}$$, there exists another object in the set $$\mathit{g^{-1}}$$ such that when you perform the operation on $$\mathit{g}$$ and $$\mathit{g^{-1}}$$, you get that special element $$\mathit{e}$$ back. $$\mathit{g^{-1}}$$ is called the **inverse** of $$\mathit{g}$$.
 
 More formally, a set $$\mathit{G}$$ and an operation **$$\cdot$$** form a group $$(\mathit{G},  \cdot)$$ if it satisfies the following:
@@ -42,7 +42,7 @@ The first isomorphism theorem states:
 
 ### Isomorphisms To Circles
 
-Let us define the surface of a sphere, $$S^1$$ as the collection of complex numbers $$\Bbb{C}$$ at a distance of 1 from the origin - our good friend, the unit sphere.
+Let us define the surface of a sphere, $$S^1$$, as the collection of complex numbers $$\Bbb{C}$$ at a distance of 1 from the origin - our good friend, the unit sphere.
 
 $$ S^1 := \{z \in \Bbb{C} : |z| = 1\}$$
 
@@ -50,7 +50,7 @@ $$ S^1 := \{z \in \Bbb{C} : |z| = 1\}$$
 
 Note that even though this is 2-dimensional shape - the circle - the boundary of the circle is what we are interested in. In this case, it is the 1-dimensional line that borders the circle. Hence the name $$S^1$$ for our surface.
 
-We consider the multiplicative group of $$S^1$$, that is the group operation is multiplication of complex numbers.
+We consider the multiplicative group of $$S^1$$, that is the group operation of multiplication of complex numbers.
 
 Next, we claim that $$S^1$$ is a subgroup of $$\Bbb{C}^+$$, the multiplicative group of the complex numbers, excluding $$0$$. This may seem a trivial fact, but can easily be proven.
 
@@ -59,12 +59,25 @@ To prove this, we will use the criterion listed above.
 >Suppose that $$z,w \in S^1$$, so $$z \cdot w \in S^1$$. By the defining property of $$S^1$$,
 $$|z| = |w| = 1$$. We have that $$ |z \cdot w^{-1}| = \frac {|z|}{|w|} = \frac 11 = 1$$, Hence we have that $$z \cdot w \in S^1$$ implies  $$ z \cdot w^{-1} \in S^1$$, so $$S^1 \le \Bbb{C^+} $$, as stated.
 
-We finally get to our first big claim - that the quotient group of the real numbers by the integers, is isomorphic to the unit circle. How mad is that! More precisely, we will show that
+We finally get to our first big claim - that the quotient group of the additive real numbers by the integers, is isomorphic to the multiplicative unit circle. How cool is that! More precisely, we will show that
 
 $$\Bbb{R}/\Bbb{Z} \cong S^1 $$
 
-More intuitively, one can think of taking this quotient group as setting each integer within the reals to be 'equivalent'. So 0 gets 'identified' to 1, 1 gets 'identified' to 2, and so on.
+More intuitively, one can think of taking this quotient group as setting each integer within the reals to be 'equivalent'. So 0 gets 'identified' to 1, 1 gets 'identified' to 2, and so on. When you identify each of these elements, you 'wrap' them around to each other - 1 gets 'connected' to 0, 2 gets 'connected' to 1, etc. This forms a circle.
 
 ![alt text](\assets\img\maths\shapes_group_theory\number_line.PNG)
 
-Now for the proof.
+Now for the proof. Our strategy will be to construct a group homomorphim having image $$S^1 \le \Bbb{C^+}$$ and kernel $$\Bbb{Z}$$. Then, by the first isomorphism theorem, we will have the desired result.
+
+>Let $$\phi : \Bbb{R} \to \Bbb{C^+}$$ be a group homomorphim, with $$\phi(x) = e^{2 i \pi x}$$. Notice the jump of operation - the operation of the domain is addition, and the operation of the codomain is multiplication.<br>
+We check that this is indeed a group homomorphism.<br>
+Recall, to have a homomorphism, we must have that $$\phi(x \cdot y) = \phi(x) \cdot \phi(y) $$ for all $$x,y$$. For any $$x,y \in \Bbb{R}$$, we have that $$\phi(x y) = e^{2 i \pi (x+y)} = e^{2 i \pi x} e^{2 i \pi y} = \phi(x)\phi(y)$$ as required.<br>
+Now we calculate the image of $$\phi$$, $$Im(\phi)$$. This will be the subgroup of $$\Bbb{C^+}$$ such that for all $$y \in Im(\phi)$$, there exists some $$x \in \Bbb{R}$$ with $$\phi(x) = y$$ <br>
+Any complex number $$z$$ on the unit circle can be expressed as $$e^{2 i \pi x}$$ for some $$x \in \Bbb{R}$$. This is true by Euler's formula, which states that $$e^{2 i \pi x} = \cos(2 i \pi x) + i \sin(2 i \pi x)$$ for $$x \in \Bbb{R}$$. <br>
+Hence, we see that $$Im(\phi) = S^1$$, the unit circle.<br>
+Next, we calculate the kernel of $$\phi$$, $$Ker(\phi)$$. <br>
+Note that the group $$S^1$$ has the multiplicative identity $$1$$. Recall that $$Ker(\phi) = \{x \in \Bbb{R} : e^{2 i \pi x} = 1\}$$.<br>
+Since $$e^{2 i \pi x} = \cos(2 i \pi x) + i \sin(2 i \pi x)$$, we see that we must have $$x \in \Bbb{Z}$$ for $$e^{2 i \pi x}$$ to be $$1$$. In other words, the kernel of $$\phi$$ is precisely the integers.<br>
+We now have all the components we need to apply the first isomorphism theorem. Since $$\phi$$ is a homomorphsm from $$\Bbb{R}$$ to $$\Bbb{C^+}$$, with kernel $$\Bbb{Z}$$ and image $$S^1$$, we have that $$\Bbb{R}/\Bbb{Z} \cong S^1 $$ - the desired result!
+
+We have now shown that the quotient group of the reals by the integers is none other than the unit circle!
