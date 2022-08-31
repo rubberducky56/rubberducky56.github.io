@@ -46,6 +46,25 @@ Let us define the surface of a sphere, $$S^1$$ as the collection of complex numb
 
 $$ S^1 := \{z \in \Bbb{C} : |z| = 1\}$$
 
-![alt text](\assets\img\maths\shapes_group_theory\unit_circle.PNG){:height="350px" width="350px"}.
+![alt text](\assets\img\maths\shapes_group_theory\unit_circle.PNG){:height="350px" width="350px"}
 
 Note that even though this is 2-dimensional shape - the circle - the boundary of the circle is what we are interested in. In this case, it is the 1-dimensional line that borders the circle. Hence the name $$S^1$$ for our surface.
+
+We consider the multiplicative group of $$S^1$$, that is the group operation is multiplication of complex numbers.
+
+Next, we claim that $$S^1$$ is a subgroup of $$\Bbb{C}^+$$, the multiplicative group of the complex numbers, excluding $$0$$. This may seem a trivial fact, but can easily be proven.
+
+To prove this, we will use the criterion listed above.
+
+>Suppose that $$z,w \in S^1$$, so $$z \cdot w \in S^1$$. By the defining property of $$S^1$$,
+$$|z| = |w| = 1$$. We have that $$ |z \cdot w^{-1}| = \frac {|z|}{|w|} = \frac 11 = 1$$, Hence we have that $$z \cdot w \in S^1$$ implies  $$ z \cdot w^{-1} \in S^1$$, so $$S^1 \le \Bbb{C^+} $$, as stated.
+
+We finally get to our first big claim - that the quotient group of the real numbers by the integers, is isomorphic to the unit circle. How mad is that! More precisely, we will show that
+
+$$\Bbb{R}/\Bbb{Z} \cong S^1 $$
+
+More intuitively, one can think of taking this quotient group as setting each integer within the reals to be 'equivalent'. So 0 gets 'identified' to 1, 1 gets 'identified' to 2, and so on.
+
+![alt text](\assets\img\maths\shapes_group_theory\number_line.PNG)
+
+Now for the proof.
