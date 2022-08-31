@@ -7,7 +7,7 @@ tags: [group-theory, maths]
 image: torus.jpg
 ---
 
-Today we will go through a nice application of group theory - defining geometric shapes through the language of group isomorphisms. This article is based off [this video]("https://www.youtube.com/watch?v=iBNJE2922V0&ab_channel=MichaelPenn" Can you define shapes and surfaces with Abstract Algebra?) by Michael Penn.
+Today we will go through a nice application of group theory - defining geometric shapes through the language of group isomorphisms. This article is based off [this video](https://www.youtube.com/watch?v=iBNJE2922V0&ab_channel=MichaelPenn) by Michael Penn.
 
 ### Preliminary Definitions
 If you do not have a basic understanding of group theory, I'd recommend you learn the basics before embarking on this article. A great introductory video can be found [here](https://www.youtube.com/watch?v=KufsL2VgELo&ab_channel=Nemean) and a fantastic series with a focus on intuition can be found [here](https://www.youtube.com/playlist?list=PLDcSwjT2BF_VuNbn8HiHZKKy59SgnIAeO).
@@ -45,5 +45,7 @@ The first isomorphism theorem states:
 Let us define the surface of a sphere, $$S^1$$ as the collection of complex numbers $$\Bbb{C}$$ at a distance of 1 from the origin - our good friend, the unit sphere.
 
 $$ S^1 := \{z \in \Bbb{C} : |z| = 1\}$$
+
+![alt text](\assets\img\maths\shapes_group_theory\unit_circle.PNG){:height="350px" width="350px"}.
 
 Note that even though this is 2-dimensional shape - the circle - the boundary of the circle is what we are interested in. In this case, it is the 1-dimensional line that borders the circle. Hence the name $$S^1$$ for our surface.
