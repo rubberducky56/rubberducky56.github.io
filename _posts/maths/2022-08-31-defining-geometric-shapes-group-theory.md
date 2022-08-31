@@ -81,3 +81,33 @@ Since $$e^{2 i \pi x} = \cos(2 i \pi x) + i \sin(2 i \pi x)$$, we see that we mu
 We now have all the components we need to apply the first isomorphism theorem. Since $$\phi$$ is a homomorphsm from $$\Bbb{R}$$ to $$\Bbb{C^+}$$, with kernel $$\Bbb{Z}$$ and image $$S^1$$, we have that $$\Bbb{R}/\Bbb{Z} \cong S^1 $$ - the desired result!
 
 We have now shown that the quotient group of the reals by the integers is none other than the unit circle!
+
+### Higher Dimensions
+
+Let's consider a higher dimensional example. Recall that the Gaussian integers $$\Bbb{Z}[i]$$ is the set of 'integer' complex numbers. That is:
+
+$$\Bbb{Z}[i] = \{a + bi : a,b \in \Bbb{Z}\}$$
+
+![alt text](\assets\img\maths\shapes_group_theory\lattice.png){:height="350px" width="350px"}
+
+This fascinating set forms a lattice of points within the complex plane (as shown above), and the set $$\Bbb{Z}[i]$$ clearly forms a subgroup of $$\Bbb{C}$$. So what happens when we take the quotient group of $$\Bbb{c}$$ by $$\Bbb{Z}[i]$$?
+
+More precisely, what group $$G$$ satisfies the following:
+
+$$\Bbb{C}/\Bbb{Z}[i] \cong G $$
+
+I won't answer this question as rigourously as the previous example, but I will provide some geometric intuition.
+
+When we take the quotient group $$\Bbb{C}/\Bbb{Z}[i]$$, we 'identify' all elements that differ by an element of $$\Bbb{Z}[i]$$. This can be seen more clearly if we zoom into the lattice of the Gaussian integers.
+
+![alt text](\assets\img\maths\shapes_group_theory\small_lattice.png){:height="300px" width="300px"}
+
+The red line segments between $$0$$ and $$1$$, and $$i$$ and $$1+i$$, are 'identified' with each other, and the blue line segments between $$0$$ and $$i$$, and $$1$$ and $$1+i$$ are 'identified' with each other. When we 'glue' the red identfied line segments, we get a cylinder. When we 'glue' the blue identified segments, we join the ends of the cylinder to form none other than a torus! This process repeats infinitely across all lattice points.
+
+In other words, this quotient group is isomorphic to a torus! The surface of a torus can be described as $$S^1 \times S^1$$, so more precisely we have:
+
+$$\Bbb{C}/\Bbb{Z}[i] \cong S^1 \times S^1$$
+
+### Conclusion
+
+In this article, we saw how we can describe the unit circle as the quotient group of the reals by the integers - an interesting result in its own right. We then saw how we can construct the torus using the Gaussian integers. These results help to build a bridge between the fields of geometry and number theory - cool stuff!
