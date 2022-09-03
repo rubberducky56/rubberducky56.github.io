@@ -169,6 +169,7 @@ blockquote {
   border-left: 0.25em solid #05A300;
   color: $text-color;
   line-height: 1.5;
+  //background-color: #272822;
 }
 
 
@@ -182,7 +183,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid grey;
 }
 th, td {
   padding: 15px;
