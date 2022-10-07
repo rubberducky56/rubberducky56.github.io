@@ -9,3 +9,4 @@ permalink: /maths/xor-through-algebra
 ---
 
 ### What is XOR?
+XOR, or exclusive or, is a Boolean logical operator. It takes in two strings of bits, and outputs their exclusive disjunction. Formally, 
