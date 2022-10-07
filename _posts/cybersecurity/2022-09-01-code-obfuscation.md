@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Code Obfuscation"
-author: "Rubber Ducky"
+author: "Mouse"
 categories: cybersecurity
 tags: [cybersecurity, programming, malware, reverse-engineering]
 image: code.jpeg

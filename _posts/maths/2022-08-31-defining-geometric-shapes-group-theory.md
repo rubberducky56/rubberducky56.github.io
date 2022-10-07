@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Defining Geometric Shapes using Group Theory"
-author: "Rubber Ducky"
+author: "Mouse"
 categories: maths
 tags: [group-theory, maths]
 image: torus.jpg

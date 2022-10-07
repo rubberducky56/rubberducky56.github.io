@@ -4,7 +4,7 @@ title: About
 permalink: /about
 ---
 
-Hi! This is a blog/website/thing where I share things I find cool. Most content is cybersecurity related, including CTF writeups from TryHackMe (and HackTheBox in the future), but there are also articles on other topics within cybersecurity, computer science and mathematics that I find interesting. If you have any comments, questions or criticisms, please contact me at mouse@cybermouse.xyz.
+Hi! This is a blog/website/thing where I share things I find cool. Most content is cybersecurity related, including CTF writeups from TryHackMe (and HackTheBox in the future), but there are also articles on other topics within cybersecurity, cryptography, computer science and mathematics that I find interesting. If you have any comments, questions or criticisms, please contact me at mouse@cybermouse.xyz.
 
 Happy reading!
 
