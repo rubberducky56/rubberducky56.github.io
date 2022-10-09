@@ -64,14 +64,89 @@ $$ \begin{bmatrix}105 & 110 & 99 & 111 \\ 109 & 105 & 110 & 103 \\ 32 & 116 & 11
 The ```matrix2bytes()``` function would convert this back to the text ```incoming troops!```.
 
 Throughout AES, various rounds of operations are applied to the byte matrix. At each stage, the current state of the matrix is referred to as the ‘state matrix’.
-1. The first step of AES is the Key Schedule, or KeyExpansion. This step derives 11 separate ‘round keys’ from the original 128 bit key. These round keys will be used in later steps.
-2. AddRoundKey operation - the first round key is XORed with the state.
+1. The first step of AES is the Key Schedule, or __KeyExpansion__ This step derives 11 separate ‘round keys’ from the original 128 bit key. These round keys will be used in later steps.
+2. __AddRoundKey__ operation - the first round key is XORed with the state.
 3. This phase occurs ten times. The first nine are the same, and the final round is slightly different. This is where the main operations of AES occur.
-  * SubBytes operation - each byte in the state is substituted using a lookup table, the S-box. The S-Box is also used in the key schedule.
-  * ShiftRows operation - the rows of the state matrix are shifted to the right
-  * MixColumns operation - a mathematical function transforms each column of the state. This stage is skipped in the tenth round/
-  * AddRoundKey operation - the current round key is XORed with the state
+  * __SubBytes__ operation - each byte in the state is substituted using a lookup table, the S-box. The S-Box is also used in the key schedule.
+  * __ShiftRows__ operation - the rows of the state matrix are shifted to the right
+  * __MixColumns__ operation - a mathematical function transforms each column of the state. This stage is skipped in the tenth round/
+  * __AddRoundKey__ operation - the current round key is XORed with the state
 
 The AES algorithm can be summarised in the below diagram.
 
 ![alt text](\assets\img\compsci\aes\aes.png)
+
+To decrypt AES-encrypted data, we simply compute the encryption function in reverse order - __AddRoundKey__ __MixColumns__ __ShiftRows__ __SubBytes__ It is worth noting that the only step that actually uses the key is the __AddRoundKey__ operation. All other operations are simply shifts, substitutions and other mathematical functions.
+
+#### Key Expansion
+
+The supplied key will be a (hopefully) random sequence of 128 bits. However, this needs to be expanded to 11 other round keys, derived from the original. AES includes a mechanism for doing so, called the key schedule. The below diagram summarises the key schedule.
+
+![alt text](\assets\img\compsci\aes\key_schedule.png)
+
+The key is first split into four columns of four bytes each. In the diagram, these are the top four columns. The fourth column is transformed by three operations - __RotWord__ __SubWord__ and __Rcon__
+
+* __RotWord__ rotates the bytes. This is accomplished by shifting each byte down one space, and putting the bottom byte to the top.
+* The __SubWord__ operation consists of substituting bytes using the S-box. This will be detailed in the SubBytes section.
+* The __Rcon__ operation, or Round Constant, consists of XORing the column to a predefined column corresponding to the current round. When using a 128-bit key, these columns are
+
+$$\begin{bmatrix}
+01 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+02 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+04 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+08 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+10 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+20 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+40 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+80 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+1b \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}
+\begin{bmatrix}
+36 \\
+00 \\
+00 \\
+00 \\
+\end{bmatrix}$$
