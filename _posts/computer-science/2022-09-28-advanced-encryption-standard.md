@@ -62,3 +62,16 @@ The above code has two functions. The first function takes in an array of 16 byt
 As an example, the phrase ```incoming troops!``` can be represented as the byte array ```105 110 99 111 109 105 110 103 32 116 114 111 111 112 115 33```, using the text’s ASCII representation. The ```bytes2matrix()``` function above will convert this to the matrix
 $$ \begin{bmatrix}105 & 110 & 99 & 111 \\ 109 & 105 & 110 & 103 \\ 32 & 116 & 114 & 111 \\ 111 & 112 & 115 & 32\end{bmatrix} $$
 The ```matrix2bytes()``` function would convert this back to the text ```incoming troops!```.
+
+Throughout AES, various rounds of operations are applied to the byte matrix. At each stage, the current state of the matrix is referred to as the ‘state matrix’.
+1. The first step of AES is the Key Schedule, or KeyExpansion. This step derives 11 separate ‘round keys’ from the original 128 bit key. These round keys will be used in later steps.
+2. AddRoundKey operation - the first round key is XORed with the state.
+3. This phase occurs ten times. The first nine are the same, and the final round is slightly different. This is where the main operations of AES occur.
+  * SubBytes operation - each byte in the state is substituted using a lookup table, the S-box. The S-Box is also used in the key schedule.
+  * ShiftRows operation - the rows of the state matrix are shifted to the right
+  * MixColumns operation - a mathematical function transforms each column of the state. This stage is skipped in the tenth round/
+  * AddRoundKey operation - the current round key is XORed with the state
+
+The AES algorithm can be summarised in the below diagram.
+
+![alt text](\assets\img\compsci\aes\aes.png)
