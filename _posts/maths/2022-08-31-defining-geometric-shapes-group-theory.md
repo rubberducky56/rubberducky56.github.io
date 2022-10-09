@@ -3,7 +3,7 @@ layout: post
 title: "Defining Geometric Shapes using Group Theory"
 author: "Mouse"
 categories: maths
-tags: [group-theory, maths]
+tags: [group-theory, maths, algebra]
 image: torus.jpg
 permalink: /maths/defining-geometric-shapes-group-theory
 ---
