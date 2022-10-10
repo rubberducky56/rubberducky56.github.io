@@ -167,7 +167,20 @@ This step is fairly straightforward. It consists of using the XOR operation on t
 
 ![alt text](\assets\img\compsci\aes\AddRoundKey.png)
 
-XOR is an easily invertible Boolean operation. If you want to learn more about the XOR function and its algebraic structure, check out my [previous post on the XOR function](https://cybermouse.xyz/maths/xor-through-algebra). As discussed in the AES overview, __AddRoundKey__ will occur once at the start of the algorithm, and then at the end of each round.
+XOR is an easily invertible Boolean operation. If you want to learn more about the XOR function and its algebraic structure, check out my [previous post on the XOR function](https://cybermouse.xyz/maths/xor-through-algebra). As discussed in the AES overview, __AddRoundKey__ will occur once at the start of the algorithm, and then at the end of each round. Below is a Python implementation of the __AddRoundKey__ operation.
+
+{% highlight python %}
+## XORs each component in s matrix with k matrix, stores in s
+def add_round_key(s, k):
+    for i in range(len(s)):
+        for j in range(len(s[i])):
+            s[i][j] = s[i][j] ^ k[i][j]
+
+    return s
+{% endhighlight %}
+
+As described above, this code will take in a state matrix ```s``` and a key matrix ```k```, perform the XOR operation component-wise, and store the result back in the state matrix ```s```.
+
 
 #### SubBytes
 
@@ -175,9 +188,25 @@ The __SubBytes__ operation involves substituting each byte in the current state 
 
 ![alt text](\assets\img\compsci\aes\sbox.PNG)
 
-To use the S-box, the value of each byte in the state is used as an index for S-box. For example, the byte ```c5``` corresponds to the 12th row and 5th column - the value ```a6```.
+To use the S-box, the value of each byte in the state is used as an index for S-box. For example, the byte ```c5``` corresponds to the 12th row and 5th column - the value ```a6```. Below is a Python implementation of the __SubBytes__ operation.
 
-#### Where Does the S-Box Come From?
+{% highlight python %}
+## Substitutes values in the state matrix with corresponding s-box values
+def sub_bytes(s, sbox):
+    for i in range(len(s)):
+        for j in range(len(s[i])):
+	## Get index to lookup in s-box
+            index = s[i][j]
+	## Make substitution
+            s[i][j] = sbox[index]
+
+    return s
+{% endhighlight %}
+
+The above code will iterate through the state matrix, use the value of the state matrix as an index, lookup the corresponding value in the S-box, before substituting the value in the state matrix. The new state matrix ```s``` is then returned.
+
+
+#### S-Boxes
 
 If you are like me, you are probably wondering where these strange numbers come from. These values have been calculated by the creators of AES, Joan Daemen and Vincent Rijmen. They are carefully chosen to ensure the security of AES. Different values could result in the weakening of AES.
 
