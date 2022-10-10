@@ -240,3 +240,25 @@ In each shift, the left-most bytes wrap around back to the right. This step ensu
 The below diagram encapsulates the __ShiftRows__ operation.
 
 ![alt text](\assets\img\compsci\aes\shiftrows.png)
+
+Below is a Python implementation of the __ShiftRows__ operation, and its inverse function.
+
+{% highlight python %}
+## Performs ShiftRows operation
+def shift_rows(s):
+    s[0][1], s[1][1], s[2][1], s[3][1] = s[1][1], s[2][1], s[3][1], s[0][1]
+    s[0][2], s[1][2], s[2][2], s[3][2] = s[2][2], s[3][2], s[0][2], s[1][2]
+    s[0][3], s[1][3], s[2][3], s[3][3] = s[3][3], s[0][3], s[1][3], s[2][3]
+
+    return s
+
+## Reverses ShiftRows operation
+def inv_shift_rows(s):
+    s[1][1], s[2][1], s[3][1], s[0][1] = s[0][1], s[1][1], s[2][1], s[3][1]
+    s[2][2], s[3][2], s[0][2], s[1][2] = s[0][2], s[1][2], s[2][2], s[3][2]
+    s[3][3], s[0][3], s[1][3], s[2][3] = s[0][3], s[1][3], s[2][3], s[3][3]
+
+    return s
+{% endhighlight %}
+
+The ```shift_rows()``` function performs the operation as described above, and the ```inv_shift_rows()``` function reverses the operation.
