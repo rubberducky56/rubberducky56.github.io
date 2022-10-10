@@ -59,7 +59,7 @@ def matrix2bytes(matrix):
 
 The above code has two functions. The first function takes in an array of 16 bytes, and converts this into a ```4x4``` matrix. The second function takes in a ```4x4``` matrix of bytes, converts this to an array of bytes, and converts this to the byte array’s ASCII representation.
 
-As an example, the phrase ```incoming troops!``` can be represented as the byte array ```105 110 99 111 109 105 110 103 32 116 114 111 111 112 115 33```, using the text’s ASCII representation. The ```bytes2matrix()``` function above will convert this to the matrix
+As an example, the phrase ```incoming troops!``` can be represented as the byte array ```105 110 99 111 109 105 110 103 32 116 114 111 111 112 115 33```, using the text’s ASCII representation. The ```bytes2matrix()``` function above will convert this to the matrix:
 
 $$ \begin{bmatrix}105 & 110 & 99 & 111 \\ 109 & 105 & 110 & 103 \\ 32 & 116 & 114 & 111 \\ 111 & 112 & 115 & 32\end{bmatrix} $$
 
