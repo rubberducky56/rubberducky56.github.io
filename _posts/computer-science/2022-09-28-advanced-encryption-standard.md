@@ -60,7 +60,9 @@ def matrix2bytes(matrix):
 The above code has two functions. The first function takes in an array of 16 bytes, and converts this into a ```4x4``` matrix. The second function takes in a ```4x4``` matrix of bytes, converts this to an array of bytes, and converts this to the byte array’s ASCII representation.
 
 As an example, the phrase ```incoming troops!``` can be represented as the byte array ```105 110 99 111 109 105 110 103 32 116 114 111 111 112 115 33```, using the text’s ASCII representation. The ```bytes2matrix()``` function above will convert this to the matrix
+
 $$ \begin{bmatrix}105 & 110 & 99 & 111 \\ 109 & 105 & 110 & 103 \\ 32 & 116 & 114 & 111 \\ 111 & 112 & 115 & 32\end{bmatrix} $$
+
 The ```matrix2bytes()``` function would convert this back to the text ```incoming troops!```.
 
 Throughout AES, various rounds of operations are applied to the byte matrix. At each stage, the current state of the matrix is referred to as the ‘state matrix’.
@@ -150,3 +152,41 @@ $$\begin{bmatrix}
 00 \\
 00 \\
 \end{bmatrix}$$
+
+After these transformations have occurred on the fourth column, the next round key is derived as follows:
+* _Column 1_ - XOR the transformed column to the first column of the previous round key
+* _Column 2_ - XOR the new first column with the second column of the previous round key
+* _Column 3_ - XOR the new second column with the third column of the previous round key
+* _Column 4_ - XOR the new third column with the fourth column of the previous round key.
+
+After this algorithm, we will have a new round key. This process is iterated 10 times, yielding 11 keys. The original key is used as the first round key. The process of key expansion allows the AES algorithm to get some extra mileage out of the input key.
+
+#### AddRoundKey
+
+This step is fairly straightforward. It consists of using the XOR operation on the current state and the current round key. Note that the operation is component-wise - each component of the state matrix is XORed with the corresponding component of the round key matrix.
+
+![alt text](\assets\img\compsci\aes\AddRoundKey.png)
+
+XOR is an easily invertible Boolean operation. If you want to learn more about the XOR function and its algebraic structure, check out my [previous post on the XOR function](https://cybermouse.xyz/maths/xor-through-algebra). As discussed in the AES overview, __AddRoundKey__ will occur once at the start of the algorithm, and then at the end of each round.
+
+#### SubBytes
+
+The __SubBytes__ operation involves substituting each byte in the current state with its corresponding byte in a lookup table known as an S-box, or substitution box. The S-box used in each round of AES is given below.
+
+![alt text](\assets\img\compsci\aes\sbox.PNG)
+
+To use the S-box, the value of each byte in the state is used as an index for S-box. For example, the byte ```c5``` corresponds to the 12th row and 5th column - the value ```a6```.
+
+#### Where Does the S-Box Come From?
+
+If you are like me, you are probably wondering where these strange numbers come from. These values have been calculated by the creators of AES, Joan Daemen and Vincent Rijmen. They are carefully chosen to ensure the security of AES. Different values could result in the weakening of AES.
+
+>However, some sceptics believe that the creators, or the NSA, have left a backdoor in these values, so choose to use their own S-boxes.
+
+So where do these values come from? When Claude Shannon published his revolutionary paper in 1945, [A Mathematical Theory of Cryptography](https://www.iacr.org/museum/shannon/shannon45.pdf), he defined properties of a secure cryptographic cipher. One of these properties is ‘confusion’. The confusion property essentially states that the relationship between ciphertext and the key should be as complex as possible. Given the ciphertext, an attacker should not be able to determine anything about the key.
+
+To take an example, consider a Caesar Cipher. If you are unfamiliar, a Caesar Cipher shifts each letter of the alphabet by a shift amount, which is the secret key. For example, if the secret key is ```3```, and the plaintext is ```no one told you when to run, you missed the starting gun```, the ciphertext will be ```qr rqh wrog brx zkhq wr uxq, brx plvvhg wkh vwduwlqj jxq```. Caesar Ciphers are notoriously weak, and have low confusion - we have ```ciphertext = plaintext + key```, a simple relation.
+
+Taking a slightly more complicated example, a complicated-looking polynomial equation such as $$321x^4 + 123x^3 - 879x^2 - 9791x + 7$$ can be solved via a formula. However, for degree 5 and higher polynomials, there is no formula involving addition, subtraction, multiplication, division and nth roots to find the solutions - there is no solution by radicals. This is the Abel-Ruffini Theorem, and one of the main topics of Galois Theory. This means that higher-order polynomials have a higher level of confusion when used in cryptographic ciphers.
+
+The S-box of AES aims to substitute values in such a way that is resistant to attacks with linear functions, unlike the Caesar Cipher example. The S-box values for AES are calculated from taking the modular inverse of the Galois Field $$2^8$$, and then applying an affine transformation for some extra non-linearity. In the future, I plan on doing an article series on Galois Fields. [This article](https://www.johndcook.com/blog/2019/05/25/aes-s-box/) goes more in depth into the calculation of the AES S-box, and [this article](https://www.samiam.org/galois.html) gives an overview of the Galois Field used in AES.
