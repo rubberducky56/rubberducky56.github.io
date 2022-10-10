@@ -239,4 +239,4 @@ In each shift, the left-most bytes wrap around back to the right. This step ensu
 
 The below diagram encapsulates the __ShiftRows__ operation.
 
-![alt text](\assets\img\compsci\aes\shiftrows.PNG)
+![alt text](\assets\img\compsci\aes\shiftrows.png)
