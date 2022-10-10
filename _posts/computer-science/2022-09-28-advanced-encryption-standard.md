@@ -212,10 +212,31 @@ If you are like me, you are probably wondering where these strange numbers come 
 
 >However, some sceptics believe that the creators, or the NSA, have left a backdoor in these values, so choose to use their own S-boxes.
 
-So where do these values come from? When Claude Shannon published his revolutionary paper in 1945, [A Mathematical Theory of Cryptography](https://www.iacr.org/museum/shannon/shannon45.pdf), he defined properties of a secure cryptographic cipher. One of these properties is ‘confusion’. The confusion property essentially states that the relationship between ciphertext and the key should be as complex as possible. Given the ciphertext, an attacker should not be able to determine anything about the key.
+So where do these values come from? When Claude Shannon published his revolutionary paper in 1945, [A Mathematical Theory of Cryptography](https://www.iacr.org/museum/shannon/shannon45.pdf), he defined properties of a secure cryptographic cipher. One of these properties is _confusion_. The confusion property essentially states that the relationship between ciphertext and the key should be as complex as possible. Given the ciphertext, an attacker should not be able to determine anything about the key.
 
 To take an example, consider a Caesar Cipher. If you are unfamiliar, a Caesar Cipher shifts each letter of the alphabet by a shift amount, which is the secret key. For example, if the secret key is ```3```, and the plaintext is ```no one told you when to run, you missed the starting gun```, the ciphertext will be ```qr rqh wrog brx zkhq wr uxq, brx plvvhg wkh vwduwlqj jxq```. Caesar Ciphers are notoriously weak, and have low confusion - we have ```ciphertext = plaintext + key```, a simple relation.
 
 Taking a slightly more complicated example, a complicated-looking polynomial equation such as $$321x^4 + 123x^3 - 879x^2 - 9791x + 7$$ can be solved via a formula. However, for degree 5 and higher polynomials, there is no formula involving addition, subtraction, multiplication, division and nth roots to find the solutions - there is no solution by radicals. This is the Abel-Ruffini Theorem, and one of the main topics of Galois Theory. This means that higher-order polynomials have a higher level of confusion when used in cryptographic ciphers.
 
 The S-box of AES aims to substitute values in such a way that is resistant to attacks with linear functions, unlike the Caesar Cipher example. The S-box values for AES are calculated from taking the modular inverse of the Galois Field $$GF(2^8)$$, and then applying an affine transformation for some extra non-linearity. In the future, I plan on doing an article series on Galois Fields. [This article](https://www.johndcook.com/blog/2019/05/25/aes-s-box/) goes more in depth into the calculation of the AES S-box, and [this article](https://www.samiam.org/galois.html) gives an overview of the Galois Field used in AES.
+
+#### Diffusion
+
+The other property that Shannon proposed in his 1945 paper is _diffusion_. This principle states that a cipher should disperse a part of the input across every part of the output. As Shannon puts it
+>The effect here is that the enemy must intercept a tremendous amount of material to tie down this structure, since the structure is evident only in blocks of very small individual probability.
+
+If we didn’t have a diffusion property, if a byte is in the same position in the state it would have the same transformations applied to it each round. The state should be scrambled up so that each substitution affects all bytes in the state. Diffusion helps to achieve the [avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect), a property of cryptographic systems stating that if the input is changed slightly, the output varies dramatically. The __ShiftRows__ and __MixColumns__ operations in AES are designed to introduce diffusion to the system.
+
+#### ShiftRows
+
+The next operation in each AES round is __ShiftRows__. The state matrix is transformed as follows:
+* The first row is kept the same.
+* The second row is shifted one column to the left.
+* The third row is shifted two columns to the left.
+* Finally, the fourth row is shifted three columns to the left.
+
+In each shift, the left-most bytes wrap around back to the right. This step ensures that columns are not encrypted independently of each other, ensuring the encryption is not carried out on a column alone. If this were to occur, a cryptanalyst could analyse each column separately.
+
+The below diagram encapsulates the __ShiftRows__ operation.
+
+![alt text](\assets\img\compsci\aes\shiftrows.PNG)
