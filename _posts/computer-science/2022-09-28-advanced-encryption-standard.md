@@ -262,3 +262,58 @@ def inv_shift_rows(s):
 {% endhighlight %}
 
 The ```shift_rows()``` function performs the operation as described above, and the ```inv_shift_rows()``` function reverses the operation.
+
+#### MixColumns
+
+The __MixColumns__ operation is more complex. It also has the desired diffusion effect described by Shannon - it further scrambles up the state matrix in a reversible manner. __MixColumns__, as the name helpfully suggests, transforms the columns of the state matrix. This is best understood as matrix multiplication by a vector, where the vector is each column of the state matrix, and the matrix has carefully calculated predetermined values.
+
+The matrix multiplication occurs in Rijndael's Galois Field $$GF(2^8)$$, and the matrix used is shown below. It is multiplied by each column in the state matrix. For more details on this operation, see [this Wikipedia page](https://en.wikipedia.org/wiki/Rijndael_MixColumns) and [this article](https://www.samiam.org/mix-column.html).
+
+$$
+\begin{bmatrix}
+02 & 03 & 01 & 01 \\
+01 & 02 & 03 & 01 \\
+01 & 01 & 02 & 03 \\
+03 & 01 & 01 & 02 \\
+\end{bmatrix}
+$$
+
+Below is the Python implementation of the __MixColumns__ operation. This implementation is taken from the textbook linked above, [The Design of Rijndael](https://cs.ru.nl/~joan/papers/JDA_VRI_Rijndael_2002.pdf).
+
+{% highlight python %}
+## Helper variable to compute and store the pre-determined values
+xtime = lambda a: (((a << 1) ^ 0x1B) & 0xFF) if (a & 0x80) else (a << 1)
+
+## Perform MixColumns on single column
+def mix_single_column(a):
+    # Sec 4.1.2 in The Design of Rijndael
+    t = a[0] ^ a[1] ^ a[2] ^ a[3]
+    u = a[0]
+    a[0] ^= t ^ xtime(a[0] ^ a[1])
+    a[1] ^= t ^ xtime(a[1] ^ a[2])
+    a[2] ^= t ^ xtime(a[2] ^ a[3])
+    a[3] ^= t ^ xtime(a[3] ^ u)
+
+## MixColumns operation
+def mix_columns(s):
+    for i in range(4):
+        mix_single_column(s[i])
+
+## Reverse the MixColumns operation
+def inv_mix_columns(s):
+    # see Sec 4.1.3 in The Design of Rijndael
+    for i in range(4):
+        u = xtime(xtime(s[i][0] ^ s[i][2]))
+        v = xtime(xtime(s[i][1] ^ s[i][3]))
+        s[i][0] ^= u
+        s[i][1] ^= v
+        s[i][2] ^= u
+        s[i][3] ^= v
+
+    mix_columns(s)
+{% endhighlight %}
+
+This code snippet has four main components. The first line will compute the pre-determined values used in the __MixColumns__ operation. The function ```mix_single_column()``` takes in a single column of the state matrix and transform it. This is equivalent to the matrix multiplication discussed above, but uses the implementaton discussed in the textbook. The next function ```mix_columns()``` simply iterates through each column in the state matrix, and runs ```mix_single_column()``` on it. The final function ```inv_mix_columns()``` reverses the operation.
+
+### Conclusion
+We have now seen the entire AES algorithm in all its glory. We have seen how each operation introduces confusion, diffusion, and ensures non-linearity. The place where implementations can vary is the mode of operation used to operate on multiple blocks of data, as discussed at the start. AES uses many components, but it is not difficult for anyone to implement the core of the algorithm. 
