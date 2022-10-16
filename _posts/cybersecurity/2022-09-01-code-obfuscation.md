@@ -333,3 +333,17 @@ There are countless other ways of introducing opaque predicates to a program, an
 In this article, we have described many methods of code obfuscation and further explored methods such as string concatenation and opaque predicates. These methods can be some of the most effective at evading IDS systems.
 
 In order to protect against malware, we have to understand it. There is a constant cat-and-mouse chase between malicious actors devising new obfuscation methods, and malware analysts trying to dissect these methods and prevent malware from slipping through the cracks. Both attackers and defenders must have an understanding of the tools discussed and their impacts.
+
+### List of External Links
+
+[ProGuard Tool](https://github.com/Guardsquare/proguard)
+
+[Microsoft SolarWinds report](https://www.microsoft.com/security/blog/2020/12/18/analyzing-solorigate-the-compromised-dll-file-that-started-a-sophisticated-cyberattack-and-how-microsoft-defender-helps-protect/)
+
+[Hello world obfuscation](https://codegolf.stackexchange.com/questions/22533/weirdest-obfuscated-hello-world)
+
+[Software obfuscation paper](https://cybersecurity.springeropen.com/track/pdf/10.1186/s42400-020-00049-3.pdf)
+
+[Wikipedia list of string concatenation operators](https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(strings))
+
+[Opaque predicate injection paper](https://etda.libraries.psu.edu/files/final_submissions/17513)

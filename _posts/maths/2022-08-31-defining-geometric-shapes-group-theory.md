@@ -118,3 +118,11 @@ $$\Bbb{C}/\Bbb{Z}[i] \cong S^1 \times S^1$$
 ### Conclusion
 
 In this article, we saw how we can describe the unit circle as the quotient group of the reals by the integers - an interesting result in its own right. We then saw how we can construct the torus using the Gaussian integers. These results help to build a bridge between the fields of geometry and number theory - cool stuff!
+
+### List of External Links
+
+[Micahel Penn video](https://www.youtube.com/watch?v=iBNJE2922V0&ab_channel=MichaelPenn)
+
+[Group theory introduction](https://www.youtube.com/watch?v=KufsL2VgELo&ab_channel=Nemean)
+
+[Group theory intuition](https://www.youtube.com/playlist?list=PLDcSwjT2BF_VuNbn8HiHZKKy59SgnIAeO)
