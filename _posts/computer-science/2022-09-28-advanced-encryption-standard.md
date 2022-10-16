@@ -319,14 +319,25 @@ This code snippet has four main components. The first line will compute the pre-
 We have now seen the entire AES algorithm in all its glory. We have seen how each operation introduces confusion, diffusion, and ensures non-linearity. The place where implementations can vary is the mode of operation used to operate on multiple blocks of data, as discussed at the start. AES uses many components, but it is not difficult for anyone to implement the core of the algorithm.
 
 ### List of External Links
+
 [Block cipher modes of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
+
 [DES algorithm](https://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm)
+
 [Methods of breaking DES](https://lasec.epfl.ch/memo/memo_des.shtml)
+
 [Group-theoretic look at XOR](https://cybermouse.xyz/maths/xor-through-algebra)
+
 [A Mathematical Theory of Cryptography by Claude Shannon](https://www.iacr.org/museum/shannon/shannon45.pdf)
+
 [AES S-Boxes](https://www.johndcook.com/blog/2019/05/25/aes-s-box/)
+
 [AES Galois Field](https://www.samiam.org/galois.html)
+
 [Avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect)
+
 [MixColumns Wikipedia page](https://en.wikipedia.org/wiki/Rijndael_MixColumns)
+
 [MixColumns description](https://www.samiam.org/mix-column.html)
+
 [Design of Rijndael](https://cs.ru.nl/~joan/papers/JDA_VRI_Rijndael_2002.pdf)
