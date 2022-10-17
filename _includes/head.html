@@ -21,7 +21,18 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
   <!-- Google Analytics -->
-  {% include google-analytics.html %}
+  <!--{% include google-analytics.html %}
   <!-- Use Jekyll SEO plugin -->
   {% seo %}
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRVBJ8N56B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JRVBJ8N56B');
+  </script>
+
 </head>
