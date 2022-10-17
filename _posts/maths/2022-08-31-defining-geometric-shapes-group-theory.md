@@ -95,7 +95,7 @@ $$\Bbb{Z}[i] = \{a + bi : a,b \in \Bbb{Z}\}$$
 
 ![alt text](\assets\img\maths\shapes_group_theory\lattice.png){:height="350px" width="350px"}
 
-This fascinating set forms a lattice of points within the complex plane (as shown above), and the set $$\Bbb{Z}[i]$$ clearly forms a subgroup of $$\Bbb{C}$$. So what happens when we take the quotient group of $$\Bbb{c}$$ by $$\Bbb{Z}[i]$$?
+This fascinating set forms a lattice of points within the complex plane (as shown above), and the set $$\Bbb{Z}[i]$$ clearly forms a subgroup of $$\Bbb{C}$$. So what happens when we take the quotient group of $$\Bbb{C}$$ by $$\Bbb{Z}[i]$$?
 
 More precisely, what group $$G$$ satisfies the following:
 
