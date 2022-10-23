@@ -3,7 +3,7 @@ layout: post
 title: "Topology and Infinite Primes"
 author: "Mouse"
 categories: maths
-tags: [maths, number-theory, topology]
+tags: [number-theory, maths, topology]
 image: topology_primes.jpg
 permalink: /maths/topology-and-infinite-primes
 ---
