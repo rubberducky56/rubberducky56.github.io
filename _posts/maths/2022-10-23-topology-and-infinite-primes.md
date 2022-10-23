@@ -32,7 +32,7 @@ This is a non-empty intersection of finitely many arithmetic progressions - a us
 
 Furstenberg's Topology is defined as follows:
 
-> A set $$U\subset \Bbb{Z}$$ is open $$iff$$ for all $$a \in U$$, there exists  $$d \in \Bbb{Z}, d \neq 0$$, with $$a + d\Bbb{Z} \subset U$$.
+> A set $$U\subset \Bbb{Z}$$ is open if and only if for all $$a \in U$$, there exists  $$d \in \Bbb{Z}, d \neq 0$$, with $$a + d\Bbb{Z} \subset U$$.
 
 In other words, for any element in our open set, there is an arithmetic progression of that element within the open set. Alternatively, one can think of an open set in this topology as being a union of arithmetic progressions.
 
@@ -44,3 +44,5 @@ The properties of a topology $$\tau$$ on a set $$X$$ are:
 3. If $$U_1, U_2 \in \tau$$, then $$U_1 \cap U_2 \in \tau$$
 
 We check that all three of these properties are satisfied by Furstenberg's topology on $$\Bbb{Z}$$.
+
+1. The empty set $$\emptyset$$ is vacuously
