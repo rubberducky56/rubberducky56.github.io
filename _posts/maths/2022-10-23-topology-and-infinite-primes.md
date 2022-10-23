@@ -20,7 +20,7 @@ We start by exploring arithmetic progressions of integers.
 
 Arithmetic progressions are sets of integers that differ by a fixed amount. That is:
 
->$$ a\Bbb{Z} + b := \{an+b : n \in \Bbb{Z} \}, a,b \in \Bbb{Z} and a > 0$$
+>$$ a\Bbb{Z} + b := \{an+b : n \in \Bbb{Z} \}$$ where $$a,b \in \Bbb{Z}$$ and $$a > 0$$
 
 Consider the intersection of two arithmetic progressions. This intersection will either be empty, or it will form another arithmetic progression:
 
