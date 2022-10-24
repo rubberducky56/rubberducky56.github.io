@@ -65,3 +65,11 @@ The proof goes as follows:
 Let $$U = a + 2(b-a)\Bbb{Z}$$, and let $$V = b + 2(b-a)\Bbb{Z}$$. Clearly $$a \in U$$ and $$b \in V$$, so we now need to show that $$U$$ and $$V$$ are disjoint.
 Suppose that $$U$$ and $$V$$ are not disjoint, so there exists $$z \in U \cap V$$. Then $$z = a + 2(b-a)n = b + 2(b-a)m$$ for some $$n \neq m \in \Bbb{Z}$$. But then some simple algebraic manipulation reveals that $$n - m = \frac{1}{2}$$, a contradiction.
 Hence, the Furstenberg topology is Hausdorff.
+
+We remark that every non-empty open subset of $$\Bbb{Z}$$ is infinite, since each open subset will contain an infinite arithmetic progression.
+
+We also note that every arithmetic progression $$a + m\Bbb{Z}$$ is clopen - both open and closed.
+
+To see that arithmetic progressions are open, note that for each $$a + mb \in a + b\Bbb{Z}$$, we have $$a + mb + m\Bbb{Z} = a + m\Bbb{Z}$$.
+
+To show that each arithmetic progression is closed, we must show that its complement is open. The complement of an arithmetic progression in $$\BBb{Z}$$ will be the union of other arithmetic progressions $$r + m\Bbb{Z}$$, where $$0 \le r \le m-1$$, and $$ r \nequiv a \pmod m$$. By the above, each of these arithmetic progressions is open, so their union is also open.
