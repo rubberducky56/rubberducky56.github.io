@@ -84,7 +84,7 @@ Consider the multiples of each prime. Each forms a residue class, so are all clo
 
 In Furstenberg's Topology, $$\{+1, -1\}$$ is not open, since it is finite, and clearly not an arithmetic progression. Hence, its complement $$\Bbb{Z}/\{+1, -1\} = \bigcup\limits_{p} p\Bbb{Z}$$ cannot be closed. Since only finite unions of closed sets are closed, if we can show that each $$p\Bbb{Z}$$ is closed we must have that $$\bigcup\limits_{p} p\Bbb{Z}$$ is infinite, so there must be infinite primes.
 
-If $$p \nmid a$$, then no integer in the arithmetic progression $$a + p\Bbb{Z}$$ is divisible by $$p$$. So we therefore have that $$a + p\Bbb{Z} \subset \Bbb{Z} - p\Bbb{Z}$$. Since we now have an arithmetic progression in $$\Bbb{Z} - p\Bbb{Z}$$, $$\Bbb{Z} - p\Bbb{Z}$$ is open, so its complement $$p\Bbb{Z}$$ must be closed. By the above, $$\bigcup\limits_{p} p\Bbb{Z}$$ is infinite, so there are infinite prime numbers. Thus concludes Furstenberg's proof.
+To show that each $$p\Bbb{Z}$$ is closed, we must show that its complement $$\Bbb{Z} - p\Bbb{Z} = \{a \in \Bbb{Z} : p \nmid a\}$$ is open. If $$p \nmid a$$, then no integer in the arithmetic progression $$a + p\Bbb{Z}$$ is divisible by $$p$$. So we therefore have that $$a + p\Bbb{Z} \subset \Bbb{Z} - p\Bbb{Z}$$. Since we now have an arithmetic progression in $$\Bbb{Z} - p\Bbb{Z}$$, $$\Bbb{Z} - p\Bbb{Z}$$ is open, so its complement $$p\Bbb{Z}$$ must be closed. By the above, $$\bigcup\limits_{p} p\Bbb{Z}$$ is infinite, so there are infinite prime numbers. Thus concludes Furstenberg's proof.
 
 ### Conclusion
 
