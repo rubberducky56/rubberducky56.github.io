@@ -83,4 +83,4 @@ Memory dump formats:
   * VMWare - .vmem  file
   * Hyper-V - .bin file
   * Parallels - .mem file
-  * VirtualBox - .sav file 
+  * VirtualBox - .sav file
