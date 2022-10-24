@@ -12,7 +12,7 @@ permalink: /maths/topology-and-infinite-primes
 
 In this article, we will be exploring one of those proofs that proves a simple concept, with completely overpowered mathematics. There are some simple mathematical statements that seem to have a multitude of different proofs, for example Pythogoras' Thoerem, and the infinitude of the prime numbers. The statement we will be proving is that there are an infinite number of prime numbers. The overpowered mathematics we will be using comes from topology - namely Furstenberg's topology on the integers.
 
-[Hillel Furstenberg](https://en.wikipedia.org/wiki/Hillel_Furstenberg) is a German mathematician who cooked up a topology on the integers, and used this to prove the infinitude of the primes - all whilst he was an undergraduate at Yeshiva University in New York.
+[Hillel Furstenberg](https://en.wikipedia.org/wiki/Hillel_Furstenberg) is a German mathematician who cooked up a topology on the integers, and used this to prove the infinitude of the primes - all whilst he was an undergraduate at Yeshiva University in New York. Furstenberg's paper is possibly the shortest mathematical paper I have come across - it is only a page long. Check out the [full paper here](https://www.math.auckland.ac.nz/~gauld/750-05/inftlymanyprimes.pdf).
 
 We start by exploring arithmetic progressions of integers.
 
@@ -73,3 +73,13 @@ We also note that every arithmetic progression $$a + m\Bbb{Z}$$ is clopen - both
 To see that arithmetic progressions are open, note that for each $$a + mb \in a + m\Bbb{Z}$$, we have $$a + mb + m\Bbb{Z} = a + m\Bbb{Z}$$.
 
 To show that each arithmetic progression is closed, we must show that its complement is open. The complement of an arithmetic progression in $$\Bbb{Z}$$ will be the union of other arithmetic progressions $$r + m\Bbb{Z}$$, where $$0 \le r \le m-1$$, and $$ r \not\equiv a \pmod m$$. By the above, each of these arithmetic progressions is open, so their union is also open.
+
+### Infinite Primes
+
+We finally go on to prove that there are an infinite amount of prime numbers.
+
+Fix a prime number $$p \in \Bbb{Z}$$. Note that all the integers $$\Bbb{Z}$$ form a finite union of residue classes modulo $$p$$ - we are simply partitioning the integers on their remainder when divided by $$p$$. Each of these residue classes is an arithmetic progression. Moreover, each of these residue classes is clopen - both closed and open - in Furstenberg's Topology. They are open by definition of open sets. By the remark made above, these arithmetic progressions are also closed.
+
+Consider the multiples of each prime. Each forms a residue class, so are all closed by the above. The union of these multiples of primes $$p$$, $$\bigcup\limits_{p} p\Bbb{Z}$$ can be written as $$\bigcup\limits_{p} p\Bbb{Z} = \Bbb{Z}/\{+1, -1\}$$ since every integer will have prime factors, except $$1$$ and $$-1$$.
+
+In Furstenberg's Topology, $$\{+1, -1\}$$ is not open, since it is finite, and clearly not an arithmetic progression. Hence, its complement $$\Bbb{Z}/\{+1, -1\} = \bigcup\limits_{p} p\Bbb{Z}$$ cannot be closed. Since only finite unions of closed sets are closed, if we can show that each $$p\Bbb{Z}$$ is closed we must have that $$\bigcup\limits_{p} p\Bbb{Z}$$ is infinite, so there must be infinite primes.
