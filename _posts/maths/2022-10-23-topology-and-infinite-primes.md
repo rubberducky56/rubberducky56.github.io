@@ -54,3 +54,5 @@ We check that all three of these properties are satisfied by Furstenberg's topol
 >3. The third property is slightly more involved. Suppose $$U_1, ..., U_k$$ are open sets in $$\Bbb{Z}$$. Without loss of generality, assume that $$ \bigcap\limits_{i=1}^{\infty} U_i \neq \emptyset$$. Suppose that $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$. Then there exist arithmetic progressions $$a + m_i\Bbb{Z} \subset U_i$$. We then have that $$a + m_1...m_k\Bbb{Z} \subset \bigcap\limits_{i=1}^{\infty} U_i$$. But then each $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$ is contained in an arithmetic progression contained in $$\bigcap\limits_{i=1}^{\infty} U_i$$, so $$\bigcap\limits_{i=1}^{\infty} U_i$$ is open.
 
 Thus we have proven that the Furstenberg topology on the integers is indeed a topology.
+
+### Properties of the Furstenberg Topology
