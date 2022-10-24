@@ -10,7 +10,7 @@ permalink: /maths/topology-and-infinite-primes
 
 ### Introduction
 
-In this article, we will be exploring one of those proofs that proves a simple concept, with completely overpowered mathematics. There are some mathematical statements that seem to have a multitude of different proofs. The statement we will be proving is that there are an infinite number of prime numbers. The overpowered mathematics we will be using comes from topology - namely Furstenberg's topology on the integers.
+In this article, we will be exploring one of those proofs that proves a simple concept, with completely overpowered mathematics. There are some simple mathematical statements that seem to have a multitude of different proofs, for example Pythogoras' Thoerem, and the infinitude of the prime numbers. The statement we will be proving is that there are an infinite number of prime numbers. The overpowered mathematics we will be using comes from topology - namely Furstenberg's topology on the integers.
 
 [Hillel Furstenberg](https://en.wikipedia.org/wiki/Hillel_Furstenberg) is a German mathematician who cooked up a topology on the integers, and used this to prove the infinitude of the primes - all whilst he was an undergraduate at Yeshiva University in New York.
 
@@ -36,6 +36,10 @@ Furstenberg's Topology is defined as follows:
 
 In other words, for any element in our open set, there is an arithmetic progression of that element within the open set. Alternatively, one can think of an open set in this topology as being a union of arithmetic progressions.
 
+Open sets can also be considered the sets of all integers $$n$$, which are equivalent to $$b$$ modulo $$a$$, i.e:
+
+$$\{n \in \Bbb{Z} : n \equiv b (mod a) \}$$
+
 We now verify that this construction is indeed a topology.
 
 The properties of a topology $$\tau$$ on a set $$X$$ are:
@@ -49,4 +53,4 @@ We check that all three of these properties are satisfied by Furstenberg's topol
 2. Suppose $$U_i$$ is a collection of open sets, where $$i \in I$$ for some index set $$I$$. If $$a \in \bigcup\limits_{i=1} U_i$$, then there exists $$j \in I$$ with $$a \in U_j$$. But then there exists a $$d$$ with $$a + d\Bbb{Z} \subset U_j usbset \bigcup\limits_{i=1} U_i$$, so \bigcup\limits_{i=1} U_i must be open.
 3. The third property is slightly more involved. Suppose $$U_1, ..., U_k$$ are open sets in $$\Bbb{Z}$$. Without loss of generality, assume that $$ \bigcap\limits_{i=1}^{\infty} U_i \neq \emptyset$$. Suppose that $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$. Then there exist arithmetic progressions $$a + m_i\Bbb{Z} \subset U_i$$. We then have that $$a + m_1...m_k\Bbb{Z} \subset \bigcap\limits_{i=1}^{\infty} U_i$$. But then each $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$ is contained in an arithmetic progression contained in $$\bigcap\limits_{i=1}^{\infty} U_i$$, so $$\bigcap\limits_{i=1}^{\infty} U_i$$ is open.
 
-Thus we have proven that the Furstenberg topology on the integers is indeed a topology. 
+Thus we have proven that the Furstenberg topology on the integers is indeed a topology.
