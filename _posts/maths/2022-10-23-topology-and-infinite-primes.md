@@ -49,8 +49,10 @@ The properties of a topology $$\tau$$ on a set $$X$$ are:
 
 We check that all three of these properties are satisfied by Furstenberg's topology on $$\Bbb{Z}$$.
 
-1. The empty set $$\emptyset$$ is vacuously an open set, since it contains no elements. $$\Bbb{Z} = 0 + 1\Bbb{Z}$$ is also clearly open.
-2. Suppose $$U_i$$ is a collection of open sets, where $$i \in I$$ for some index set $$I$$. If $$a \in \bigcup\limits_{i=1} U_i$$, then there exists $$j \in I$$ with $$a \in U_j$$. But then there exists a $$d$$ with $$a + d\Bbb{Z} \subset U_j usbset \bigcup\limits_{i=1} U_i$$, so \bigcup\limits_{i=1} U_i must be open.
-3. The third property is slightly more involved. Suppose $$U_1, ..., U_k$$ are open sets in $$\Bbb{Z}$$. Without loss of generality, assume that $$ \bigcap\limits_{i=1}^{\infty} U_i \neq \emptyset$$. Suppose that $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$. Then there exist arithmetic progressions $$a + m_i\Bbb{Z} \subset U_i$$. We then have that $$a + m_1...m_k\Bbb{Z} \subset \bigcap\limits_{i=1}^{\infty} U_i$$. But then each $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$ is contained in an arithmetic progression contained in $$\bigcap\limits_{i=1}^{\infty} U_i$$, so $$\bigcap\limits_{i=1}^{\infty} U_i$$ is open.
+>1. The empty set $$\emptyset$$ is vacuously an open set, since it contains no elements. $$\Bbb{Z} = 0 + 1\Bbb{Z}$$ is also clearly open.
+
+>2. Suppose $$U_i$$ is a collection of open sets, where $$i \in I$$ for some index set $$I$$. If $$a \in \bigcup\limits_{i=1} U_i$$, then there exists $$j \in I$$ with $$a \in U_j$$. But then there exists a $$d$$ with $$a + d\Bbb{Z} \subset U_j \subset \bigcup\limits_{i=1} U_i$$, so $$\bigcup\limits_{i=1} U_i$$ must be open.
+
+>3. The third property is slightly more involved. Suppose $$U_1, ..., U_k$$ are open sets in $$\Bbb{Z}$$. Without loss of generality, assume that $$ \bigcap\limits_{i=1}^{\infty} U_i \neq \emptyset$$. Suppose that $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$. Then there exist arithmetic progressions $$a + m_i\Bbb{Z} \subset U_i$$. We then have that $$a + m_1...m_k\Bbb{Z} \subset \bigcap\limits_{i=1}^{\infty} U_i$$. But then each $$a \in \bigcap\limits_{i=1}^{\infty} U_i$$ is contained in an arithmetic progression contained in $$\bigcap\limits_{i=1}^{\infty} U_i$$, so $$\bigcap\limits_{i=1}^{\infty} U_i$$ is open.
 
 Thus we have proven that the Furstenberg topology on the integers is indeed a topology.
