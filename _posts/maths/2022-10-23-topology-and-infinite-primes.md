@@ -38,7 +38,7 @@ In other words, for any element in our open set, there is an arithmetic progress
 
 Open sets can also be considered the sets of all integers $$n$$, which are equivalent to $$b$$ modulo $$a$$, i.e:
 
-$$\{n \in \Bbb{Z} : n \equiv b (mod a) \}$$
+$$\{n \in \Bbb{Z} : n \equiv b (\pmod a) \}$$
 
 We now verify that this construction is indeed a topology.
 
