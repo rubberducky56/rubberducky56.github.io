@@ -55,4 +55,4 @@ We check that all three of these properties are satisfied by Furstenberg's topol
 
 Thus we have proven that the Furstenberg topology on the integers is indeed a topology.
 
-### Properties of the Furstenberg Topology
+### Interesting Properties
