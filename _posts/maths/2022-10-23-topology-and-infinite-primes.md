@@ -80,7 +80,7 @@ We finally go on to prove that there are an infinite amount of prime numbers.
 
 Fix a prime number $$p \in \Bbb{Z}$$. Note that all the integers $$\Bbb{Z}$$ form a finite union of residue classes modulo $$p$$ - we are simply partitioning the integers on their remainder when divided by $$p$$. Each of these residue classes is an arithmetic progression. Moreover, each of these residue classes is clopen - both closed and open - in Furstenberg's Topology. They are open by definition of open sets. By the remark made above, these arithmetic progressions are also closed.
 
-Consider the multiples of each prime. Each forms a residue class, so are all closed by the above. The union of these multiples of primes $$p$$, $$\bigcup\limits_{p} p\Bbb{Z}$$ can be written as $$\bigcup\limits_{p} p\Bbb{Z} = \Bbb{Z}/\{+1, -1\}$$ since every integer will have prime factors, except $$1$$ and $$-1$$.
+Consider the multiples of each prime. Each forms a residue class, so are all closed by the above. The union of these multiples of primes $$\bigcup\limits_{p} p\Bbb{Z}$$ can be written as $$\bigcup\limits_{p} p\Bbb{Z} = \Bbb{Z}/\{+1, -1\}$$ since every integer will have prime factors, except $$1$$ and $$-1$$.
 
 In Furstenberg's Topology, $$\{+1, -1\}$$ is not open, since it is finite, and clearly not an arithmetic progression. Hence, its complement $$\Bbb{Z}/\{+1, -1\} = \bigcup\limits_{p} p\Bbb{Z}$$ cannot be closed. Since only finite unions of closed sets are closed, if we can show that each $$p\Bbb{Z}$$ is closed we must have that $$\bigcup\limits_{p} p\Bbb{Z}$$ is infinite, so there must be infinite primes.
 
