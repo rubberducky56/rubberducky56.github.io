@@ -56,3 +56,12 @@ We check that all three of these properties are satisfied by Furstenberg's topol
 Thus we have proven that the Furstenberg topology on the integers is indeed a topology.
 
 ### Interesting Properties
+
+It can be shown that the Furstenberg topology is interestingly Hausdorff. That is each integer can be seperated by disjoint open sets. More precisely, we claim that:
+>For all $$a,b \in \Bbb{Z}$$, with $$a \neq b$$, there exist open sets $$U$$ and $$V$$ with $$a \in U$$ and $$b \in V$$, where $$U \cap V = \emptyset$$.
+
+The proof goes as follows:
+>Take any $$a,b \in \Bbb{Z}, a \neq b$$, so we have $$b-a \neq 0$$.
+Let $$U = a + 2(b-a)\Bbb{Z}$$, and let $$V = b + 2(b-a)\Bbb{Z}$$. Clearly $$a \in U$$ and $$b \in V$$, so we now need to show that $$U$$ and $$V$$ are disjoint.
+Suppose that $$U$$ and $$V$$ are not disjoint, so there exists $$z \in U \cap V$$. Then $$z = a + 2(b-a)n = b + 2(b-a)m$$ for some $$n \neq m \in \Bbb{Z}$$. But then some simple algebraic manipulation reveals that $$n - m = 1/2$$, a contradiction.
+Hence, the Furstenberg topology is Hausdorff.
