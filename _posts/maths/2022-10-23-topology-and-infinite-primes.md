@@ -70,6 +70,6 @@ We remark that every non-empty open subset of $$\Bbb{Z}$$ is infinite, since eac
 
 We also note that every arithmetic progression $$a + m\Bbb{Z}$$ is clopen - both open and closed.
 
-To see that arithmetic progressions are open, note that for each $$a + mb \in a + b\Bbb{Z}$$, we have $$a + mb + m\Bbb{Z} = a + m\Bbb{Z}$$.
+To see that arithmetic progressions are open, note that for each $$a + mb \in a + m\Bbb{Z}$$, we have $$a + mb + m\Bbb{Z} = a + m\Bbb{Z}$$.
 
-To show that each arithmetic progression is closed, we must show that its complement is open. The complement of an arithmetic progression in $$\BBb{Z}$$ will be the union of other arithmetic progressions $$r + m\Bbb{Z}$$, where $$0 \le r \le m-1$$, and $$ r \nequiv a \pmod m$$. By the above, each of these arithmetic progressions is open, so their union is also open.
+To show that each arithmetic progression is closed, we must show that its complement is open. The complement of an arithmetic progression in $$\Bbb{Z}$$ will be the union of other arithmetic progressions $$r + m\Bbb{Z}$$, where $$0 \le r \le m-1$$, and $$ r \not\equiv a \pmod m$$. By the above, each of these arithmetic progressions is open, so their union is also open.
