@@ -17,4 +17,4 @@ This is not strictly true - __we can generate prime numbers using closed form fo
 
 The aforementioned magic formula is stated below, in all its glory.
 
-The $$n^th$$ prime $$= 1 + \sum_{i=1}^{2^n} {\lceil {\frac{n}/{fd}} \rceil}$$
+The $$n^{th}$$ prime $$= 1 + \sum_{i=1}^{2^n} {\lfloor {\frac{n}{\sum_{j=1}^{i} {\lfloor {x} \rfloor}}^{\frac{1}{n}} \rfloor}$$
