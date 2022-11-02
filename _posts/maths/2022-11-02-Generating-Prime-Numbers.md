@@ -17,8 +17,9 @@ This is not strictly true - __we can generate prime numbers using closed form fo
 
 The aforementioned magic formula is stated below, in all its glory.
 
-The $$nth$$ prime $$= 1 + \sum_{i=1}^{2^n} {\lfloor {\frac{n}{\sum_{j=1}^{i} {\lfloor {\cos ^2(\pi * \frac{(j-1)!+1}{j})} \rfloor}}^{\frac{1}{n}} \rfloor} $$
+The $$nth$$ prime $$= 1 + \sum_{i=1}^{2^n} {\lceil {\frac{n}{\sum_{j=1}^{i} {\lceil {\cos ^2(\pi * \frac{(j-1)!+1}{j})} \rceil}}^{\frac{1}{n}} \rceil} $$
 
 There is quite a lot to unpack here. At first glance, it would seem that this strange sum has nothing to do with primes. We will investigate this formula from the inside out, starting at that strange argument to the cosine function.
 
 ### Wilson's Theorem
+h
