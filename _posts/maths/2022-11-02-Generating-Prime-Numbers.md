@@ -15,7 +15,7 @@ After thousands of years of mathematical advances, can we really still not gener
 
 This is not strictly true - __we can generate prime numbers using closed form formulae__. The primary issue faced with these algorithms is their efficiency. The formula that I present below suffers this fate. It is a beautiful formula involving some elegant pieces of mathematics, but the most powerful modern supercomputers are not yet fast enough to compute large primes. Nevertheless, the mere existance of this formula is interesting enough to warrent some further investigation (if you're enough of a maths geek).
 
-The aforementioned magic formula is stated below, in all its glory.
+The aforementioned magic formula, known as Willans’ Formula, is stated below, in all its glory.
 
 The $$n^{th}$$ prime $$= 1 + \sum_{i=1}^{2^n} {\lfloor ({\frac{n}{\sum_{j=1}^{i} {\lfloor {\cos ^2(\pi \frac{(j-1)!+1}{j})} \rfloor}})^{\frac{1}{n}}\rfloor}}$$
 
@@ -39,9 +39,11 @@ j     | $$\frac{(j-1)!+1}{j}$$
 10    | 36288.1     |
 11    | 329891      |
 
-An interesting pattern emerges. We claim that this function spits out an integer for prime values of $$j$$ above $$1$$. This is actually equivalent to Wilson's Theorem, which states the following:
+An interesting pattern emerges. We claim that this function spits out an integer for prime values of $$j$$ above $$1$$. This is actually equivalent to [Wilson's Theorem](https://en.wikipedia.org/wiki/Wilson%27s_theorem), which states the following:
 
 >$$p$$ is prime if and only if $$(p-1)! \equiv -1 \pmod p$$
+
+This theorem was actually first discovered by Ibn al-Haytham in around 1000 AD, but in true mathematical fashion John Wilson found this theorem in the 18th century, and he is who we get the name from. Wilson was never able to prove his theorem, and it wasn't until 1771 when Lagrange gifted us a proof. Supposedly, Leibniz knew of this theorem a centruy before Wilson, but it was never published.
 
 We now prove Wilson's Theorem.
 
@@ -58,8 +60,16 @@ $$(11-1)! = 10 * (7 * 8) * (5 * 9) * (3 * 4) * (2 * 6) * 1$$
 $$\equiv 10 * 1 * 1 * 1 * 1 * 1 \pmod 11$$
 $$\equiv -1 \pmod 11$$.
 
+For more interesting proofs of Wilson's Theorem, [read here](https://empslocal.ex.ac.uk/people/staff/rjchapma/courses/nt13/Wilson.pdf).
+
 We now have a mechanism for testing for primes. We can already begin to see how this formula might actually have something to do with primes.
 
 >It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1)!$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
 
 ### What is Cosine Doing?
+
+### List of External Links
+
+[Wilson's Theorem](https://en.wikipedia.org/wiki/Wilson%27s_theorem)
+
+[Proofs of Wilson's Theorem](https://empslocal.ex.ac.uk/people/staff/rjchapma/courses/nt13/Wilson.pdf)
