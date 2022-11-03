@@ -38,3 +38,5 @@ j     | $$\pi * \frac{(j-1)!+1}{j}$$
 9     | 4480.111... |
 10    | 36288.1     |
 11    | 329891      |
+
+An interesting pattern emerges. We claim that this $$w(j)$$ function spits out an integer for prime values of $$j$$ above $$1$$.
