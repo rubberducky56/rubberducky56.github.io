@@ -19,7 +19,7 @@ The aforementioned magic formula is stated below, in all its glory.
 
 The $$nth$$ prime
 
-$$ = 1 + \sum_{i=1}^{2^n} {\lfloor ({\frac{n}{\sum_{j=1}^{i} {\lfloor {\cos ^2(\pi * \frac{(j-1)!+1}{j})} \rfloor}})^{\frac{1}{n}}\rfloor}$$
+$$= 1 + \sum_{i=1}^{2^n} {\lfloor ({\frac{n}{\sum_{j=1}^{i} {\lfloor {\cos ^2(\pi * \frac{(j-1)!+1}{j})} \rfloor}})^{\frac{1}{n}}\rfloor}$$
 
 There is quite a lot to unpack here. At first glance, it would seem that this strange sum has nothing to do with primes. We will investigate this formula from the inside out, starting at that strange argument to the cosine function.
 
@@ -47,6 +47,6 @@ An interesting pattern emerges. We claim that this function spits out an integer
 
 We now prove Wilson's Theorem.
 
-It is known that the the integers modulo a prime, $$\Bbb{Z}\p$$ forms a field. In particular, each element $$a \in 
+It is known that the the integers modulo a prime, $$\Bbb{Z}_p$$ forms a field. In particular, each element $$a \in 
 
->It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1!)$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
+>It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1)!$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
