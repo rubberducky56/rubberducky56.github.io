@@ -19,13 +19,13 @@ The aforementioned magic formula is stated below, in all its glory.
 
 The $$nth$$ prime
 
-$$ = 1 + \sum_{i=1}^{2^n} {\lfloor ({\frac{n}{\sum_{j=1}^{i} {\lfloor {\cos ^2(\pi * \frac{(j-1)!+1}{j})}\rfloor}})^{\frac{1}{n}} \rfloor}$$
+$$ = 1 + \sum_{i=1}^{2^n} {\lfloor ({\frac{n}{\sum_{j=1}^{i} {\lfloor {\cos ^2(\pi * \frac{(j-1)!+1}{j})} \rfloor}})^{\frac{1}{n}}\rfloor}$$
 
 There is quite a lot to unpack here. At first glance, it would seem that this strange sum has nothing to do with primes. We will investigate this formula from the inside out, starting at that strange argument to the cosine function.
 
 ### Wilson's Theorem
 
-The argument to the cosine function is $$w(j) := \frac{(j-1)!+1}{j}$$. This strange functorial function is in fact closely linked with the primes. The below table shows some values of this function.
+The argument to the cosine function is \frac{(j-1)!+1}{j}$$. This strange functorial function is in fact closely linked with the primes. The below table shows some values of this function.
 
 j     | $$\frac{(j-1)!+1}{j}$$  
 :---: | :----------:|
@@ -41,12 +41,12 @@ j     | $$\frac{(j-1)!+1}{j}$$
 10    | 36288.1     |
 11    | 329891      |
 
-An interesting pattern emerges. We claim that this $$w(j)$$ function spits out an integer for prime values of $$j$$ above $$1$$. This is actually equivalent to Wilson's Theorem, which states the following:
+An interesting pattern emerges. We claim that this function spits out an integer for prime values of $$j$$ above $$1$$. This is actually equivalent to Wilson's Theorem, which states the following:
 
 >$$p$$ is prime if and only if $$(p-1)! \equiv -1 \pmod p$$
 
 We now prove Wilson's Theorem.
 
-It is known that the the integers modulo a prime, $$\Bbb{Z}\/p$$ forms a field. In particular, each element $$a \in
+It is known that the the integers modulo a prime, $$\Bbb{Z}\p$$ forms a field. In particular, each element $$a \in 
 
 >It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1!)$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
