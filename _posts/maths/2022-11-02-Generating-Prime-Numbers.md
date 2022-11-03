@@ -62,7 +62,15 @@ $$\equiv -1 \pmod {11}$$.
 
 For more interesting proofs of Wilson's Theorem, [read here](https://empslocal.ex.ac.uk/people/staff/rjchapma/courses/nt13/Wilson.pdf).
 
-We now have a mechanism for testing for primes. We can already begin to see how this formula might actually have something to do with primes.
+We now have a mechanism for testing for primes. This can be summarised as follows:
+
+For $$j \gt 1$$, $$\frac{(j-1)!+1}{j}$$ is
+$$\begin{cases}
+\text{an integer}, & \text{if $j$ is prime} \\
+\text{not an integer}, & \text{if $j$ is not a prime}
+\end{cases}$$
+
+We can already begin to see how this formula might actually have something to do with primes.
 
 >It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1)!$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
 
