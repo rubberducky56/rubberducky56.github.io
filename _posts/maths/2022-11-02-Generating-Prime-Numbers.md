@@ -47,6 +47,15 @@ An interesting pattern emerges. We claim that this function spits out an integer
 
 We now prove Wilson's Theorem.
 
-It is known that the the integers modulo a prime, $$\Bbb{Z}_p$$ forms a field. In particular, each element $$a \in 
+It is known that the the integers modulo a prime, $$\Bbb{Z}_p$$ forms a field. In particular, each non-zero element $$a \in \Bbb{Z}_p^* = \{1,2,...,p-1\}$$ has a unique multiplicative inverse $$a^{-1} \in \Bbb{Z}_p$$, with $$a * a^{-1} \equiv -1 \pmod p$$.
+
+We claim that $$a = a^{-1}$$ if and only if $$a=1$$ or $$a=p-1$$. To see this, note that $$a=a^{-1}$$ iff $$1 \equiv a*a^{-1} = a^2 \pmod p$$ iff $$a \equiv \pm{1} \pmod p$$ iff $$a=1$$ or $$a=p-1$$. We then have that all elements in $$\Bbb{Z}_p - \{1, p-1\}}$$ not equal to their own inverse have a different inverse in $$\Bbb{Z}_p$$. Consider the calculation of $$(p-1)! = (p-1) * (p-2) * ... * 3 * 2 * 1$$. We can pair off each element that is not $$1$$ or $$p-1$$ with its inverse, so that they multiply to give $$1$$. We therefore have $$(p-1)! \equiv (p-1) * 1 * 1 * ... * 1 * 1 \equiv -1 \pmod p$$. This proves Wilson's Theorem.
+
+>As an example, consider $$p=11$$.
+$$(11-1)! = 10 * (7 * 8) * (5 * 9) * (3 * 4) * (2 * 6) * 1 \equiv 10 * 1 * 1 * 1 * 1 * 1 \pmod 11 \equiv -1 \pmod 11$$.
+
+We now have a mechanism for testing for primes. We can already begin to see how this formula might actually have something to do with primes.
 
 >It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1)!$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
+
+### What is Cosine Doing?
