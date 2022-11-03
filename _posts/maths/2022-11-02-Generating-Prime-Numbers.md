@@ -50,9 +50,9 @@ An interesting pattern emerges. We claim that this function spits out an integer
 
 We now prove Wilson's Theorem.
 
-It is known that the the integers modulo a prime, $$\Bbb{Z}_p$$ forms a field. In particular, each non-zero element $$a \in \Bbb{Z}_p^* = \{1,2,...,p-1\}$$ has a unique multiplicative inverse $$a^{-1} \in \Bbb{Z}_p$$, with $$a * a^{-1} \equiv -1 \pmod p$$.
+It is known that the the integers modulo a prime, $$\Bbb{Z}_p$$ forms a field. In particular, each non-zero element $$a \in \Bbb{Z}_p^* = \{1,2,...,p-1\}$$ has a unique multiplicative inverse $$a^{-1} \in \Bbb{Z}_p$$, with $$aa^{-1} \equiv -1 \pmod p$$.
 
-We claim that $$a = a^{-1}$$ if and only if $$a=1$$ or $$a=p-1$$. To see this, note that $$a=a^{-1}$$ iff $$1 \equiv a*a^{-1} = a^2 \pmod p$$ iff $$a \equiv \pm{1} \pmod p$$ iff $$a=1$$ or $$a=p-1$$. We then have that all elements in $$\Bbb{Z}_p - \{1, p-1\}}$$ not equal to their own inverse have a different inverse in $$\Bbb{Z}_p$$. Consider the calculation of $$(p-1)! = (p-1) * (p-2) * ... * 3 * 2 * 1$$. We can pair off each element that is not $$1$$ or $$p-1$$ with its inverse, so that they multiply to give $$1$$. We therefore have $$(p-1)! \equiv (p-1) * 1 * 1 * ... * 1 * 1 \equiv -1 \pmod p$$. This proves Wilson's Theorem.
+We claim that $$a = a^{-1}$$ if and only if $$a=1$$ or $$a=p-1$$. To see this, note that $$a=a^{-1}$$ iff $$1 \equiv aa^{-1} = a^2 \pmod p$$ iff $$a \equiv \pm{1} \pmod p$$ iff $$a=1$$ or $$a=p-1$$. We then have that all elements in $$\Bbb{Z}_p - \{1, p-1\}}$$ not equal to their own inverse have a different inverse in $$\Bbb{Z}_p$$. Consider the calculation of $$(p-1)! = (p-1)(p-2)...* 3 * 2 * 1$$. We can pair off each element that is not $$1$$ or $$p-1$$ with its inverse, so that they multiply to give $$1$$. We therefore have $$(p-1)! \equiv (p-1) * 1 * 1 * ... * 1 * 1 \equiv -1 \pmod p$$. This proves Wilson's Theorem.
 
 >As an example, consider $$p=11$$.
 $$(11-1)! = 10 * (7 * 8) * (5 * 9) * (3 * 4) * (2 * 6) * 1
