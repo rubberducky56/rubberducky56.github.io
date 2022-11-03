@@ -74,6 +74,8 @@ We can already begin to see how this formula might actually have something to do
 
 >It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1)!$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
 
+With modern programming languages, it is trivial to now build a prime number generator using Wilson's Theorem. To find the $$n^{th}$$ prime, we could simply compute values of $$\frac{(j-1)!+1}{j}$$, and count the number of integer results. This can all be acomplished with a simple ```while``` loop and an ```if``` statement. But what if we are stuck on a desert island with no computer, and only a pen and paper? How are we supposed to generate our primes? The beauty of this formula lies in the elementary methods in use.
+
 ### What is Cosine Doing?
 
 ### List of External Links
