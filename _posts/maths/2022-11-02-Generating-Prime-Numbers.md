@@ -41,4 +41,12 @@ j     | $$\frac{(j-1)!+1}{j}$$
 10    | 36288.1     |
 11    | 329891      |
 
-An interesting pattern emerges. We claim that this $$w(j)$$ function spits out an integer for prime values of $$j$$ above $$1$$.
+An interesting pattern emerges. We claim that this $$w(j)$$ function spits out an integer for prime values of $$j$$ above $$1$$. This is actually equivalent to Wilson's Theorem, which states the following:
+
+>$$p$$ is prime if and only if $$(p-1)! \equiv -1 \pmod p$$
+
+We now prove Wilson's Theorem.
+
+It is known that the the integers modulo a prime, $$\Bbb{Z}\/p$$ forms a field. In particular, each element $$a \in
+
+>It is worth noting that whilst Wilson's Theorem gives a nice method of primality testing, computing $$(p-1!)$$ is computationally difficult. It is far easier to compute $$a^{p-1}$$, and use Fermat's Little Theorem for elementary primality testing.
