@@ -43,7 +43,7 @@ An interesting pattern emerges. We claim that this function spits out an integer
 
 >$$p$$ is prime if and only if $$(p-1)! \equiv -1 \pmod p$$
 
-This theorem was actually first discovered by Ibn al-Haytham in around 1000 AD, but in true mathematical fashion John Wilson found this theorem in the 18th century, and he is who we get the name from. Wilson was never able to prove his theorem, and it wasn't until 1771 when Lagrange gifted us a proof. Supposedly, Leibniz knew of this theorem a centruy before Wilson, but it was never published.
+This theorem was actually first discovered by Ibn al-Haytham in around 1000 AD, but in true mathematical fashion John Wilson found this theorem in the 18th century, and he is who we get the name from. Wilson was never able to prove his theorem, and it wasn't until 1771 when Lagrange gifted us a proof. Supposedly, Leibniz knew of this theorem a century before Wilson, but it was never published.
 
 We now prove Wilson's Theorem.
 
@@ -65,6 +65,7 @@ For more interesting proofs of Wilson's Theorem, [read here](https://empslocal.e
 We now have a mechanism for testing for primes. This can be summarised as follows:
 
 For $$j \gt 1$$, $$\frac{(j-1)!+1}{j}$$ is
+
 $$\begin{cases}
 \text{an integer}, & \text{if $j$ is prime} \\
 \text{not an integer}, & \text{if $j$ is not a prime}
@@ -77,6 +78,8 @@ We can already begin to see how this formula might actually have something to do
 With modern programming languages, it is trivial to now build a prime number generator using Wilson's Theorem. To find the $$n^{th}$$ prime, we could simply compute values of $$\frac{(j-1)!+1}{j}$$, and count the number of integer results. This can all be acomplished with a simple ```while``` loop and an ```if``` statement. But what if we are stuck on a desert island with no computer, and only a pen and paper? How are we supposed to generate our primes? The beauty of this formula lies in the elementary methods in use.
 
 ### What is Cosine Doing?
+
+Now that we have a primality detection mechanism, we need something more mathematically useful to work with than 'an integer' and 'not an integer'. It would be handy if we could encode 'not an integer' as $$0$$, and 'an integer' with $$1$$. This is where our hero, the cosine function, comes into play.
 
 ### List of External Links
 
