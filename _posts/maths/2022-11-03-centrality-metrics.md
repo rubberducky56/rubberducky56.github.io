@@ -43,14 +43,14 @@ $$
 
 The degree centrality of a node $$x \in V$$ is then defined as:
 $$
-D(x) := \[ \sum_{y \in V} e_{xy}\]
+D(x) := \sum_{y \in V} e_{xy}
 $$
 
 This quantity is more commonly known as the __degree__ of a node.
 
 We can use degree centrality to calculate a similar metric - the porportion of the entire graph that a given node is connected to. This can be computed by dividing the degreee (or degree centrality) of a node by the total number of nodes in the graph. For a node $$x \in V$$, this is:
 $$
-\frac{D(x)}{|V|} = \frac{\[ \sum_{y \in V} e_{xy}\]}{|V|}
+\frac{D(x)}{|V|} = \frac{\sum_{y \in V} e_{xy}}{|V|}
 $$
 
 This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the left, we see that the central node has the highest centrality of $$5$$, whereas all others have centralities of $$1$$. If we observe the image on the right, we see that the degree centrality has identified __clusters__ within the network.
