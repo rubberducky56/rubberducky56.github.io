@@ -67,21 +67,33 @@ Given $$x,y \in V$$, let
 $$
 d(x,y) = \begin{cases}
 0, & \text{if } x = y \\
-\inf, & if x and y \text{ are not connected} \\
+\infty, & if x, y \text{ are not connected} \\
 \text{number of edges on shortest path from x to y}, & \text{otherwise}
 \end{cases}
 $$
 
 $$d(x,y)$$ measures the number of edges on the shortest path between $$x$$ and $$y$$. The closeness centrality of $$x \in V$$ is then defined as:
 
-$$ C(x) = \frac{1}{\sum_{y \in V, y \neq x} d(x,y)} $$
+$$ C(x) := \frac{1}{\sum_{y \in V, y \neq x} d(x,y)} $$
 
 A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a __central cluster__.
 
 :-------------------------:|:-------------------------:
 ![closeness centrality](\assets\img\maths\centrality_measures\closeness_small.PNG)  |  ![closeness centrality](\assets\img\maths\centrality_measures\closeness_big.PNG)
 
+Tying this back to drug cartels, the closeness centrality could reveal individuals who are able to __spread information/resources__ to many others within the network.
+
 
 ### Betweenness Centrality
+Next, we examine the notion of __betweenness centrality__. In this metric, the importance of a node is defined by the number of shortest paths that pass through that node. More precisely:
 
-Let %%\sigma_{s,t}$$ denote the number of shortest paths between $$s,t \in V$$, and let $$\sigma_{s,t}(x)$$ denote the number of shortest paths between $$s,t \in V$$, which pass through $$x \in V$$.
+Let $$sigma_{st}$$ denote the number of shortest paths between $$s,t \in V$$, and let $$\sigma_{st}(x)$$ denote the number of shortest paths between $$s,t \in V$$, which pass through $$x \in V$$. Then the betweenness centrality of a node $$x \in V$$ can be computed by summing over all node pairs $$s,t$$ the ratio of shortest paths from $$s$$ to $$t$$ passing through $$x$$, and the total number of shortest paths $$s$$ to $$t$$. More precisely:
+
+$$
+B(x) := \sum_{s,t \in V, s \neq x \neq t} \frac{\sigma_{st}(x)}{\sigma_{st}}
+$$
+
+If we observe the image on the left, node $$4$$ has been identified as having the highest betweenness centrality, measuring in at $$15$$. This matches our intuition, since we can clearly see that many shortest paths must pass through node $$4$$. Node $$4$$ can be consdered a 'bridge' node - it connects multiple components of the graph together. In this case, removing node $$4$$ would result in the graph becoming disconnected. 
+
+:-------------------------:|:-------------------------:
+![betweenness centrality](\assets\img\maths\centrality_measures\betweenness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweennes_big.PNG)
