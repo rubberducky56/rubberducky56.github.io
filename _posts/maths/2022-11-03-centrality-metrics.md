@@ -54,6 +54,7 @@ $$
 $$
 
 This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the left, we see that the central node has the highest centrality of $$5$$, whereas all others have centralities of $$1$$. If we observe the image on the right, we see that the degree centrality has identified __clusters__ within the network.
+
 :-------------------------:|:-------------------------:
 ![degree centrality](\assets\img\maths\centrality_measures\degree_small.PNG)  |  ![degree centrality](\assets\img\maths\centrality_measures\degree_big.PNG)
 
@@ -76,6 +77,7 @@ $$d(x,y)$$ measures the number of edges on the shortest path between $$x$$ and $
 $$ C(x) = \frac{1}{\[ \sum_{y \in V, y \neq x} d(x,y)\]} $$
 
 A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a __central cluster__.
+
 :-------------------------:|:-------------------------:
 ![closeness centrality](\assets\img\maths\centrality_measures\closeness_small.PNG)  |  ![closeness centrality](\assets\img\maths\centrality_measures\closeness_big.PNG)
 
