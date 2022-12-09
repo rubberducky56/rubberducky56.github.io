@@ -53,10 +53,13 @@ $$
 \frac{D(x)}{|V|} = \frac{\[ \sum_{y \in V} e_{xy} = 1 \]}{|V|}
 $$
 
-This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the left, we see that the central node has the highest centrality of 5, whereas all others have centralities of 1. If we observe the image on the right, we see that the degree centrality has identified clusters within the network.
+This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the left, we see that the central node has the highest centrality of $$5$$, whereas all others have centralities of $$1$$. If we observe the image on the right, we see that the degree centrality has identified __clusters__ within the network.
 :-------------------------:|:-------------------------:
 ![degree centrality](\assets\img\maths\centrality_measures\degree_small.PNG)  |  ![degree centrality](\assets\img\maths\centrality_measures\degree_big.PNG)
 
-If we calculate the degree centralities of nodes within a drug cartel network, we can identify hubs or clusters within a cartel. We could also find individuals who are in contact with many others.
+If we calculate the degree centralities of nodes within a drug cartel network, we can identify __hubs__ or __clusters__ within a cartel. We could also find individuals who are in contact with many others.
 
-### 
+### Closeness Centrality
+Next, we will investigate the notion of closeness centrality. Closeness centrality defines the importance of a node by how close it is to other nodes. It is worth noting that it can be proven that for all connected nodes, there always exists at least one shortest path between them. The closeness centrality can be calculated as the recirpocal of the sum of the lengths of all shortest paths to a node. More precisely:
+
+Let %%\sigma_{s,t}$$ denote the number of shortest paths between $$s,t \in V$$, and let $$\sigma_{s,t}(x)$$ denote the number of shortest paths between $$s,t \in V$$, which pass through $$x \in V$$. 
