@@ -66,15 +66,15 @@ Next, we will investigate the notion of __closeness centrality__. Closeness cent
 Given $$x,y \in V$$, let
 $$
 d(x,y) = \begin{cases}
-0, & \text{if} x = y \\
-\infinity, & \text{if} x \text{and} y \text{are not connected} \\
+0, & \text{if } x = y \\
+\inf, & if x and y \text{ are not connected} \\
 \text{number of edges on shortest path from x to y}, & \text{otherwise}
 \end{cases}
 $$
 
 $$d(x,y)$$ measures the number of edges on the shortest path between $$x$$ and $$y$$. The closeness centrality of $$x \in V$$ is then defined as:
 
-$$ C(x) = \frac{1}{\[ \sum_{y \in V, y \neq x} d(x,y)\]} $$
+$$ C(x) = \frac{1}{\sum_{y \in V, y \neq x} d(x,y)} $$
 
 A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a __central cluster__.
 
