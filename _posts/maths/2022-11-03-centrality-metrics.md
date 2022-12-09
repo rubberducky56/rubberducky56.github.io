@@ -60,7 +60,7 @@ This metric simply counts how many edges connect to a given node, indiciating ho
 If we calculate the degree centralities of nodes within a drug cartel network, we can identify __hubs__ or __clusters__ within a cartel. We could also find individuals who are in contact with many others.
 
 ### Closeness Centrality
-Next, we will investigate the notion of closeness centrality. Closeness centrality defines the importance of a node by how close it is to other nodes. It is worth noting that it can be proven that for all connected nodes, there always exists at least one shortest path between them. The closeness centrality can be calculated as the recirpocal of the sum of the lengths of all shortest paths to a node. More precisely:
+Next, we will investigate the notion of __closeness centrality__. Closeness centrality defines the importance of a node by how __close__ it is to other nodes. It is worth noting that it can be proven that for all connected nodes, there always exists at least one shortest path between them. The closeness centrality can be calculated as the recirpocal of the sum of the lengths of all shortest paths to a node. More precisely:
 
 Given $$x,y \in V$$, let
 $$
@@ -75,8 +75,9 @@ $$d(x,y)$$ measures the number of edges on the shortest path between $$x$$ and $
 
 $$ C(x) = \frac{1}{\[ \sum_{y \in V, y \neq x} d(x,y)\]} $$
 
-A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a central cluster.
-
+A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a __central cluster__.
+:-------------------------:|:-------------------------:
+![closeness centrality](\assets\img\maths\centrality_measures\closeness_small.PNG)  |  ![closeness centrality](\assets\img\maths\centrality_measures\closeness_big.PNG)
 
 
 ### Betweenness Centrality
