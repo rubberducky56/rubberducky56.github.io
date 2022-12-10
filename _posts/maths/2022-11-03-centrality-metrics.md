@@ -27,7 +27,7 @@ We model drug cartels as follows. We let $$G=(V,E)$$ be a graph, where $$V$$ rep
 >Note that the definition of 'connected' depends on the type of intelligence that has been gathered. For instance, this could be individuals that are in frequent contact, individuals who trade supplies, or if one of the individuals reports to the other.
 
 Now that we have modelled our cartel as a graph, we turn to the field of __Social Network Analysis__. This is the process of investigating social structures with tools of graph theory. In particular, we turn our attention to __centrality metrics__. Centrality metrics are functions that take in a node, and tell you how 'important' that node is. More precisely, a centrality measure $$C$$ is a function:
-$$ C: V -> \Bbb{R} $$
+$$ C: V \rightarrow \Bbb{R} $$
 
 There are countless examples of centrality measures, which differ based upon how a node's 'importance' is defined. For the remainder of this article, we will examine a few centrality metrics. Throughout the remainder of this article, we denote by $$G=(V,E)$$ a graph with nodes $$V$$, and edges $$E$$.
 
@@ -36,8 +36,8 @@ The first centrality metric we will investigate is __degree centrality__. In thi
 For $$x,y \in V$$, set
 $$
 e_{xy} = \begin{cases}
-1, & \text{if} xy \in E \\
-0, & \text{if} xy \not\in E
+1 & \text{if } xy \in E \\
+0 & \text{if } xy \not\in E
 \end{cases}
 $$
 
@@ -66,9 +66,9 @@ Next, we will investigate the notion of __closeness centrality__. Closeness cent
 Given $$x,y \in V$$, let
 $$
 d(x,y) = \begin{cases}
-0, & \text{if } x = y \\
-\infty, & if x, y \text{ are not connected} \\
-\text{number of edges on shortest path from x to y}, & \text{otherwise}
+0 & \text{if } x = y \\
+\infty & \text{if } xy \not\in E \\
+\text{number of edges on shortest path from x to y} & \text{otherwise}
 \end{cases}
 $$
 
@@ -101,13 +101,20 @@ When we calculate betweenness centralities of cartel networks, we can identify '
 ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_big.PNG)
 
 ### Eigenvector Centrality
-The final centrality metric we will examine is __eigenvector centrality__, where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
+The final centrality metric we will examine is __eigenvector centrality__, also known as __eigencentrality__ where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
 
 Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{|V|}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
+
 $$
 x_i = \lambda\sum_{j=1}^{|V|} a_{i,j}x_j
 $$
-where $$\lambda$$ is a positive constant. When we rewrite this equation in vector notation, we see that this is equivalent to $$\lambdax=Ax$$, an eigenvector problem. The centrality of a node $$v$$ is the $$v^{th}$$ component of the unique eigenvector corresponding to the largest eigenvalue. Existence of this unique largest eigenvalue is garanteed by the positive constant $$\lambda$$, and by the [Perron-Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem). In practice, these eigenvalues can be calculated using a method such as the [Power-Iteration algorithm](https://en.wikipedia.org/wiki/Power_iteration), or other such [eigenvector algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm).
+
+where $$\lambda$$ is a positive constant. When we rewrite this equation in vector notation, we see that this is equivalent to $$\lambda x=Ax$$, an eigenvector problem. The centrality of a node $$v$$ is the $$v^{th}$$ component of the unique eigenvector corresponding to the largest eigenvalue. Existence of this unique largest eigenvalue is garanteed by the positive constant $$\lambda$$, and by the [Perron-Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem). In practice, these eigenvalues can be calculated using a method such as the [Power-Iteration algorithm](https://en.wikipedia.org/wiki/Power_iteration), or other such [eigenvector algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm).
+
+Eigencentrality measures the __relative influence__ of a node. If a node is well connected, it will result in a high eigencentrality score.
+>It's not what you know, it's who you know
+
+
 
 This centrality metric is what Google's PageRank algorithm is based off. This is Google's magic formula which determines which pages on the web are most 'important', and should be shown higher on Google search results. For more on how eigenvector centrality is used in PageRank, Cambridge Intelligence have an [article](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.) that goes into further detail. This goes to show than graph centrality measures have far reaching applications - from disrupting drug cartels to ranking pages on the internet.
 
