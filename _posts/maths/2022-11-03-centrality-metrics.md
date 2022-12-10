@@ -98,7 +98,7 @@ If we observe the image on the left, node $$4$$ has been identified as having th
 When we calculate betweenness centralities of cartel networks, we can identify 'bridges' between different subnetworks. These 'bridge' nodes could represent individuals with the ability to control the __flow of information/resources__ through the cartel. Removing these nodes would severely disrupt the operations of the cartel.
 
 :-------------------------:|:-------------------------:
-![betweenness centrality](\assets\img\maths\centrality_measures\betweenness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweennes_big.PNG)
+![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_big.PNG)
 
 ### Eigenvector Centrality
 The final centrality metric we will examine is __eigenvector centrality__, where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
