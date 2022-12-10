@@ -13,7 +13,7 @@ It goes without saying that drug cartels are a major issue. They supply the worl
 
 Drug cartels are large and complex networks, often involving thousands of members, all connected in different ways. The naive solution is to go for the leader of a cartel. But when you cut off the head, three more grow in its place.  ... (find E.Gs from past)
 
-Law enforcement agencies may have intelligence on many individuals within a cartel and the connections between them, but they simply do not have enough resources to arrest all those that are known to be involved in cartels. Therefore, law enforcement must determine who are the most important indiividuals to the functioning of the cartel. Once these people are determined, they can be arrested and fthe cartel will be disrupted. But how do we find the most important individuals?
+Law enforcement agencies may have intelligence on many individuals within a cartel and the connections between them, but they simply do not have enough resources to arrest all those that are known to be involved in cartels. Therefore, law enforcement must determine who are the most important indiividuals to the functioning of the cartel. Once these people are determined, they can be arrested and the cartel will be disrupted. But how do we find the most important individuals?
 
 ### Cartel Graphs
 We answer this difficult question using the tools of __graph theory__. Graph theory is the mathematical study of connected networks. We define a structure called a graph $$G=(V,E)$$ which is a 2-tuple of sets. The set $$V$$ contains the __nodes__ (or vertices) of the graph, and $$E$$ contains the __edges__ connecting them. The below image shows an examle of a graph.
@@ -26,7 +26,7 @@ We model drug cartels as follows. We let $$G=(V,E)$$ be a graph, where $$V$$ rep
 
 >Note that the definition of 'connected' depends on the type of intelligence that has been gathered. For instance, this could be individuals that are in frequent contact, individuals who trade supplies, or if one of the individuals reports to the other.
 
-Now that we have modelled our cartel as a graph, we turn to the field of __Social Network Analysis__. This is the process of investigating social structures with tools of graph theory. In particular, we turn our attention to __centrality metrics__. Centrality metrics are functions that take in a node, and tell you how 'imporotant' that node is. More precisely, a centrality measure $$C$$ is a function:
+Now that we have modelled our cartel as a graph, we turn to the field of __Social Network Analysis__. This is the process of investigating social structures with tools of graph theory. In particular, we turn our attention to __centrality metrics__. Centrality metrics are functions that take in a node, and tell you how 'important' that node is. More precisely, a centrality measure $$C$$ is a function:
 $$ C: V -> \Bbb{R} $$
 
 There are countless examples of centrality measures, which differ based upon how a node's 'importance' is defined. For the remainder of this article, we will examine a few centrality metrics. Throughout the remainder of this article, we denote by $$G=(V,E)$$ a graph with nodes $$V$$, and edges $$E$$.
@@ -85,7 +85,7 @@ Tying this back to drug cartels, the closeness centrality could reveal individua
 
 
 ### Betweenness Centrality
-Next, we examine the notion of __betweenness centrality__. In this metric, the importance of a node is defined by the number of shortest paths that pass through that node. More precisely:
+Next, we examine the notion of __betweenness centrality__. In this metric, the importance of a node is defined by the number of __shortest paths__ that pass through that node. More precisely:
 
 Let $$sigma_{st}$$ denote the number of shortest paths between $$s,t \in V$$, and let $$\sigma_{st}(x)$$ denote the number of shortest paths between $$s,t \in V$$, which pass through $$x \in V$$. Then the betweenness centrality of a node $$x \in V$$ can be computed by summing over all node pairs $$s,t$$ the ratio of shortest paths from $$s$$ to $$t$$ passing through $$x$$, and the total number of shortest paths $$s$$ to $$t$$. More precisely:
 
@@ -93,7 +93,31 @@ $$
 B(x) := \sum_{s,t \in V, s \neq x \neq t} \frac{\sigma_{st}(x)}{\sigma_{st}}
 $$
 
-If we observe the image on the left, node $$4$$ has been identified as having the highest betweenness centrality, measuring in at $$15$$. This matches our intuition, since we can clearly see that many shortest paths must pass through node $$4$$. Node $$4$$ can be consdered a 'bridge' node - it connects multiple components of the graph together. In this case, removing node $$4$$ would result in the graph becoming disconnected. 
+If we observe the image on the left, node $$4$$ has been identified as having the highest betweenness centrality, measuring in at $$15$$. This matches our intuition, since we can clearly see that many shortest paths must pass through node $$4$$. Node $$4$$ can be consdered a __'bridge' node__ - it connects multiple components of the graph together. In this case, removing node $$4$$ would result in the graph becoming __disconnected__.
+
+When we calculate betweenness centralities of cartel networks, we can identify 'bridges' between different subnetworks. These 'bridge' nodes could represent individuals with the ability to control the __flow of information/resources__ through the cartel. Removing these nodes would severely disrupt the operations of the cartel.
 
 :-------------------------:|:-------------------------:
 ![betweenness centrality](\assets\img\maths\centrality_measures\betweenness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweennes_big.PNG)
+
+### Eigenvector Centrality
+The final centrality metric we will examine is __eigenvector centrality__, where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
+
+Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{|V|}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
+$$
+x_i = \lambda\sum_{j=1}^{|V|} a_{i,j}x_j
+$$
+where $$\lambda$$ is a positive constant. When we rewrite this equation in vector notation, we see that this is equivalent to $$\lambdax=Ax$$, an eigenvector problem. The centrality of a node $$v$$ is the $$v^{th}$$ component of the unique eigenvector corresponding to the largest eigenvalue. Existence of this unique largest eigenvalue is garanteed by the positive constant $$\lambda$$, and by the [Perron-Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem). In practice, these eigenvalues can be calculated using a method such as the [Power-Iteration algorithm](https://en.wikipedia.org/wiki/Power_iteration), or other such [eigenvector algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm).
+
+This centrality metric is what Google's PageRank algorithm is based off. This is Google's magic formula which determines which pages on the web are most 'important', and should be shown higher on Google search results. For more on how eigenvector centrality is used in PageRank, Cambridge Intelligence have an [article](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.) that goes into further detail. This goes to show than graph centrality measures have far reaching applications - from disrupting drug cartels to ranking pages on the internet.
+
+
+### External Links
+
+[Perron-Frobenius Theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)
+
+[Power-Iteration Algorithm](https://en.wikipedia.org/wiki/Power_iteration)
+
+[Eigenvector Algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm)
+
+[PageRank Centrality & EigenCentrality](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.)
