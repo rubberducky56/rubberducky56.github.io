@@ -102,9 +102,7 @@ When we calculate betweenness centralities of cartel networks, we can identify '
 
 ### Eigenvector Centrality
 The final centrality metric we will examine is __eigenvector centrality__, also known as __eigencentrality__ where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
-
 Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{|V|}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
-
 $$
 x_i = \lambda\sum_{j=1}^{|V|} a_{i,j}x_j
 $$
@@ -113,8 +111,6 @@ where $$\lambda$$ is a positive constant. When we rewrite this equation in vecto
 
 Eigencentrality measures the __relative influence__ of a node. If a node is well connected, it will result in a high eigencentrality score.
 >It's not what you know, it's who you know
-
-
 
 This centrality metric is what Google's PageRank algorithm is based off. This is Google's magic formula which determines which pages on the web are most 'important', and should be shown higher on Google search results. For more on how eigenvector centrality is used in PageRank, Cambridge Intelligence have an [article](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.) that goes into further detail. This goes to show than graph centrality measures have far reaching applications - from disrupting drug cartels to ranking pages on the internet.
 
