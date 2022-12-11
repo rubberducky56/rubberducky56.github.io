@@ -54,13 +54,13 @@ $$
 \frac{D(x)}{|V|} = \frac{\sum_{y \in V} e_{xy}}{|V|}
 $$
 
-This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the left, we see that the central node has the highest centrality of $$5$$, whereas all others have centralities of $$1$$. If we observe the image on the right, we see that the degree centrality has identified __clusters__ within the network.
+This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the top, we see that the central node has the highest centrality of $$5$$, whereas all others have centralities of $$1$$. If we observe the image on the bottom, we see that the degree centrality has identified __clusters__ within the network.
 
 ![degree centrality](\assets\img\maths\centrality_measures\degree_small.PNG)![degree centrality](\assets\img\maths\centrality_measures\degree_big.PNG)
 
 If we calculate the degree centralities of nodes within a drug cartel network, we can identify __hubs__ or __clusters__ within a cartel. We could also find individuals who are in contact with many others.
 
-### Closeness Centralitydsaasdsadsdasda
+### Closeness Centrality
 Next, we will investigate the notion of __closeness centrality__. Closeness centrality defines the importance of a node by how __close__ it is to other nodes. It is worth noting that it can be proven that for all connected nodes, there always exists at least one shortest path between them. The closeness centrality can be calculated as the recirpocal of the sum of the lengths of all shortest paths to a node. More precisely:
 
 Given $$x,y \in V$$, let
@@ -76,7 +76,7 @@ $$d(x,y)$$ measures the number of edges on the shortest path between $$x$$ and $
 
 $$ C(x) := \frac{1}{\sum_{y \in V, y \neq x} d(x,y)} $$
 
-A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a __central cluster__.
+A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the top, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the bottom, we see that closeness centrality can help identify a __central cluster__.
 
 ![closeness centrality](\assets\img\maths\centrality_measures\closeness_small.PNG)![closeness centrality](\assets\img\maths\centrality_measures\closeness_big.PNG)
 
@@ -92,13 +92,14 @@ $$
 B(x) := \sum_{s,t \in V, s \neq x \neq t} \frac{\sigma_{st}(x)}{\sigma_{st}}
 $$
 
-If we observe the image on the left, node $$4$$ has been identified as having the highest betweenness centrality, measuring in at $$15$$. This matches our intuition, since we can clearly see that many shortest paths must pass through node $$4$$. Node $$4$$ can be consdered a __'bridge' node__ - it connects multiple components of the graph together. In this case, removing node $$4$$ would result in the graph becoming __disconnected__.
+If we observe the image on the top, node $$4$$ has been identified as having the highest betweenness centrality, measuring in at $$15$$. This matches our intuition, since we can clearly see that many shortest paths must pass through node $$4$$. Node $$4$$ can be consdered a __'bridge' node__ - it connects multiple components of the graph together. In this case, removing node $$4$$ would result in the graph becoming __disconnected__.
 
-When we calculate betweenness centralities of cartel networks, we can identify 'bridges' between different subnetworks. These 'bridge' nodes could represent individuals with the ability to control the __flow of information/resources__ through the cartel. Removing these nodes would severely disrupt the operations of the cartel.
 
 ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_small.PNG)![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_big.PNG)
 
-### Eigenvector Centralityslkdklsdlksdlksdlk
+When we calculate betweenness centralities of cartel networks, we can identify 'bridges' between different subnetworks. These 'bridge' nodes could represent individuals with the ability to control the __flow of information/resources__ through the cartel. Removing these nodes would severely disrupt the operations of the cartel.
+
+### Eigenvector Centrality
 The final centrality metric we will examine is __eigenvector centrality__, also known as __eigencentrality__ where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
 Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{|V|}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
 $$
@@ -107,23 +108,27 @@ $$
 
 where $$\lambda$$ is a positive constant. When we rewrite this equation in vector notation, we see that this is equivalent to $$\lambda x=Ax$$, an eigenvector problem. The centrality of a node $$v$$ is the $$v^{th}$$ component of the unique eigenvector corresponding to the largest eigenvalue. Existence of this unique largest eigenvalue is garanteed by the positive constant $$\lambda$$, and by the [Perron-Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem). In practice, these eigenvalues can be calculated using a method such as the [Power-Iteration algorithm](https://en.wikipedia.org/wiki/Power_iteration), or other such [eigenvector algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm).
 
-If we observe the below example on the left, we see that nodes which are connected to the central nodes have high eigencentrality scores, since the central nodes have the highest score.
+If we observe the below example on the top, we see that nodes which are connected to the central nodes have high eigencentrality scores, since the central nodes have the highest score.
 
 ![eigenvector centrality](\assets\img\maths\centrality_measures\eigenvector_small.PNG)![eigenvector centrality](\assets\img\maths\centrality_measures\eigenvector_big.PNG)
 
 Eigencentrality measures the __relative influence__ of a node. If a node is well connected, it will result in a high eigencentrality score.
 >It's not what you know, it's who you know
 
-This centrality metric is what Google's PageRank algorithm is based off. This is Google's magic formula which determines which pages on the web are most 'important', and should be shown higher on Google search results. For more on how eigenvector centrality is used in PageRank, Cambridge Intelligence have an [article](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.) that goes into further detail. This goes to show than graph centrality measures have far reaching applications - from disrupting drug cartels to ranking pages on the internet.
+This centrality metric is what __Google's PageRank algorithm__ is based off. This is Google's magic formula which determines which pages on the web are most 'important', and should be shown higher on Google search results. For more on how eigenvector centrality is used in PageRank, Cambridge Intelligence have an [article](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.) that goes into further detail. This goes to show than graph centrality measures have far reaching applications - from disrupting drug cartels to ranking pages on the internet.
 
-Tying eigenvector centrality back to drug cartels, we can use this centrality metric to identify individuals with a high level of influence over the cartel. This could be bosses, underbosses, and others with many influential connections.
+Tying eigenvector centrality back to drug cartels, we can use this centrality metric to identify individuals with a high level of __influence__ over the cartel. This could be bosses, underbosses, and others with many influential connections.
 
-### Conclusiondsfdfsdf
-It's amazing that we can identify these individuals using nothing but tools from graph theory. As we have seen, graph centrality metrics, and the wider field of social network analysis, can be used to identify leaders, enforcers, and other key roles within the organization. Although we have focused on drug cartels, the methods described above can be applied to any type of network. There are also countless other centrality metrics - this article has barely scratched the surface. For more centrality metrics, [Periodic Table of Network Centrality](http://www.schochastics.net/sna/periodic.html) catagorises various metrics, and provides further links to each metric.
+### Conclusion
+It's amazing that we can identify these individuals using nothing but tools from graph theory. As we have seen, graph centrality metrics - and the wider field of social network analysis - can be used to identify leaders, enforcers, and other key roles within an organization. Although we have focused on drug cartels, the methods described above can be applied to any type of network. There are also countless other centrality metrics - this article has barely scratched the surface. For more centrality metrics, [Periodic Table of Network Centrality](http://www.schochastics.net/sna/periodic.html) catagorises various metrics, and provides further links to each metric.
 
 ### External Links
 
 [New Leader of Los Zetas](http://www.stratfor.com/sample/analysis/mexico-security-memo-new-leadership-los-zetas)
+
+[Vortex Foundaion](https://www.scivortex.org/)
+
+[Destroying Drug Cartels the Mathematical Way](https://www.newscientist.com/article/mg21628874-200-destroying-drug-cartels-the-mathematical-way/)
 
 [Perron-Frobenius Theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)
 
