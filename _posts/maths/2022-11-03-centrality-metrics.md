@@ -56,12 +56,11 @@ $$
 
 This metric simply counts how many edges connect to a given node, indiciating how many nodes can be reached. If we observe the image on the left, we see that the central node has the highest centrality of $$5$$, whereas all others have centralities of $$1$$. If we observe the image on the right, we see that the degree centrality has identified __clusters__ within the network.
 
-:-------------------------:|:-------------------------:
 ![degree centrality](\assets\img\maths\centrality_measures\degree_small.PNG)  |  ![degree centrality](\assets\img\maths\centrality_measures\degree_big.PNG)
 
 If we calculate the degree centralities of nodes within a drug cartel network, we can identify __hubs__ or __clusters__ within a cartel. We could also find individuals who are in contact with many others.
 
-### Closeness Centrality
+### Closeness Centralitydsaasdsadsdasda
 Next, we will investigate the notion of __closeness centrality__. Closeness centrality defines the importance of a node by how __close__ it is to other nodes. It is worth noting that it can be proven that for all connected nodes, there always exists at least one shortest path between them. The closeness centrality can be calculated as the recirpocal of the sum of the lengths of all shortest paths to a node. More precisely:
 
 Given $$x,y \in V$$, let
@@ -79,7 +78,6 @@ $$ C(x) := \frac{1}{\sum_{y \in V, y \neq x} d(x,y)} $$
 
 A node has high closeness centrality if it can be reached from all other nodes quickly. Higher distances to nodes will result in a lower centrality score. If we observe the image on the left, we see the nodes on the corners have low closeness centralities of $$0.4$$, whereas the node in the centre has a higher centrality of $$0.6$$. If we observe the image on the right, we see that closeness centrality can help identify a __central cluster__.
 
-:-------------------------:|:-------------------------:
 ![closeness centrality](\assets\img\maths\centrality_measures\closeness_small.PNG)  |  ![closeness centrality](\assets\img\maths\centrality_measures\closeness_big.PNG)
 
 Tying this back to drug cartels, the closeness centrality could reveal individuals who are able to __spread information/resources__ to many others within the network.
@@ -98,7 +96,6 @@ If we observe the image on the left, node $$4$$ has been identified as having th
 
 When we calculate betweenness centralities of cartel networks, we can identify 'bridges' between different subnetworks. These 'bridge' nodes could represent individuals with the ability to control the __flow of information/resources__ through the cartel. Removing these nodes would severely disrupt the operations of the cartel.
 
-:-------------------------:|:-------------------------:
 ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_big.PNG)
 
 ### Eigenvector Centralityslkdklsdlksdlksdlk
@@ -112,7 +109,6 @@ where $$\lambda$$ is a positive constant. When we rewrite this equation in vecto
 
 If we observe the below example on the left, we see that nodes which are connected to the central nodes have high eigencentrality scores, since the central nodes have the highest score.
 
-:-------------------------:|:-------------------------:
 ![eigenvector centrality](\assets\img\maths\centrality_measures\eigenvector_small.PNG)  |  ![eigenvector centrality](\assets\img\maths\centrality_measures\eigenvector_big.PNG)
 
 Eigencentrality measures the __relative influence__ of a node. If a node is well connected, it will result in a high eigencentrality score.
