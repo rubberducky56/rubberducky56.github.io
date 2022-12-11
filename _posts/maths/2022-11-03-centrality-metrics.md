@@ -101,7 +101,7 @@ When we calculate betweenness centralities of cartel networks, we can identify '
 :-------------------------:|:-------------------------:
 ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_small.PNG)  |  ![betweenness centrality](\assets\img\maths\centrality_measures\betweeness_big.PNG)
 
-### Eigenvector Centrality
+### Eigenvector Centralityslkdklsdlksdlksdlk
 The final centrality metric we will examine is __eigenvector centrality__, also known as __eigencentrality__ where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
 Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{|V|}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
 $$
