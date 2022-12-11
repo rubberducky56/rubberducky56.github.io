@@ -11,11 +11,12 @@ permalink: /maths/centrality-metrics
 ### Introduction
 It goes without saying that drug cartels are a major issue. They supply the world with illicit substances through criminal and violent means. So why haven't we been able to stop them?
 
-Drug cartels are large and complex networks, often involving thousands of members, all connected in different ways. The naive solution is to go for the leader of a cartel. But when you cut off the head, three more grow in its place.  ... (find E.Gs from past)
+Drug cartels are large and complex networks, often involving thousands of members, all connected in different ways. The naive solution is to go for the leader of a cartel. But when you cut off the head, three more grow in its place. For example, when Heriberto Lazcano, the leader of the Los Zetas cartel in Mexico, was killed [a new leader](http://www.stratfor.com/sample/analysis/mexico-security-memo-new-leadership-los-zetas) was chosen quickly after. The Columbian government has used the work of the [Vortex Foundaion](https://www.scivortex.org/), who used __graph theory__ to model drug cartels. For more on the Vortex Foundation's work on modelling drug cartels, NewScientist has an [article](https://www.newscientist.com/article/mg21628874-200-destroying-drug-cartels-the-mathematical-way/) describing the methods used and the importance of this work.
 
 Law enforcement agencies may have intelligence on many individuals within a cartel and the connections between them, but they simply do not have enough resources to arrest all those that are known to be involved in cartels. Therefore, law enforcement must determine who are the most important indiividuals to the functioning of the cartel. Once these people are determined, they can be arrested and the cartel will be disrupted. But how do we find the most important individuals?
 
 ### Cartel Graphs
+
 We answer this difficult question using the tools of __graph theory__. Graph theory is the mathematical study of connected networks. We define a structure called a graph $$G=(V,E)$$ which is a 2-tuple of sets. The set $$V$$ contains the __nodes__ (or vertices) of the graph, and $$E$$ contains the __edges__ connecting them. The below image shows an examle of a graph.
 
 ![basic graph](\assets\img\maths\centrality_measures\basic_graph.jpg)
@@ -26,7 +27,7 @@ We model drug cartels as follows. We let $$G=(V,E)$$ be a graph, where $$V$$ rep
 
 >Note that the definition of 'connected' depends on the type of intelligence that has been gathered. For instance, this could be individuals that are in frequent contact, individuals who trade supplies, or if one of the individuals reports to the other.
 
-Now that we have modelled our cartel as a graph, we turn to the field of __Social Network Analysis__. This is the process of investigating social structures with tools of graph theory. In particular, we turn our attention to __centrality metrics__. Centrality metrics are functions that take in a node, and tell you how 'important' that node is. More precisely, a centrality measure $$C$$ is a function:
+Now that we have modelled our cartel as a graph, we turn to the field of __Social Network Analysis__. This is the process of investigating social structures with tools of graph theory. We can use social network analysis to determine the structure of social networks and the relationships between individuals or organizations within those networks. In particular, we turn our attention to __centrality metrics__. Centrality metrics are functions that take in a node, and tell you how 'important' that node is. More precisely, a centrality measure $$C$$ is a function:
 $$ C: V \rightarrow \Bbb{R} $$
 
 There are countless examples of centrality measures, which differ based upon how a node's 'importance' is defined. For the remainder of this article, we will examine a few centrality metrics. Throughout the remainder of this article, we denote by $$G=(V,E)$$ a graph with nodes $$V$$, and edges $$E$$.
@@ -102,20 +103,31 @@ When we calculate betweenness centralities of cartel networks, we can identify '
 
 ### Eigenvector Centrality
 The final centrality metric we will examine is __eigenvector centrality__, also known as __eigencentrality__ where a node is consdered important if it is connected to other nodes of high importance. The formulation of this metric is slightly more involved than the previous metrics. We construct it as follows:
-Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{V}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
+Let $$A = (a)_{v,t}$$ be the graph's adjacency matrix, where $$a_{v,t} = 1$$ if $$vt \in V$$, and $$a_{v,t} = 0$$ if $$vt \not\in V$$. Let $$x \in \Bbb{R}^{|V|}$$ be a vector containing the centrality of each node. The eigenvector centrality $$x_i$$ can be described with
 $$
 x_i = \lambda\sum_{j=1}^{|V|} a_{i,j}x_j
 $$
 
 where $$\lambda$$ is a positive constant. When we rewrite this equation in vector notation, we see that this is equivalent to $$\lambda x=Ax$$, an eigenvector problem. The centrality of a node $$v$$ is the $$v^{th}$$ component of the unique eigenvector corresponding to the largest eigenvalue. Existence of this unique largest eigenvalue is garanteed by the positive constant $$\lambda$$, and by the [Perron-Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem). In practice, these eigenvalues can be calculated using a method such as the [Power-Iteration algorithm](https://en.wikipedia.org/wiki/Power_iteration), or other such [eigenvector algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm).
 
+If we observe the below example on the left, we see that nodes which are connected to the central nodes have high eigencentrality scores, since the central nodes have the highest score.
+
+:-------------------------:|:-------------------------:
+![eigenvector centrality](\assets\img\maths\centrality_measures\eigenvector_small.PNG)  |  ![eigenvector centrality](\assets\img\maths\centrality_measures\eigenvector_big.PNG)
+
 Eigencentrality measures the __relative influence__ of a node. If a node is well connected, it will result in a high eigencentrality score.
 >It's not what you know, it's who you know
 
 This centrality metric is what Google's PageRank algorithm is based off. This is Google's magic formula which determines which pages on the web are most 'important', and should be shown higher on Google search results. For more on how eigenvector centrality is used in PageRank, Cambridge Intelligence have an [article](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.) that goes into further detail. This goes to show than graph centrality measures have far reaching applications - from disrupting drug cartels to ranking pages on the internet.
 
+Tying eigenvector centrality back to drug cartels, we can use this centrality metric to identify individuals with a high level of influence over the cartel. This could be bosses, underbosses, and others with many influential connections.
+
+### Conclusion
+It's amazing that we can identify these individuals using nothing but tools from graph theory. As we have seen, graph centrality metrics, and the wider field of social network analysis, can be used to identify leaders, enforcers, and other key roles within the organization. Although we have focused on drug cartels, the methods described above can be applied to any type of network. There are also countless other centrality metrics - this article has barely scratched the surface. For more centrality metrics, [Periodic Table of Network Centrality](http://www.schochastics.net/sna/periodic.html) catagorises various metrics, and provides further links to each metric.
 
 ### External Links
+
+[New Leader of Los Zetas](http://www.stratfor.com/sample/analysis/mexico-security-memo-new-leadership-los-zetas)
 
 [Perron-Frobenius Theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem)
 
@@ -124,3 +136,5 @@ This centrality metric is what Google's PageRank algorithm is based off. This is
 [Eigenvector Algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorithm)
 
 [PageRank Centrality & EigenCentrality](https://cambridge-intelligence.com/eigencentrality-pagerank/#:~:text=PageRank%20centrality%3A%20the%20Google%20algorithm,any%20kind%20of%20network%2C%20though.)
+
+[Periodic Table of Network Centrality](http://www.schochastics.net/sna/periodic.html)
