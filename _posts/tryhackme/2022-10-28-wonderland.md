@@ -7,9 +7,7 @@ tags: [writeup]
 image: thm_wonderland.jpg
 permalink: /tryhackme/wonderland-writeup
 ---
-
-“Fall down the rabbit hole and enter wonderland”
-
+<div align="center">“Fall down the rabbit hole and enter wonderland”</div>
 ### Enumeration
 We know that there is a flag in a file called ```user.txt```, and a root flag in ```root.txt```. We start with an nmap scan, to see which ports are open and what services are running. We scan for service versions, operating systems, and utilise common scripts.
 
