@@ -310,9 +310,11 @@ We find a file called ```teaParty```, which as SUID permissions enabled. Let’s
 ##### Command:
 > file teaParty
 
-``rabbit@wonderland:/home/rabbit$ file teaParty
+```
+rabbit@wonderland:/home/rabbit$ file teaParty
 teaParty: setuid, setgid ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=75a832557e341d3f65157c22fafd6d6ed7413474, not stripped
 ```
+
 It appears that ```teaParty``` is an ELF executable file.
 
 Before, running this executable, I wanted to investigate any strings remaining in the compiled binary. Unfortunately, the ```strings``` program, which extracts strings out of compiled binaries, is not installed.
