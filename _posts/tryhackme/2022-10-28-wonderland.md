@@ -262,7 +262,7 @@ alice@wonderland:~$ ls
 random.py  root.txt  walrus_and_the_carpenter.py
 ```
 
-We now run the file ```walrus_and_the_carpenter.py``` as the rabbit user.
+We now run the file ```walrus_and_the_carpenter.py``` as the ```rabbit``` user.
 
 ##### Command:
 > sudo -u rabbit /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
