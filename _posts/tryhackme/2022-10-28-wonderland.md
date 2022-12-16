@@ -434,7 +434,7 @@ hatter@wonderland:~$ getcap -r / 2>/dev/null
 
 It appears that the ```hatter``` user has the capability ```cap_setuid``` on Perl. From the Linux Manual page:
 >##### CAP_SETUID
-    * Make arbitrary manipulations of process UIDs ;
+    * Make arbitrary manipulations of process UIDs;
     * forge UID when passing socket credentials via UNIX domain sockets;
     * write a user ID mapping in a user namespace;
 
@@ -473,6 +473,9 @@ This room has highlighted the vulnerabilities exposed by simple misconfiguration
 ### Tools Used
  * nmap
  * gobuster
+ * python
+ * netcat
+ * strings
 
 
 ### External Links
