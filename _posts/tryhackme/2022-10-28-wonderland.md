@@ -376,7 +376,7 @@ We see the command used to get the system time - the ```date``` command. Using a
 
 > chmod +x date
 
-We have also ensured that the new ```date``` file can be executed. The new ```date``` file now contains the following:
+We have also ensured that the new ```date``` file has execute permissions. The new ```date``` file now contains the following:
 
 ```
 #!/bin/bash
