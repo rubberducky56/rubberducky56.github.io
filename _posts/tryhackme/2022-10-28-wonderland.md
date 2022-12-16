@@ -371,8 +371,10 @@ We see the command used to get the system time - the ```date``` command. Using a
 
 ##### Commands:
 > cd /tmp
-nano date
-chmod +x date
+
+> nano date
+
+> chmod +x date
 
 We have also ensured that the new ```date``` file can be executed. The new ```date``` file now contains the following:
 
