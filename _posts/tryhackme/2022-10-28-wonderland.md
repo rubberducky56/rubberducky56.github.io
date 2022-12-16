@@ -202,8 +202,9 @@ total 8
 -rw-r--r-- 1 root root 3577 May 25  2020 walrus_and_the_carpenter.py
 ```
 
-The Python script runs as root! We now check what the ```alice``` user can do with ```sudo```…
-Command:
+The Python script runs as root! We now check what the ```alice``` user can do with ```sudo```.
+
+##### Command:
 >sudo -l
 
 ```
