@@ -318,7 +318,7 @@ teaParty: setuid, setgid ELF 64-bit LSB shared object, x86-64, version 1 (SYSV),
 
 It appears that ```teaParty``` is an ELF executable file.
 
-Before, running this executable, I wanted to investigate any strings remaining in the compiled binary. Unfortunately, the ```strings``` program, which extracts strings out of compiled binaries, is not installed.
+Before, running this executable, I wanted to investigate any strings remaining in the compiled binary. Unfortunately, the [strings program](https://cybermouse.xyz/cybersecurity/malware-analysis-glance#strings), which extracts strings out of compiled binaries, is not installed.
 
 ##### Command:
 > strings teaParty
@@ -466,16 +466,29 @@ We now have both flags, and the challenge is complete.
 
 ### Conclusion
 
-Throughout this CTF challenge, many penetration testing techniques were explored, especially around lateral movement and pivoting through a system. We started with some iniital reconnaissance, when we found a web server running. We enumerated subdirectories on this web server, and eventually found the first SSH credentials, allowing us initial access to the system. We then used numerous mathods for lateral movement and privilege escelation, including Python Library Hijacking, using malicious binaries and editing the PATH variable, and exploiting misconfigured capabilities. Through these techniques, we were able to find both the root flag and user flag.
+Throughout this CTF challenge, many penetration testing techniques were explored, especially those relating to lateral movement and pivoting through a system.
 
-This room has highlighted the vulnerabilities exposed by simple misconfiguration. None of these pivoting methods would have worked if it weren't for the evident misconfigurations in this system. Program imports should be limited, and users should not be able to change library files. Moreover, the error in the Python library-searching hierachy should have not been present. Additionally, users should not be allowed to edit the PATH variable, and executables should not directly induce binaries using unquoted service paths - this is the vulnerability that allowed us to use a malicious ```date``` binary. We have also seen that capabilities, whilst useful, must be used resposibly.
+We started with some iniital reconnaissance, when we found a web server running. We enumerated subdirectories on this web server, and eventually found the first SSH credentials, allowing us initial access to the system. We then used numerous mathods for lateral movement and privilege escelation, including Python Library Hijacking, using malicious binaries and editing the PATH variable, and exploiting misconfigured capabilities. Through these techniques, we were able to find both the root flag and user flag.
+
+This room has highlighted the vulnerabilities exposed by simple misconfigurations. None of these pivoting methods would have worked if it weren't for the evident misconfigurations in this system. Program imports should be limited, and users should not be able to change library files. Moreover, the error in the Python library-searching hierachy should not have been present. Additionally, users should not be allowed to edit the PATH variable, and executables should not directly induce binaries using unquoted service paths - this is the vulnerability that allowed us to use a malicious ```date``` binary. We have also seen that capabilities, whilst useful, must be used resposibly.
 
 ### Tools Used
  * nmap
  * gobuster
- * python
  * netcat
  * strings
 
 
 ### External Links
+
+[Wonderland CTF](https://tryhackme.com/room/wonderland)
+
+[Python Library Hijacking](https://medium.com/analytics-vidhya/python-library-hijacking-on-linux-with-examples-a31e6a9860c8)
+
+[Strings Program](https://cybermouse.xyz/cybersecurity/malware-analysis-glance#strings)
+
+[Linux Capabilities](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities)
+
+[Exploiting Linux Capabilities](https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/)
+
+[GTFOBins - Perl Capabilities](https://gtfobins.github.io/gtfobins/perl/#capabilities)
