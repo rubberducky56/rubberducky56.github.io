@@ -252,8 +252,8 @@ We notice something strange. The first place python searches for requested modul
 
 In the malicious ```random.py``` file, we insert the following code:
 {% highlight python %}
-Import os
-os.system('/bin/sh')
+import os
+os.system("/bin/sh")
 {% endhighlight %}
 
 The current directory now looks like this:
