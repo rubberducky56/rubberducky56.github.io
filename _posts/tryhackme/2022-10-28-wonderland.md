@@ -226,7 +226,7 @@ Notice that the python script imports the ```random``` module. We locate this fi
 
 ##### Commands:
 > locate random.py
-ls -l [location[/random.py]
+>ls -l [location[/random.py]
 
 ```
 alice@wonderland:~$ locate random.py
