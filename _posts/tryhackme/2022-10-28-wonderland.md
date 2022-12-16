@@ -219,7 +219,7 @@ User alice may run the following commands on wonderland:
 
 Alice can run python, and the poem script, as the ```rabbit``` user! However, the current user ```alice``` does not have permissions to write to the file. Nevertheless, we can still exploit this misconfiguration.
 
-### Lateral Movement - Python Library Hijacking
+### Python Library Hijacking
 
 Notice that the python script imports the ```random``` module. We locate this file, then check its permissions.
 
@@ -285,7 +285,7 @@ $ python3.6 -c 'import pty; pty.spawn("/bin/bash")'
 rabbit@wonderland:~$
 ```
 
-### Lateral Movement - PATH Hijacking
+### PATH Hijacking
 
 We now have a snoop around ```rabbit```’s home directory.
 
@@ -396,7 +396,7 @@ hatter@wonderland:/home/rabbit$
 
 This has worked! We are now the ```hatter``` user.
 
-### Privilege Escalation - Capabilities on Perl
+### Capabilities on Perl
 
 We will now investigate ```hatter```’s home directory.
 
@@ -460,4 +460,13 @@ We now have both flags, and the challenge is complete.
 
 ### Conclusion
 
-Throughout this CTF challenge, many penetration testing techniques were explored, especially around lateral movement and pivoting through a system. We started with some iniital reconnaissance
+Throughout this CTF challenge, many penetration testing techniques were explored, especially around lateral movement and pivoting through a system. We started with some iniital reconnaissance, when we found a web server running. We enumerated subdirectories on this web server, and eventually found the first SSH credentials, allowing us initial access to the system. We then used numerous mathods for lateral movement and privilege escelation, including Python Library Hijacking, using malicious binaries and editing the PATH variable, and exploiting misconfigured capabilities. Through these techniques, we were able to find both the root flag and user flag.
+
+This room has highlighted the vulnerabilities exposed by simple misconfiguration. None of these pivoting methods would have worked if it weren't for the evident misconfigurations in this system. Program imports should be limited, and users should not be able to change library files. Moreover, the error in the Python library-searching hierachy should have not been present. Additionally, users should not be allowed to edit the PATH variable, and executables should not directly induce binaries using unquoted service paths - this is the vulnerability that allowed us to use a malicious ```date``` binary. We have also seen that capabilities, whilst useful, must be used resposibly.
+
+### Tools Used
+ * nmap
+ * gobuster
+
+
+### External Links
