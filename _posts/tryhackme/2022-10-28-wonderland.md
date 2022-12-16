@@ -53,7 +53,7 @@ SSH on port ```22``` is open. We also see a webserver running on port ```80```. 
 
 ### Webpage Enumeration
 
-It appears we are told to ‘follow the white rabbit’, of which there is an image. We are also presented with a quote from Alice in Wonderland. At first I considered the possibility of a hidden message steganographically embedded into this image. However, it is wiser to investigate some more conventional avenues before resorting to steganography. Upon inspection of the source code, nothing new is revealed. However, we note that the image comes from a directory called ```/img```.
+It appears we are told to ‘follow the white rabbit’, of which there is an image. We are also presented with a quote from Alice in Wonderland. At first I considered the possibility of a hidden message steganographically embedded into this image. However, it is wiser to investigate some more conventional avenues before resorting to steganography. Upon inspection of the source code, not much is revealed. However, we note that the image comes from a directory called ```/img```.
 
 {% highlight html %}
 <!DOCTYPE html>
