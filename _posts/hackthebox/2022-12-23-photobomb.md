@@ -8,9 +8,11 @@ image: photobomb.png
 permalink: /hackthebox/photobomb-writeup
 ---
 
-### Introduction
+This is a writeup of the [HackTheBox Photobomb machine](https://app.hackthebox.com/machines/Photobomb).
 
-This is a writeup of the [HackTheBox Photobomb machine](https://app.hackthebox.com/machines/Photobomb). As usual, we start with an nmap scan. We first scan the top 10,000 ports, and then scan the open ports more aggressively.
+### Reconnaissance
+
+As usual, we start with an nmap scan. We first scan the top 10,000 ports, and then scan the open ports more aggressively.
 
 ##### Command:
 > nmap --top-ports 10000 [target]
@@ -70,6 +72,8 @@ window.onload = init;
 
 It would appear that when a user presents a certain cookie, the login form will prepopulate with credentials. Very secure…
 
+### Admin Portal
+
 We see that for this prepopulation to occur, a regular expression must be satisfied:
 
 ```
@@ -102,6 +106,8 @@ This is forwarded to the web server, and our cookie injection was successful. We
 ![alt text](/assets/img/hackthebox/photobomb/printer_top.PNG "Web Page")
 
 ![alt text](/assets/img/hackthebox/photobomb/printer_bottom.PNG "Web Page")
+
+### Initial Access
 
 This page has the following functionality. A user can select one of the given images, choose a filetype between JPG and PNG, choose an image size, and press the ```DOWNLOAD PHOTO TO PRINT``` button. This button will download the selected image to the user’s local system.
 
@@ -193,6 +199,9 @@ wizard@photobomb:~$ cat user.txt
 cat user.txt
 E3858e23d33f0ad60d0f8eb759cab843
 ```
+
+### Privilege Escalation
+
 Now it is time for privilege escalation. We check what ```wizard``` can run as sudo.
 
 ##### Command:
@@ -257,7 +266,9 @@ cat /root/root.txt
 d96f7d723faa8ca61d10c5cfe4fb4436
 ```
 
-![alt text](/assets/img/hackthebox/photobomb/pwned.PNG "pwned")
+![alt text](/assets/img/hackthebox/photobomb/pwn.PNG "pwned")
+
+### Conclusion
 
 To conclude, in this machine we found a vulnerable website, injected a cookie to login to the admin portal and injected another cookie to gain initial access with a reverse shell. To escalate privileges, we exploited a simple PATH variable manipulation on the ```find``` command, which did not use an absolute path in the script we found.
 
