@@ -236,12 +236,12 @@ The final line finds all the files with a ```jpg``` extension, and sets their ow
 
 We navigate to the ```/tmp``` directory (where we will have write privileges), and create a new ```find``` file. Inside here, we inject the script:
 
-```
+{% highlight bash %}
 #!/bin/bash
 bash
-```
+{% endhighlight %}
 
-This script will simply run a bash script. Since the ```cleanup.sh``` script runs as root, this malicious ```find``` script will also run as root, giving us a root shell. We give our new ```find``` file execute permissions with ```chmod +x find```, update the PATH variable to have ```/tmp``` at the front (this will ensure the malicious ```find``` runs, instead of the benign one), and run the script.
+This script will simply open a bash terminal. Since the ```cleanup.sh``` script runs as root, this malicious ```find``` script will also run as root, giving us a root shell. We give our new ```find``` file execute permissions with ```chmod +x find```, update the PATH variable to have ```/tmp``` at the front (this will ensure the malicious ```find``` runs, instead of the benign one), and run the script.
 
 ##### Command:
 > sudo PATH=/tmp:$PATH /opt/cleanup.sh
