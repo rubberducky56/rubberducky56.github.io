@@ -8,6 +8,7 @@ google-ID: 'G-JRVBJ8N56B'
 
 menu:
 - {name: 'TryHackMe',         url: 'tryhackme'}
+- {name: 'HackTheBox',         url: 'hackthebox'}
 - {name: 'Cybersecurity',     url: 'cybersecurity'}
 - {name: 'Cryptography',      url: 'cryptography'}
 - {name: 'Maths',             url: 'maths'}
