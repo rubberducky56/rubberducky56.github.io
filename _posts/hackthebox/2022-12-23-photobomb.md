@@ -197,6 +197,7 @@ Now it is time for privilege escalation. We check what ```wizard``` can run as s
 
 ##### Command:
 > sudo -l
+
 ```
 wizard@photobomb:~$ sudo -l
 sudo -l
@@ -207,6 +208,7 @@ Matching Defaults entries for wizard on photobomb:
 User wizard may run the following commands on photobomb:
 	(root) SETENV: NOPASSWD: /opt/cleanup.sh
 ```
+
 There is a shell script called ```cleanup.sh``` which we can run as root. When reading this file, we encounter the following script - let’s break this down.
 
 ```
