@@ -211,7 +211,7 @@ User wizard may run the following commands on photobomb:
 
 There is a shell script called ```cleanup.sh``` which we can run as root. When reading this file, we encounter the following script - let’s break this down.
 
-{% highlight console %}
+{% highlight bash %}
 #!/bin/bash
 . /opt/.bashrc
 cd /home/wizard/photobomb
