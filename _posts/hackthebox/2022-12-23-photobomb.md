@@ -72,9 +72,7 @@ It would appear that when a user presents a certain cookie, the login form will 
 
 We see that for this prepopulation to occur, a regular expression must be satisfied:
 
-```
-/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)
-```
+>/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)
 
 Putting this into [a regular expression to normal language converter](https://regexr.com/), we observe that we can essentially put anything at the start, include the string ```isPhotoBombTechSupport = ```, and then anything else.
 
