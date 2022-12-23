@@ -72,7 +72,7 @@ It would appear that when a user presents a certain cookie, the login form will 
 
 We see that for this prepopulation to occur, a regular expression must be satisfied:
 
->/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)
+><p>/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)</p>
 
 Putting this into [a regular expression to normal language converter](https://regexr.com/), we observe that we can essentially put anything at the start, include the string ```isPhotoBombTechSupport = ```, and then anything else.
 
@@ -128,9 +128,9 @@ Note that any payloads must be [URL encoded](https://meyerweb.com/eric/tools/den
 ##### Payload:
 > png;id
 
-The response gave an error message, informing us that the server failed to generate the requested photo. Not all hope is lost - it could be that we only have blind command injection capabilities.
+The response gave an error message, informing us that the server failed to generate the requested photo. No other information was revealed. Not all hope is lost - it could be that we only have blind command injection capabilities.
 
-To check if the commands are executed, we try use ```curl``` on our own web server, where we will see any connections. We use Python to start up a basic web server on port 80.
+To check if the commands are executed at all, we try use ```curl``` on our own web server, where we will see any connections. We use Python to start up a basic web server on port 80.
 
 ##### Command:
 >python3 -m http.server 80
