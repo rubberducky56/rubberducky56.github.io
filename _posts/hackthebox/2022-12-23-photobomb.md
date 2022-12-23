@@ -68,13 +68,17 @@ function init() {
 window.onload = init;
 {% endhighlight %}
 
-It would appear that when a user presents a certain given cookie, the login form will prepopulate with credentials. Very secure…
+It would appear that when a user presents a certain cookie, the login form will prepopulate with credentials. Very secure…
 
 We see that for this prepopulation to occur, a regular expression must be satisfied:
-```/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)```
+
+```
+/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)
+```
+
 Putting this into [a regular expression to normal language converter](https://regexr.com/), we observe that we can essentially put anything at the start, include the string ```isPhotoBombTechSupport = ```, and then anything else.
 
-Using the Burp Suite proxy, we can intercept the HTTP request sent when navigating to ```photobomb.htb/printer```, inject a cookie with the header ```isPhotoBombTechSupport```, and send this off.
+Using the Burp Suite proxy, we can intercept the HTTP request sent when navigating to ```photobomb.htb/printer```, inject a cookie with the header ```isPhotoBombTechSupport```, and send this off to the server.
 
 The intercepted HTTP request, with the injected cookie, looks as follows:
 
@@ -95,8 +99,11 @@ isPhotoBombTechSupport = true
 
 This is forwarded to the web server, and our cookie injection was successful. We have been forwarded to the ```photobomb.htb/printer``` page. The below two images show the top and bottom of this webpage, respectively.
 
+![alt text](/assets/img/hackthebox/photobomb/printer_top.PNG "Web Page")
 
-This page has the following functionality. A user can select one of the give images, choose a filetype between JPG and PNG, choose an image size, and press the ```DOWNLOAD PHOTO TO PRINT``` button. This button will download the selected image to the user’s local system. Let’s examine this download request using Burp Suite. This is the request:
+![alt text](/assets/img/hackthebox/photobomb/printer_bottom.PNG "Web Page")
+
+This page has the following functionality. A user can select one of the given images, choose a filetype between JPG and PNG, choose an image size, and press the ```DOWNLOAD PHOTO TO PRINT``` button. This button will download the selected image to the user’s local system. Let’s examine this download request using Burp Suite. This is the request:
 
 ```
 POST /printer HTTP/1.1
