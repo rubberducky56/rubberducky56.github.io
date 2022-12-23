@@ -266,7 +266,7 @@ cat /root/root.txt
 d96f7d723faa8ca61d10c5cfe4fb4436
 ```
 
-![alt text](/assets/img/hackthebox/photobomb/pwn.PNG "pwned")
+![alt text](assets\img\hackthebox\photobomb\pwn.PNG "pwned")
 
 ### Conclusion
 
@@ -280,3 +280,10 @@ This machine has highlighted the importance of not disclosing potential vulnerab
 * Burp Suite
 
 ### External Links
+[HackTheBox Photobomb machine](https://app.hackthebox.com/machines/Photobomb)
+
+[Regular Expressions to Human Language](https://regexr.com/)
+
+[URL Encoder/Decoder](https://meyerweb.com/eric/tools/dencoder/)
+
+[Bash Conditional Flags Reference](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
