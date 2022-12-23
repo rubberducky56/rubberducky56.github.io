@@ -211,7 +211,7 @@ User wizard may run the following commands on photobomb:
 
 There is a shell script called ```cleanup.sh``` which we can run as root. When reading this file, we encounter the following script - let’s break this down.
 
-```
+{% highlight console %}
 #!/bin/bash
 . /opt/.bashrc
 cd /home/wizard/photobomb
@@ -225,7 +225,7 @@ fi
 
 # protect the priceless originals
 find source_images -type f -name '*.jpg' -exec chown root:root {} \;
-```
+{% endhighlight %}
 
 Firstly, ```.bashrc``` is run, which will start an interactive shell session. The script navigates to the ```photobomb``` directory, and starts a conditional loop. If the file ```log/photobomb.log``` exists with size greater than 0, and if this file is not a symblink, then the loop runs. For more on shell scripting conditional flags, [this reference](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html) has a list. If these conditions are met, then the contents of the log file are copied into the file ```log/photobomb.log.old```, and the original log file is truncated to size 0. I.e. the contents of the log are backed up into a new file, and its contents cleared.
 
