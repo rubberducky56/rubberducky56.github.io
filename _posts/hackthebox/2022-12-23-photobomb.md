@@ -72,7 +72,9 @@ It would appear that when a user presents a certain cookie, the login form will 
 
 We see that for this prepopulation to occur, a regular expression must be satisfied:
 
-><p>/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)</p>
+```
+<p>/^(.*;)?\s*isPhotoBombTechSupport\s*=\s*[^;]+(.*)?$/)</p>
+```
 
 Putting this into [a regular expression to normal language converter](https://regexr.com/), we observe that we can essentially put anything at the start, include the string ```isPhotoBombTechSupport = ```, and then anything else.
 
@@ -149,7 +151,7 @@ Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 10.10.11.182 - - [23/Dec/2022 04:43:11] "GET / HTTP/1.1" 200 -
 ```
 
-We now inject a Python reverse shell into this parameter.
+We now inject a Python reverse shell into the ```filetype``` parameter.
 
 ##### Command for Listener:
 > nc -lnvp [my port]
@@ -245,15 +247,15 @@ cat /root/root.txt
 d96f7d723faa8ca61d10c5cfe4fb4436
 ```
 
-
+![alt text](/assets/img/hackthebox/photobomb/pwned.PNG "pwned")
 
 To conclude, in this machine we found a vulnerable website, injected a cookie to login to the admin portal and injected another cookie to gain initial access with a reverse shell. To escalate privileges, we exploited a simple PATH variable manipulation on the ```find``` command, which did not use an absolute path in the script we found.
 
 This machine has highlighted the importance of not disclosing potential vulnerabilities in comments - we saw that the initial admin login page was to be prepopulated. We could also directly see the cookie we needed to manipulate - this should not have been available for users to see. Furthermore, this machine was yet another instance where non-absolute paths were used in shell scripts. This is such a simple vulnerability to fix, yet so ubiquitous and too easy to exploit.
 
-### Tools Used:
-Nmap
-netcat
-Burp Suite
+### Tools Used
+* nmap
+* netcat
+* Burp Suite
 
-### External Links:
+### External Links
