@@ -232,7 +232,7 @@ Firstly, ```.bashrc``` is run, which will start an interactive shell session. Th
 
 If these conditions are met, then the contents of the log file are copied into the file ```log/photobomb.log.old```, and the original log file is truncated to size 0. I.e. the contents of the log are backed up into a new file, and its contents cleared.
 
-The final line finds all the files with a ```jpg``` extension, and sets all their permissions to ```root```. Notice that this ```find``` command does not use the full path of the find application, unlike other commands used. This opens the doors to an unquoted service path exploit…
+The final line finds all the files with a ```jpg``` extension, and sets their owner and group to ```root```. Notice that this ```find``` command does not use the full path of the find application, unlike other commands used. This opens the doors to an unquoted service path exploit…
 
 We navigate to the ```/tmp``` directory (where we will have write privileges), and create a new ```find``` file. Inside here, we inject the script:
 
