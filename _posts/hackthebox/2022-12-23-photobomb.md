@@ -266,7 +266,7 @@ cat /root/root.txt
 d96f7d723faa8ca61d10c5cfe4fb4436
 ```
 
-![alt text](assets\img\hackthebox\photobomb\pwn.PNG)
+![alt text](/assets/img/hackthebox/photobomb/pwned.PNG "pwned")
 
 ### Conclusion
 
