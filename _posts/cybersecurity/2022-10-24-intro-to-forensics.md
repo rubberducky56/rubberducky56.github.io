@@ -168,18 +168,18 @@ We see the following output:
 ```
 Volatility Foundation Volatility Framework 2.6
 INFO	: volatility.debug	: Determining profile based on KDBG search...
-      	Suggested Profile(s) : WinXPSP2x86, WinXPSP3x86 (Instantiated with WinXPSP2x86)
-                 	AS Layer1 : IA32PagedMemoryPae (Kernel AS)
-                 	AS Layer2 : FileAddressSpace ([memory image file])
-                  	PAE type : PAE
-                       	DTB : 0x2fe000L
-                      	KDBG : 0x80545ae0L
-      	Number of Processors : 1
- 	Image Type (Service Pack) : 3
-            	KPCR for CPU 0 : 0xffdff000L
-         	KUSER_SHARED_DATA : 0xffdf0000L
-       	Image date and time : 2012-07-22 02:45:08 UTC+0000
- 	Image local date and time : 2012-07-21 22:45:08 -0400
+Suggested Profile(s) : WinXPSP2x86, WinXPSP3x86 (Instantiated with WinXPSP2x86)
+AS Layer1 : IA32PagedMemoryPae (Kernel AS
+AS Layer2 : FileAddressSpace ([memory image file])
+PAE type : PAE
+DTB : 0x2fe000L
+KDBG : 0x80545ae0L
+Number of Processors : 1
+Image Type (Service Pack) : 3
+KPCR for CPU 0 : 0xffdff000L
+KUSER_SHARED_DATA : 0xffdf0000L
+Image date and time : 2012-07-22 02:45:08 UTC+0000
+Image local date and time : 2012-07-21 22:45:08 -0400
 ```
 
 Two different profiles have been suggested. This is because different operating system versions could have overlapping identifiers, which Volatility cannot distinguish. We see that the most likely profile is ```WinXPSP2x86```. We can further determine the true profile by listing processes with ```pslist```. If few processes are reported, it is likely that the wrong profile is used. We see that ```WinXPSP2x86``` is indeed the correct profile. It appears that this is a memory dump of a __Windows XP Virtualbox machine__.
