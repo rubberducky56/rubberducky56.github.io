@@ -4,7 +4,7 @@ title: "Introduction to Digital Forensics"
 author: "Mouse"
 categories: cybersecurity
 tags: [cybersecurity, reverse-engineering, forensics]
-image: forensics.jpg
+image: forensics.png
 permalink: /cybersecurity/intro-to-digital-forensics
 ---
 
@@ -376,7 +376,7 @@ Now that we have some dumped code files, we can upload them to [VirusTotal](http
 
 We see that this is indeed a malicious program. After searching the hash on Google, we can determine that this is in fact from the [Cridex Worm](https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/cridex).
 
-![alt text](\assets\img\cybersecurity\forensics\vt.png)
+![alt text](\assets\img\cybersecurity\forensics\vt.PNG)
 
 This demonstrates how we can combine memory analysis techniques from digital forensics, with open sources from the malware analysis community to determine what has infected a system. For more on malware analysis, check out my ["Malware Analysis At A Glance" Article](/cybersecurity/malware-analysis-glance)
 
