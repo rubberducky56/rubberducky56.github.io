@@ -12,7 +12,13 @@ permalink: /cybersecurity/intro-to-digital-forensics
 
 Digital forensics is a branch of forensics aiming to deal with the __recovery, investigation, examination and analysis__ of digital devices, often left at a crime scene. Digital forensics concerns itself with questions such as:
 
->How should law enforcement collect digital evidence, such as smartphones and hard drives? What if the devices are still on? How can these devices be collected in such a way that no evidence is lost or tampered with?
+>How should law enforcement collect digital evidence, such as smartphones and hard drives?
+
+
+>What if these devices are still on?
+
+
+>How can these devices be collected in such a way that no evidence is lost or tampered with?
 
 
 >How should digital evidence be transferred across different systems?
