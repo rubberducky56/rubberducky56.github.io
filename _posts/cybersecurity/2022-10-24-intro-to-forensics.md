@@ -87,26 +87,12 @@ Exif Byte Order             	: Little-endian (Intel, II)
 Compression                 	: JPEG (old-style)
 Make                        	: Canon
 Camera Model Name           	: Canon EOS R6
-Orientation                 	: Horizontal (normal)
-X Resolution                	: 300
-Y Resolution                	: 300
-Resolution Unit             	: inches
-Software                    	: GIMP 2.10.28
 Modify Date                 	: 2022:02:15 17:23:40
-(...)
-ICC Profile Name            	: Adobe RGB (1998)
-Creator Tool                	: GIMP 2.10
-Metadata Date               	: 2021:12:02 13:32:48+01:00
-Rating                      	: 2
-Document ID                 	: adobe:docid:photoshop:de96cdf3-afbf-664d-9d4c-d5c1d0fdb4e1
-Instance ID                 	: xmp.iid:b80f5656-424a-4d4d-9cd0-5a36706d26d6
-Original Document ID        	: D3825C53382EED70DB7435B0CCF756F5
-Preserved File Name         	: 5L0A2971.CR3
-(...)
+                        (...)
 Profile Date Time           	: 2022:02:15 14:53:19
 Profile File Signature      	: acsp
 Primary Platform            	: Apple Computer Inc.
-(...)
+                        (...)
 Date Created                	: 2022:02:15
 Digital Creation Date       	: 2021:11:05
 Digital Creation Time       	: 14:06:13+03:00
@@ -114,7 +100,7 @@ Application Record Version  	: 4
 Time Created                	: 17:23:40-17:23
 Image Width                 	: 1200
 Image Height                	: 800
-(...)
+                        (...)
 ```
 In this lucky instance, we see that EXIFtool was able to retrieve a huge amount of metadata. Most of this data is related to the camera’s specifications and photo information, which I have truncated out. We see that we have information relating to the date and time of the photo capture, the device used to take it, and GPS coordinates of the location of the capture. This information can be invaluable in a forensic investigation.
 
