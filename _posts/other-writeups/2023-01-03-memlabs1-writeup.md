@@ -220,7 +220,7 @@ We see that there are three users of interest - ```SmartNet```, ```HomeGroupUser
 
 ### Process CMD Commands
 
-We now examine process command line commands with ```cmdline```. We will examine this for the ```cmd.exe```, ```mspaint.exe```, ```explorer.exe```, and ```WinRAR.exe``` processes.
+We now examine process command line commands with ```cmdline```. We will examine this for the ```cmd.exe```, ```mspaint.exe```, ```explorer.exe```, and ```WinRAR.exe``` processes. The PIDs of each of these processes is taken from the ```pslist``` command.
 
 ##### Command:
 > vol cmdline -p 2504,2424,1984,1512
@@ -264,7 +264,7 @@ Volatility Foundation Volatility Framework 2.6
 DataSectionObject 0x3fa3ebc0   None   \Device\HarddiskVolume2\Users\Alissa Simpson\Documents\Important.rar
 ```
 
-This was successful. In the ```file_dump``` directory, we now have one .```dmp``` file. Let’s rename this to ```Important.rar```, and try extracting it.
+This was successful. In the ```file_dump``` directory, we now have one ```.dmp``` file. Let’s rename this to ```Important.rar```, and try extracting it.
 
 ##### Command:
 > unrar e important.rar
