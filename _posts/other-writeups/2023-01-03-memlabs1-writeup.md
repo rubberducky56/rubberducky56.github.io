@@ -282,7 +282,8 @@ Extracting from Important.rar
 Password is NTLM hash(in uppercase) of Alissa's account passwd.
 Enter password (will not be echoed) for flag3.png:
 
-Extracting  flag3.png                                             	OK
+Extracting  flag3.png                   
 All OK
+```
 
 A password was required to extract the file ```flag3.png```. We are told that this is the upper case version of Alissa’s NTLM hash. Luckily, we have already found this. I used the Python command ```.upper()``` to convert this hash to upper case, and used it as the password. This was successful.
