@@ -84,11 +84,17 @@ The following lines stand out:
 
 ```
 Offset(V)      	Name                	PID   PPID   Thds 	Hnds   Sess  Wow64 Start                      	Exit                     	 
+
 ------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------
+
 0xfffffa8001048060 DumpIt.exe          	796	    604  	2   	45  	1  	1        2019-12-11 14:37:54 UTC+0000
+
 0xfffffa8000f4c670 explorer.exe       	2504    3000 	34  	825  	2  	0        2019-12-11 14:37:14 UTC+0000
+
 0xfffffa80022bab30 mspaint.exe        	2424	604  	6  	    128  	1  	0        2019-12-11 14:35:14 UTC+0000
+
 0xfffffa8002222780 cmd.exe            	1984	604  	1   	21  	1  	0        2019-12-11 14:34:54 UTC+0000
+
 0xfffffa8001010b30 WinRAR.exe         	1512    2504  	6  	    207  	2  	0        2019-12-11 14:37:23 UTC+0000
 ```
 
