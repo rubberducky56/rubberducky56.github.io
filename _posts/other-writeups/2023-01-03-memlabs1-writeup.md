@@ -27,19 +27,19 @@ Once the challenge file has been extracted, we start by determining the profile.
 
 ```
 Volatility Foundation Volatility Framework 2.6
-    INFO	: volatility.debug	: Determining profile based on KDBG search...
-    Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
-    AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
-    AS Layer2 : FileAddressSpace (/home/kali/Downloads/forensics/memlabs/lab1/MemoryDump_Lab1.raw)
-    PAE type : No PAE
-    DTB : 0x187000L
-    KDBG : 0xf800028100a0L
-    Number of Processors : 1
-    Image Type (Service Pack) : 1
-    KPCR for CPU 0 : 0xfffff80002811d00L
-    KUSER_SHARED_DATA : 0xfffff78000000000L
-    Image date and time : 2019-12-11 14:38:00 UTC+0000
-    Image local date and time : 2019-12-11 20:08:00 +0530
+INFO	: volatility.debug	: Determining profile based on KDBG search...
+Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
+AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
+AS Layer2 : FileAddressSpace (/home/kali/Downloads/forensics/memlabs/lab1/MemoryDump_Lab1.raw)
+PAE type : No PAE
+DTB : 0x187000L
+KDBG : 0xf800028100a0L
+Number of Processors : 1
+Image Type (Service Pack) : 1
+KPCR for CPU 0 : 0xfffff80002811d00L
+KUSER_SHARED_DATA : 0xfffff78000000000L
+Image date and time : 2019-12-11 14:38:00 UTC+0000
+Image local date and time : 2019-12-11 20:08:00 +0530
 ```
 
 We see a number of different potential profiles. To determine which profile to use, we use the ```kdbgscan``` command, using each profile, and checking the number of processes identified.
@@ -52,20 +52,20 @@ When ```kdbgscan``` is run with the ```Win7SP0x64``` profile, we see 48 processe
 ```
 Volatility Foundation Volatility Framework 2.6
 **************************************************
-    Instantiating KDBG using: Kernel AS Win7SP0x64 (6.1.7600 64bit)
-    Offset (V)                	: 0xf800028100a0
-    Offset (P)                	: 0x28100a0
-    KDBG owner tag check      	: True
-    Profile suggestion (KDBGHeader): Win7SP1x64
-    Version64                 	: 0xf80002810068 (Major: 15, Minor: 7601)
-    Service Pack (CmNtCSDVersion) : 1
-    Build string (NtBuildLab) 	: 7601.17514.amd64fre.win7sp1_rtm.
-    PsActiveProcessHead       	: 0xfffff80002846b90 (48 processes)
-    PsLoadedModuleList        	: 0xfffff80002864e90 (140 modules)
-    KernelBase                	: 0xfffff8000261f000 (Matches MZ: True)
-    Major (OptionalHeader)    	: 6
-    Minor (OptionalHeader)    	: 1
-    KPCR                      	: 0xfffff80002811d00 (CPU 0)
+Instantiating KDBG using: Kernel AS Win7SP0x64 (6.1.7600 64bit)
+Offset (V)                	: 0xf800028100a0
+Offset (P)                	: 0x28100a0
+KDBG owner tag check      	: True
+Profile suggestion (KDBGHeader): Win7SP1x64
+Version64                 	: 0xf80002810068 (Major: 15, Minor: 7601)
+Service Pack (CmNtCSDVersion) : 1
+Build string (NtBuildLab) 	: 7601.17514.amd64fre.win7sp1_rtm.
+PsActiveProcessHead       	: 0xfffff80002846b90 (48 processes)
+PsLoadedModuleList        	: 0xfffff80002864e90 (140 modules)
+KernelBase                	: 0xfffff8000261f000 (Matches MZ: True)
+Major (OptionalHeader)    	: 6
+Minor (OptionalHeader)    	: 1
+KPCR                      	: 0xfffff80002811d00 (CPU 0)
 ```
 
 Now that we know the profile, I created an alias to make typing out commands more efficient.
