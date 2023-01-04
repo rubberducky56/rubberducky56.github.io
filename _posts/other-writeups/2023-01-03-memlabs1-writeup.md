@@ -250,7 +250,7 @@ Command line : "C:\Program Files\WinRAR\WinRAR.exe" "C:\Users\Alissa Simpson\Doc
 The ```WinRAR``` command was interesting. We can see that the file ```Important.rar``` has been compressed. We now try to extract this file. If it has been cached, we should be able to recover it.
 
 ##### Command:
-> vol filescan </p>|<p> grep ‘Important’
+> vol filescan > grep ‘Important’
 
 ```
 Volatility Foundation Volatility Framework 2.6
