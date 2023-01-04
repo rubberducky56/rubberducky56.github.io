@@ -2,10 +2,10 @@
 layout: post
 title: "Advanced Encryption Standard"
 author: "Mouse"
-categories: cryptography
+categories: cybersecurity
 tags: [cybersecurity, cryptography, computer-science, algebra]
 image: aes.jpg
-permalink: /cryptography/aes
+permalink: /cybersecurity/aes
 ---
 
 ### What is AES?
