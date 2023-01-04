@@ -4,7 +4,7 @@ title: "Wonderland Writeup"
 author: "Mouse"
 categories: tryhackme
 tags: [writeup]
-image: thm_wonderland.jpg
+image: thm_wonderland.png
 permalink: /tryhackme/wonderland-writeup
 ---
 <div align="center"><b>“Fall down the rabbit hole and enter wonderland”</b></div>
