@@ -286,4 +286,23 @@ Extracting  flag3.png
 All OK
 ```
 
-A password was required to extract the file ```flag3.png```. We are told that this is the upper case version of Alissa’s NTLM hash. Luckily, we have already found this. I used the Python command ```.upper()``` to convert this hash to upper case, and used it as the password. This was successful.
+A password was required to extract the file ```flag3.png```. We are told that this is the upper case version of Alissa’s NTLM hash. Luckily, we have already found this. I used the Python command ```.upper()``` to convert this hash to upper case, and used it as the password. This was successful, and we can now open the ```flag.png``` file.
+
+![alt text](\assets\img\other-writeups\memlabs1\flag3.PNG)
+
+This image simply contains the third flag, ```flag{w3ll_3rd_stage_was_easy}```. We found the third flag before the second!
+
+Now we must go back and retrieve the second flag.
+
+### MSPaint Data
+
+I decided to next investigate the MS Paint process a bit more closely. I got the PID of ```mspaint.exe```, ```2424```, and dumped the memory of this process. My thought process was that since MS paint was open, the memory will contain the contents of the canvas.
+
+##### Command:
+> vol memdump -p 2424
+
+This dumped a file called ```2424.dmp```.  I renamed this to ```img.data```, and opened it with ```GIMP```. After fiddling with the offset, width and height, I finally got something that seemed legible.
+
+![alt text](\assets\img\other-writeups\memlabs1\gimp.PNG)
+
+It appears that this is upside down. Flipping and rotating this image reveals the second flag, ```flag{Good_Boy_good_girl}```. And with that, we have found all three flags, and completed the challenge!
