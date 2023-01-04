@@ -217,3 +217,66 @@ Alissa Simpson:1003:aad3b435b51404eeaad3b435b51404ee:f4ff64c8baac57d22f22edc6810
 We see that there are three users of interest - ```SmartNet```, ```HomeGroupUser```, and ```Alissa Simpson```. The Admin and Guest passwords are the same. When these hashes were put into [CrackStation](https://crackstation.net/), we were able to get three of the four hashes! The admin and guest passwords are blank, the ```SmartNet``` password is ```smartnet123```, and Alissa Simpson’s password is ```goodmorningindia```. This is certainly information worth keeping an eye on.
 
 ![alt text](\assets\img\other-writeups\memlabs1\crackstation.PNG)
+
+### Process CMD Commands
+
+We now examine process command line commands with ```cmdline```. We will examine this for the ```cmd.exe```, ```mspaint.exe```, ```explorer.exe```, and ```WinRAR.exe``` processes.
+
+##### Command:
+> vol cmdline -p 2504,2424,1984,1512
+
+```
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+cmd.exe pid:   1984
+Command line : "C:\Windows\system32\cmd.exe"
+************************************************************************
+mspaint.exe pid:   2424
+Command line : "C:\Windows\system32\mspaint.exe"
+************************************************************************
+explorer.exe pid:   2504
+Command line : C:\Windows\Explorer.EXE
+************************************************************************
+WinRAR.exe pid:   1512
+Command line : "C:\Program Files\WinRAR\WinRAR.exe" "C:\Users\Alissa Simpson\Documents\Important.rar"
+```
+
+The ```WinRAR``` command was interesting. We can see that the file ```Important.rar``` has been compressed. We now try to extract this file. If it has been cached, we should be able to recover it.
+
+##### Command:
+> vol filescan | grep ‘Important’
+
+```
+Volatility Foundation Volatility Framework 2.6
+0x000000003fa3ebc0  	1  	0 R--r-- \Device\HarddiskVolume2\Users\Alissa Simpson\Documents\Important.rar
+0x000000003fac3bc0  	1  	0 R--r-- \Device\HarddiskVolume2\Users\Alissa Simpson\Documents\Important.rar
+0x000000003fb48bc0  	1  	0 R--r-- \Device\HarddiskVolume2\Users\Alissa Simpson\Documents\Important.rar
+```
+
+Now we have the offsets, we can try dump these files. We make a directory ```file_dump``` to dump the files into, then dump the files with offsets ```0x000000003fa3ebc0```, ```0x000000003fac3bc0```, and ```0x000000003fb48bc0```
+
+##### Command:
+
+> vol dumpfiles -D file_dump -Q '0x000000003fa3ebc0','0x000000003fac3bc0','0x000000003fb48bc0'
+
+```
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x3fa3ebc0   None   \Device\HarddiskVolume2\Users\Alissa Simpson\Documents\Important.rar
+```
+
+This was successful. In the ```file_dump``` directory, we now have one .```dmp``` file. Let’s rename this to ```Important.rar```, and try extracting it.
+
+##### Command:
+> unrar e important.rar
+
+```
+UNRAR 6.00 freeware  	Copyright (c) 1993-2020 Alexander Roshal
+
+Extracting from Important.rar
+Password is NTLM hash(in uppercase) of Alissa's account passwd.
+Enter password (will not be echoed) for flag3.png:
+
+Extracting  flag3.png                                             	OK
+All OK
+
+A password was required to extract the file ```flag3.png```. We are told that this is the upper case version of Alissa’s NTLM hash. Luckily, we have already found this. I used the Python command ```.upper()``` to convert this hash to upper case, and used it as the password. This was successful.
