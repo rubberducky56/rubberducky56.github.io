@@ -10,7 +10,7 @@ permalink: /other-writeups/memlabs1
 
 ### Lab 1 - Beginner’s Luck
 
-This is a writeup of the [first](https://github.com/stuxnet999/MemLabs/tree/master/Lab%201) of a series of CTF-style challenges in memory forensics, created by [P. Abhiram Kumar](https://stuxnet999.github.io/). The repository containing these challenges can be found [here](https://github.com/stuxnet999/MemLabs). This challenge was completed using Volatility. A reference for Volatility commands can be found [here](https://github.com/volatilityfoundation/volatility/wiki/Command-Reference).
+This is a writeup of the [first](https://github.com/stuxnet999/MemLabs/tree/master/Lab%201) of a series of CTF-style challenges in memory forensics, created by [P. Abhiram Kumar](https://stuxnet999.github.io/). The repository containing these challenges can be found [here](https://github.com/stuxnet999/MemLabs). This challenge was completed using Volatility. A reference for Volatility commands can be found [here](https://github.com/volatilityfoundation/volatility/wiki/Command-Reference). For more on digital forensics and using Volatility, check out my article [Introduction to Digital Forensics](/cybersecurity/intro-to-forensics).
 
 The description of the challenge is as follows:
 
@@ -306,3 +306,18 @@ This dumped a file called ```2424.dmp```.  I renamed this to ```img.data```, and
 ![alt text](\assets\img\other-writeups\memlabs1\gimp.PNG)
 
 It appears that this is upside down. Flipping and rotating this image reveals the second flag, ```flag{Good_Boy_good_girl}```. And with that, we have found all three flags, and completed the challenge!
+
+### External Links
+[MemLabs Lab 1](https://github.com/stuxnet999/MemLabs/tree/master/Lab%201)
+
+[P. Abhiram Kumar's Website](https://stuxnet999.github.io/)
+
+[MemLabs Challenges](https://github.com/stuxnet999/MemLabs)
+
+[Volatility Command Reference](https://github.com/volatilityfoundation/volatility/wiki/Command-Reference)
+
+[CyberChef](https://gchq.github.io/CyberChef/)
+
+[SmartNet by Hexagon](https://hexagon.com/products/hxgn-smartnet)
+
+[CrackStation](https://crackstation.net/)
