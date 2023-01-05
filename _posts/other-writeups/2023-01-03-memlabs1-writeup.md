@@ -296,7 +296,7 @@ Now we must go back and retrieve the second flag.
 
 ### MSPaint Data
 
-I decided to next investigate the MS Paint process a bit more closely. I got the PID of ```mspaint.exe```, ```2424```, and dumped the memory of this process. My thought process was that since MS paint was open, the memory will contain the contents of the canvas.
+I decided to next investigate the MS Paint process a bit more closely. I got the PID of ```mspaint.exe```, ```2424```, and dumped the memory of this process. My thought process was that since MS paint was open, the memory will contain the contents of the canvas. I found [this article](https://w00tsec.blogspot.com/2015/02/extracting-raw-pictures-from-memory.html) on extracting images out of memory dumps.
 
 ##### Command:
 > vol memdump -p 2424
@@ -321,3 +321,5 @@ It appears that this is upside down. Flipping and rotating this image reveals th
 [SmartNet by Hexagon](https://hexagon.com/products/hxgn-smartnet)
 
 [CrackStation](https://crackstation.net/)
+
+[Extracting Images From Memory Dumps](https://w00tsec.blogspot.com/2015/02/extracting-raw-pictures-from-memory.html)
