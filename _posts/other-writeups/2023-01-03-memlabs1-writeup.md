@@ -72,7 +72,7 @@ Now that we know the profile, I created an alias to make typing out commands mor
 
 ##### Command:
 
-> alias vol='vol2 -f MemoryDump_Lab1.raw --profile=Win7SP0x64'
+> alias vol='volatility -f MemoryDump_Lab1.raw --profile=Win7SP0x64'
 
 ### Running Processes
 We now check the running processes.
