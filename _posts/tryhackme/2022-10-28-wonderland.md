@@ -306,7 +306,7 @@ lrwxrwxrwx 1 root   root   	9 May 25  2020 .bash_history -> /dev/null
 -rwsr-sr-x 1 root   root   16816 May 25  2020 teaParty
 ```
 
-We find a file called ```teaParty```, which as SUID permissions enabled. Let’s investigate this with the ```file``` command.
+We find a file called ```teaParty```, which has SUID permissions enabled. Let’s investigate this with the ```file``` command.
 
 ##### Command:
 > file teaParty
@@ -340,7 +340,7 @@ Probably by Fri, 16 Dec 2022 03:20:31 +0000
 Ask very nicely, and I will give you some tea while you wait for him
 ```
 
-It appears we have to wait an hour from the current time (yes, I am doing this CTF at 02:20…). Some further investigation is required. Netcat is used to transfer this executable onto my local machine.
+It appears we have to wait an hour from the current time (yes, I am doing this CTF at 03:20…). Some further investigation is required. Netcat is used to transfer this executable onto my local machine.
 
 ##### Command on local machine:
 > nc -lnvp 54321 > teaParty
