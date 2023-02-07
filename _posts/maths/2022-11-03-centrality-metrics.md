@@ -86,7 +86,7 @@ Tying this back to drug cartels, the closeness centrality could reveal individua
 ### Betweenness Centrality
 Next, we examine the notion of __betweenness centrality__. In this metric, the importance of a node is defined by the number of __shortest paths__ that pass through that node. More precisely:
 
-Let $$sigma_{st}$$ denote the number of shortest paths between $$s,t \in V$$, and let $$\sigma_{st}(x)$$ denote the number of shortest paths between $$s,t \in V$$, which pass through $$x \in V$$. Then the betweenness centrality of a node $$x \in V$$ can be computed by summing over all node pairs $$s,t$$ the ratio of shortest paths from $$s$$ to $$t$$ passing through $$x$$, and the total number of shortest paths $$s$$ to $$t$$. More precisely:
+Let $$\sigma_{st}$$ denote the number of shortest paths between $$s,t \in V$$, and let $$\sigma_{st}(x)$$ denote the number of shortest paths between $$s,t \in V$$, which pass through $$x \in V$$. Then the betweenness centrality of a node $$x \in V$$ can be computed by summing over all node pairs $$s,t$$ the ratio of shortest paths from $$s$$ to $$t$$ passing through $$x$$, and the total number of shortest paths $$s$$ to $$t$$. More precisely:
 
 $$
 B(x) := \sum_{s,t \in V, s \neq x \neq t} \frac{\sigma_{st}(x)}{\sigma_{st}}
