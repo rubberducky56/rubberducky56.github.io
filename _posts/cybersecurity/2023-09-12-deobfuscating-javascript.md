@@ -90,7 +90,7 @@ We see that this was just one layer of packing - another packer program has been
 
 >Note that the [```eval()``` function](https://www.w3schools.com/jsref/jsref_eval.asp) should never be used in JavaScript, as it is a [known security risk](https://www.codiga.io/blog/javascript-eval-best-practices/). If ```eval()``` is used, there is likely some obfuscation going on.
 
-[Research by Or Katz](https://www.darkreading.com/application-security/javascript-packing-found-in-more-than-25-of-malicious-sites) of Akami in 2021 showed that 26% of malicious websites use some form of JavaScript packing. His full talk can be found [here](https://www.youtube.com/watch?v=NYTgXB9o0Gs&ab_channel=OWASPFoundation).
+[Research by Or Katz](https://www.darkreading.com/application-security/javascript-packing-found-in-more-than-25-of-malicious-sites) of Akami in 2021 showed that 26% of malicious websites use some form of JavaScript packing. His full talk can be found [here](https://www.youtube.com/watch?v=NYTgXB9o0Gs&ab_channel=OWASPFoundation). For more on JavaScript packing, see [this blog post](https://www.trickster.dev/post/javascript-obfuscation-techniques-by-example/) by rl1987.
 
 
 
@@ -114,3 +114,5 @@ We see that this was just one layer of packing - another packer program has been
 [Prevalence of JavaScript Packing](https://www.darkreading.com/application-security/javascript-packing-found-in-more-than-25-of-malicious-sites)
 
 [Talk on JavaScript Packing by Or Katz](https://www.youtube.com/watch?v=NYTgXB9o0Gs&ab_channel=OWASPFoundation)
+
+[JavaScript Packing](https://www.trickster.dev/post/javascript-obfuscation-techniques-by-example/)
