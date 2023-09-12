@@ -5,7 +5,7 @@ author: "Mouse"
 categories: cybersecurity
 tags: [cybersecurity, programming, malware, reverse-engineering]
 image: javascript_deobfuscation.png
-permalink: /cybersecurity/deobfuscating_javascript
+permalink: /cybersecurity/deobfuscating-javascript
 ---
 ### Introduction
 Code obfuscation is the process of deliberately writing code in a way that makes it difficult to understand and read, to ensure that it cannot be reverse-engineered or modified. Some basic techniques include making the code structure more complex with redundant code, and making code less human-readable by renaming variables and functions to random character strings. There are multiple reasons for doing this - both innocent and malicious. Code obfuscation can be used to protect a company’s intellectual property, but is also used by malware developers to evade detection. For more on the general principles of code obfuscation, see [my previous article](https://cybermouse.xyz/cybersecurity/code-obfuscation) on it.
