@@ -52,7 +52,7 @@ To most people, even experienced programmers, this code is incomprehensible. Aft
 
 This article will focus on ways of deobfuscating JavaScript code. Code deobfuscation is an important skill in code analysis and reverse engineering. Security researchers will often come across malware that uses obfuscated JavaScript to deliver a malicious payload - the ability to understand and reverse this code is of paramount importance to understanding the malware.
 
-### JavaScript Obfuscation Methods
+### JavaScript Obfuscation
 
 In order to deobfuscate JavaScript, we need to know some common methods used for obfuscating it in the first place.
 
@@ -80,11 +80,11 @@ function%28c%29%7Breturn%28c%3Ca%3F%27%27%3Ae%28parseInt%28c/a%29%29%29
 
 we get:
 
-```
+{% highlight js %}
 eval(function(p,a,c,k,e,r){e=
 function(c){return(c<a?'':e(parseInt(c/a)))
 +((c=c%a)>35?String.fromCharCode(c+29):c
-```
+{% endhighlight %}
 
 We see that this was just one layer of packing - another packer program has been used on this software. The inner packer has also used the ```eval()``` function. The variables ```p```, ```a```, ```c```, ```k```, ```e``` and ```r``` are being used as pointers to other functions or variables in the code, but these undescriptive names hide their true purpose. These pointers are used by the interpreter to rebuild the original code. The line ```eval(function(p,a,c,k,e,r))``` is typical of packed JavaScript code.
 
