@@ -35,7 +35,7 @@ test();
 
 Running this in the Chrome Developer Console, we see it works as intended:
 
-![alt text](\assets\img\compsci\aes\unobf_js.PNG)
+![alt text](\assets\img\cybersecurity\js_deobfuscation\unobf_js.PNG)
 
 Running this through the above JavaScript obfuscation tool, we get the following mess:
 {% highlight js %}
@@ -44,7 +44,7 @@ function _0x53f6(_0x35ae1c,_0x119451){var _0x78b51=_0x78b5();return _0x53f6=func
 
 Running this on the console, we get the exact same output:
 
-![alt text](\assets\img\compsci\aes\obf_js.PNG)
+![alt text](\assets\img\cybersecurity\js_deobfuscation\obf_js.PNG)
 
 To most people, even experienced programmers, this code is incomprehensible. After looking at it carefully we see the encoded text, but only after a jumble of garbage code.
 
