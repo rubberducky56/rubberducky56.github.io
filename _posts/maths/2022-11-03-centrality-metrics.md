@@ -4,7 +4,7 @@ title: "Disruping Drug Cartels Using Graph Theory"
 author: "Mouse"
 categories: maths
 tags: [maths, graph-theory, sna]
-image: centrality_metrics.jpg
+image: centrality_metrics.png
 permalink: /maths/centrality-metrics
 ---
 
