@@ -12,7 +12,7 @@ In this article, a JavaScript dropper for the Locky ransomware is deobfuscated. 
 
 [Locky](https://en.wikipedia.org/wiki/Locky) is a nasty piece of ransomware, and is usually sent as an attachment to malicious phishing emails. If the user runs the attachment, ransomware is installed onto the system, and all files matching certain extensions are locked behind a paywall. Instructions are given to the victim to visit a Tor .onion website, and send over bitcoins to the criminals. Locky has been around since 2016, and continues to infect systems. An analysis and IOCs (Indicators of Compromise) can be found [on VirusTotal](https://www.virustotal.com/gui/file/03f6ab1b482eac4acfb793c3e8d0656d7c33cddb5fc38416019d526f43577761/detection).
 
-![alt text](\assets\img\cybersecurity\deobfuscating-javascript-2\locky.PNG)
+![alt text](\assets\img\cybersecurity\deobfuscating-javascript-2\locky.png)
 
 I have obtained a sample of the Locky JavaScript dropper file from [here](https://www.uperesia.com/deobfuscating-a-locky-dropper). This file is heavily obfuscated, as shown in the snippet below. In this article, I will deobfuscate this code, layer by layer, until we reach a final version that is comprehendible.
 
@@ -79,7 +79,7 @@ The final step is to rename some of the variables with more descriptive names, t
 
 ![alt text](\assets\img\cybersecurity\deobfuscating-javascript-2\final.PNG)
 
-Now the script is fully deobfuscated, we can see exactly what it does. It looks a lot less intimidating than the original, right? This script creates an XMLHTTP object, and uses that to download an executable from ```hXXX://cheapairticketindia(.)net```, using an HTTP GET request. Once this is successfully downloaded (HTTP status code ```200``` is received), the script is written to the ```TEMP``` directory, and executed with a shell object. The executable that is downloaded is none other than the Locky Ransomware. 
+Now the script is fully deobfuscated, we can see exactly what it does. It looks a lot less intimidating than the original, right? This script creates an XMLHTTP object, and uses that to download an executable from ```hXXX://cheapairticketindia(.)net```, using an HTTP GET request. Once this is successfully downloaded (HTTP status code ```200``` is received), the script is written to the ```TEMP``` directory, and executed with a shell object. The executable that is downloaded is none other than the Locky Ransomware.
 
 ### List of External Links
 
