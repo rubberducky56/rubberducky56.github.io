@@ -8,13 +8,13 @@ image: javascript_deobfuscation.png
 permalink: /cybersecurity/deobfuscating-javascript-1
 ---
 ### Introduction
-Code obfuscation is the process of deliberately writing code in a way that makes it difficult to understand and read, to ensure that it cannot be reverse-engineered or modified. Some basic techniques include making the code structure more complex with redundant code, and making code less human-readable by renaming variables and functions to random character strings. There are multiple reasons for doing this - both innocent and malicious. Code obfuscation can be used to protect a company’s intellectual property, but is also used by malware developers to evade detection. For more on the general principles of code obfuscation, see [my previous article](https://cybermouse.xyz/cybersecurity/code-obfuscation) on it. This article can be considered a “part 2”.
+Code obfuscation is the process of deliberately writing code in a way that makes it difficult to understand and read, to ensure that it cannot be reverse-engineered or modified. Some basic techniques include making the code structure more complex with redundant code, and making code less human-readable by renaming variables and functions to random character strings. There are multiple reasons for doing this - both innocent and malicious. Code obfuscation can be used to protect a company’s intellectual property, but is also used by malware developers to evade detection. For more on the general principles of code obfuscation, see [my previous article](https://cybermouse.xyz/cybersecurity/code-obfuscation) on it.
 
 JavaScript is a scripting language used to implement dynamic and interactive elements to web pages, and it is widespread across the web. JavaScript can either be embedded into an HTML file:
 
 {% highlight html %}
 <script>
-… JavaScript code …
+console.log("My JavaScript code");
 </script>
 {% endhighlight %}
 
@@ -28,7 +28,7 @@ To see some JavaScript obfuscation in practice, there are many available online 
 
 {% highlight js %}
 function test() {
-console.log("This is my un-obfuscated JavaScript");
+  console.log("This is my un-obfuscated JavaScript");
 }
 test();
 {% endhighlight %}
@@ -56,13 +56,15 @@ This article will focus on ways of deobfuscating JavaScript code. Code deobfusca
 
 In order to deobfuscate JavaScript, we need to know some common methods used for obfuscating it in the first place.
 
-Code minification is a way of reducing the readability of code by compressing it all into a single line. This includes the removal of whitespace, comments, and other unnecessary characters.  Many websites use this technique, so much so that many Browser developer tools include a “beautify” or “pretty print”  feature, which expands minified JavaScript into its full form. [This](https://www.toptal.com/developers/javascript-minifier) is a simple online tool for JavaScript minification.
+Code minification is a way of reducing the readability of code by compressing it all into a single line. This includes the removal of whitespace, comments, and other unnecessary characters.  Many websites use this technique, so much so that many browser developer tools include a “beautify” or “pretty print”  feature, which expands minified JavaScript into its full form. [This](https://www.toptal.com/developers/javascript-minifier) is a simple online tool for JavaScript minification.
 
 The Browser Developer Tools beautify feature can often be found as the ```{ }``` button. Furthermore, [Prettier](https://prettier.io/playground/) and [Beautifier](https://beautifier.io/) can be used to expand minified JavaScript.
 
 JavaScript packing is another obfuscation technique. Packers are tools which take in a binary, and transform it using compression, encryption, and anti-debugging tricks to create a smaller file, whilst retaining the original functionality. Packing can be used benignly to help pages load faster and keep web pages more efficiently, but can also be used to obfuscate code for malicious purposes. The same ideas can be used to obfuscate JavaScript. Typically, JavaScript packing has two stages:
 1. Transforming the code into a new reduced form, hardcoded into the output
 2. Introducing some helper code which will unpack and evaluate the original code
+
+#### eval(unescape())
 
 The simplest way to pack JavaScript is by using the built-in ```eval(unescape())``` function. The original code is URL-encoded, and used as an argument to ```eval(unescape())```. If we search PublicWWW (a search engine for HTML, CSS and JS snippets on the web) for ```eval(unescape())``` we quickly find [an example in the wild](https://publicwww.com/websites/%22eval%28unescape%28%22/).
 
