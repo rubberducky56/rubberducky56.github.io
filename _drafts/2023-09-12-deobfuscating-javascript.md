@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Deobfuscating JavaScript"
+title: "Deobfuscating JavaScript, Part 1"
 author: "Mouse"
 categories: cybersecurity
 tags: [cybersecurity, programming, malware, reverse-engineering]
 image: javascript_deobfuscation.png
-permalink: /cybersecurity/deobfuscating-javascript
+permalink: /cybersecurity/deobfuscating-javascript-1
 ---
 ### Introduction
 Code obfuscation is the process of deliberately writing code in a way that makes it difficult to understand and read, to ensure that it cannot be reverse-engineered or modified. Some basic techniques include making the code structure more complex with redundant code, and making code less human-readable by renaming variables and functions to random character strings. There are multiple reasons for doing this - both innocent and malicious. Code obfuscation can be used to protect a company’s intellectual property, but is also used by malware developers to evade detection. For more on the general principles of code obfuscation, see [my previous article](https://cybermouse.xyz/cybersecurity/code-obfuscation) on it. This article can be considered a “part 2”.
@@ -58,6 +58,8 @@ In order to deobfuscate JavaScript, we need to know some common methods used for
 
 Code minification is a way of reducing the readability of code by compressing it all into a single line. This includes the removal of whitespace, comments, and other unnecessary characters.  Many websites use this technique, so much so that many Browser developer tools include a “beautify” or “pretty print”  feature, which expands minified JavaScript into its full form. [This](https://www.toptal.com/developers/javascript-minifier) is a simple online tool for JavaScript minification.
 
+The Browser Developer Tools beautify feature can often be found as the ```{ }``` button. Furthermore, [Prettier](https://prettier.io/playground/) and [Beautifier](https://beautifier.io/) can be used to expand minified JavaScript.
+
 JavaScript packing is another obfuscation technique. Packers are tools which take in a binary, and transform it using compression, encryption, and anti-debugging tricks to create a smaller file, whilst retaining the original functionality. Packing can be used benignly to help pages load faster and keep web pages more efficiently, but can also be used to obfuscate code for malicious purposes. The same ideas can be used to obfuscate JavaScript. Typically, JavaScript packing has two stages:
 1. Transforming the code into a new reduced form, hardcoded into the output
 2. Introducing some helper code which will unpack and evaluate the original code
@@ -92,7 +94,16 @@ We see that this was just one layer of packing - another packer program has been
 
 [Research by Or Katz](https://www.darkreading.com/application-security/javascript-packing-found-in-more-than-25-of-malicious-sites) of Akami in 2021 showed that 26% of malicious websites use some form of JavaScript packing. His full talk can be found [here](https://www.youtube.com/watch?v=NYTgXB9o0Gs&ab_channel=OWASPFoundation). For more on JavaScript packing, see [this blog post](https://www.trickster.dev/post/javascript-obfuscation-techniques-by-example/) by rl1987.
 
+One tool to deobfuscate packed JavaScript is [JSNice](http://www.jsnice.org/). This website will attempt to make JavaScript ‘nicer’, for instance renaming elusive variables.
 
+![alt text](\assets\img\cybersecurity\js_deobfuscation\jsnice.PNG)
+
+However, automated online tools can only take you so far - effectively obfuscated code will need more powerful reverse engineering techniques. Attackers will often use additional techniques such as string substitutions, encodings and junk variables and functions to make code difficult to understand.
+
+### Conclusion
+In this article, a brief overview has been given on the world of JavaScript obfuscation, a technique to make code intentially complex and challenging to decipher. Methods such as code minification and packing have been explored. The potential dangers of using ```eval()``` have been demonstrated, and methods of using ```eval()``` to obfuscate JavaScript have been described. It's worth noting that a significant portion of malicious websites utilize JavaScript packing.
+
+In the next article, a real-life example of JavaScript deobfuscation will be explored, using the Locky ransomware. This example will provide valuable insights into the application of deobfuscation techniques in the realm of malware analysis.
 
 ### List of External Links
 
@@ -102,6 +113,10 @@ We see that this was just one layer of packing - another packer program has been
 
 [Emotet Reverse Engineering](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/deobfuscating-the-recent-emotet-epoch-4-macro/)
 [JavaScript Minification](https://www.toptal.com/developers/javascript-minifier)
+
+[Prettier](https://prettier.io/playground/)
+
+[Beautifier](https://beautifier.io/)
 
 [PublicWWW Results for eval(unescape())](https://publicwww.com/websites/%22eval%28unescape%28%22/)
 
@@ -116,3 +131,5 @@ We see that this was just one layer of packing - another packer program has been
 [Talk on JavaScript Packing by Or Katz](https://www.youtube.com/watch?v=NYTgXB9o0Gs&ab_channel=OWASPFoundation)
 
 [JavaScript Packing](https://www.trickster.dev/post/javascript-obfuscation-techniques-by-example/)
+
+[JSNice](http://www.jsnice.org/)

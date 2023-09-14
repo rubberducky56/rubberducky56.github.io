@@ -12,7 +12,7 @@ __Disclaimer:__
 ####  YOUR USAGE OF THIS WEBSITE CONSTITUTES YOUR AGREEMENT TO THE FOLLOWING TERMS:
 cybermouse.xyz is a site related to Computer Security and not a site that promotes hacking / cracking / software piracy.
 
-The articles, tutorial and demo provided on cybermouse.xyz is for informational and educational purpose only, and for those who’re willing and curious to know and learn about Ethical Hacking, Security and Penetration Testing. Any time the word “Hacking” that is used on this site shall be regarded as Ethical Hacking.
+The articles, tutorials and demos provided on cybermouse.xyz are for informational and educational purpose only, and for those who’re willing and curious to know and learn about Ethical Hacking, Security and Penetration Testing. Any time the word “Hacking” that is used on this site shall be regarded as Ethical Hacking.
 
 Do not attempt to violate the law with anything contained here. If you planned to use the content for illegal purpose, then please leave this site immediately! I will not be responsible for any illegal actions.
 
