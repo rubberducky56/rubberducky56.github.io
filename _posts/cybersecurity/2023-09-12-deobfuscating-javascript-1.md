@@ -14,7 +14,7 @@ JavaScript is a scripting language used to implement dynamic and interactive ele
 
 {% highlight html %}
 <script>
-console.log("My JavaScript code");
+    console.log("My JavaScript code");
 </script>
 {% endhighlight %}
 
@@ -28,7 +28,7 @@ To see some JavaScript obfuscation in practice, there are many available online 
 
 {% highlight js %}
 function test() {
-  console.log("This is my un-obfuscated JavaScript");
+    console.log("This is my un-obfuscated JavaScript");
 }
 test();
 {% endhighlight %}
