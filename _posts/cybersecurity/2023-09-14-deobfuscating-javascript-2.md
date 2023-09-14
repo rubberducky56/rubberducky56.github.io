@@ -80,3 +80,29 @@ The final step is to rename some of the variables with more descriptive names, t
 ![alt text](\assets\img\cybersecurity\deobfuscating-javascript-2\final.PNG)
 
 Now the script is fully deobfuscated, we can see exactly what it does. It looks a lot less intimidating than the original, right? This script creates an XMLHTTP object, and uses that to download an executable from ```hXXX://cheapairticketindia(.)net```, using an HTTP GET request. Once this is successfully downloaded (HTTP status code ```200``` is received), the script is written to the ```TEMP``` directory, and executed with a shell object. The executable that is downloaded is none other than the Locky Ransomware. 
+
+### List of External Links
+
+[General Principles of Code Obfuscation](https://cybermouse.xyz/cybersecurity/code-obfuscation)
+
+[JavaScript Eeobfuscation](https://cybermouse.xyz/cybersecurity/deobfuscating-javascript-1)
+
+[Locky Ransomware](https://en.wikipedia.org/wiki/Locky)
+
+[VirusTotal - Locky Ransomware](https://www.virustotal.com/gui/file/03f6ab1b482eac4acfb793c3e8d0656d7c33cddb5fc38416019d526f43577761/detection)
+
+[StackOverflow Thread](https://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery)
+
+[JavaScript charAt()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt)
+
+[JavaScript Comma Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comma_operator)
+
+[JavaScript replace()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace))
+
+[JavaScript shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
+
+[JavaScript pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
+
+[JavaScript split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+
+[JavaScript join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
