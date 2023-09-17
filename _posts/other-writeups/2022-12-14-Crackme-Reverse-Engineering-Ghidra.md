@@ -194,3 +194,83 @@ IOLI Crackme Level 0x03
 Password: 338724
 Password OK!!! :)
 ```
+
+### crackme0x04
+
+Below is the ```main``` function which Ghidra found:
+
+![alt text](\assets\img\other-writeups\crackme\0x04_main.PNG)
+
+On line 9 there is a ```scanf``` command, taking in a string from STDIN and storing it in variable ```local_7c```. This is then passed as a parameter to function ```check()```. The symbol table reveals the ```check()``` function:
+
+![alt text](\assets\img\other-writeups\crackme\0x04_check.PNG)
+
+The ```check()``` function has a little more going on. It appears that this program is adding the integers in the user input together, and checking if they are equal to ```0xf``` - 15 in decimal. Below is the ```check()``` function with variables renamed for clarity, and we go through how this program works:
+
+![alt text](\assets\img\other-writeups\crackme\0x04_check_vars.PNG)
+
+* We rename the function’s parameter ```user_pword```, as this is the password which the user inputs.
+* ```sVar1``` is assigned with ```strlen(user_pword)```, which takes the length of ```user_pword```, so we rename this variable ```user_pword_length```
+* ```local_10``` is used a counter variable to step through the characters of ```user_pword```, so we name this ```counter```
+* This function steps through each character of the input, and the current character is  ```local_11```, assigned as ```user_pword[counter]```. So we name this variable ```current_char```
+* ```local_8``` is the result of casting ```current_char``` to a decimal value, so we name this ```current_char_int```.
+* The value of ```current_char_int``` is added to a running total, stored in ```local_c```. We rename ```local_c``` to  ```total```.
+
+On line 22, we see that if the running total ```total``` reaches ```0xf```, or 15 in decimal, the loop breaks and the password is successful. We can deduce that the password is any integer where the digits add up to 15 - these are precisely the integers 69, 78, 87, and 96. These passwords are accepted.
+
+```
+└─$ ./crackme0x04
+IOLI Crackme Level 0x04
+Password: 69
+Password OK!
+```
+
+```
+IOLI Crackme Level 0x04
+Password: 96
+Password OK!
+```
+
+```
+IOLI Crackme Level 0x04
+Password: 78
+Password OK!
+```
+
+```
+IOLI Crackme Level 0x04
+Password: 87
+Password OK!
+```
+
+### crackme0x05
+
+Below is the decompiled ```main``` function.
+
+![alt text](\assets\img\other-writeups\crackme\0x05_main.PNG)
+
+This is similar to crackme0x04. Below is the ```check()``` function, and below that is the ```check()``` function with renamed variables, in the same scheme as used in crackme0x04.
+
+![alt text](\assets\img\other-writeups\crackme\0x05_check.PNG)
+
+![alt text](\assets\img\other-writeups\crackme\0x05_check_vars.PNG)
+
+This has almost the same functionality as ```check()``` in crackme0x04, except for some alterations. Instead of checking for the total ```0xf``` (15), this ```check()``` function checks for the total ```0x10```, 16 in decimal. However, if this total is matched, another function ```parell()``` is called, passing in the user input. Below is the ```parell()``` function.
+
+![alt text](\assets\img\other-writeups\crackme\0x05_parell.PNG)
+
+We can see the check this function carries out on line 8. If the bitwise AND of the input and ```1``` is ```0```, the password is accepted. For instance, the password ```79``` is rejected, as the bitwise AND of 79 and 1 is 1, not 0. The password ```790``` is accepted, as the bitwise AND of 790 and 1 is 0.
+
+```
+└─$ ./crackme0x05  
+IOLI Crackme Level 0x05
+Password: 79
+Password Incorrect!
+```
+
+```
+└─$ ./crackme0x05
+IOLI Crackme Level 0x05
+Password: 790
+Password OK!
+```
