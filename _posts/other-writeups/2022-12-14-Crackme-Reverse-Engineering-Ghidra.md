@@ -259,7 +259,7 @@ This has almost the same functionality as ```check()``` in crackme0x04, except f
 
 ![alt text](\assets\img\other-writeups\crackme\0x05_parell.PNG)
 
-We can see the check this function carries out on line 8. If the bitwise AND of the input and ```1``` is ```0```, the password is accepted. For instance, the password ```79``` is rejected, as the bitwise AND of 79 and 1 is 1, not 0. The password ```790``` is accepted, as the bitwise AND of 790 and 1 is 0.
+We can see the check this function carries out on line 8. If the bitwise AND of the input and ```1``` is ```0```, the password is accepted. This is the same as checking the parity of the entered password - if it is odd, it will be rejected and if it is even, it will be accepted. For instance, the password ```79``` is rejected, as the bitwise AND of 79 and 1 is 1, not 0. The password ```790``` is accepted, as the bitwise AND of 790 and 1 is 0.
 
 ```
 └─$ ./crackme0x05  
